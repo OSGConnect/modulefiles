@@ -1,0 +1,52 @@
+#!/usr/bin/env python
+
+import os, sys, optparse,stat
+
+version = '0.1'
+
+parser = optparse.OptionParser(version="%prog " + version)
+parser.add_option("-d", "--directory", dest="directory", default=".", 
+                  help="Check DIRECTORY and subdirs", metavar="DIRECTORY")
+parser.add_option("-c", "--check", dest="check", default=False, action="store_true",
+                  help="Don't change permissions, only check")
+
+(options, args) = parser.parse_args()
+correction_list = {}
+for root, dirs, files in os.walk(options.directory):
+    for fn in files:
+        filename = os.path.join(root, fn)
+        perms = os.lstat(filename).st_mode
+        if not (perms & (stat.S_IRGRP|stat.S_IROTH)) :
+            if filename not in correction_list:
+                correction_list[filename] = ['file', perms]
+            correction_list[filename][1] |=  (stat.S_IRGRP|stat.S_IROTH)
+        if (perms & stat.S_IXUSR ) and not (perms & (stat.S_IXGRP|stat.S_IXOTH)):
+            if filename not in correction_list:
+                correction_list[filename] = ['file', perms]
+            correction_list[filename][1] |=  (stat.S_IXGRP|stat.S_IXOTH)
+        
+    for dir in dirs:
+        dirname = os.path.join(root, dir)
+        perms = os.lstat(dirname).st_mode
+        if perms and not (stat.S_IRGRP|stat.S_IROTH|stat.S_IXGRP|stat.S_IXOTH):
+            if dirname not in correction_list:
+                correction_list[dirname] = ['directory', perms]
+            correction_list[dirname][1] |= (stat.S_IRGRP|stat.S_IROTH|stat.S_IXGRP|stat.S_IXOTH)
+        
+for path in correction_list:
+    perm = oct(correction_list[path][1])
+    if correction_list[path][0] == 'file':
+        sys.stdout.write("File %s permissions will be changed to %s\n" % (path, perm))
+    elif correction_list[path][0] == 'directory':
+        sys.stdout.write("Directory %s permissions will be changed to %s\n" % (path, perm))
+
+if options.check:
+    sys.stdout.write("Exiting without changes due to check option\n")
+    sys.exit(0)
+
+change_perms = raw_input("Make changes to files and directories? ")
+if change_perms.upper() != 'Y':
+    sys.stdout.write("Exiting due to user cancellation\n")
+    sys.exit(0)
+for path in correction_list:
+    os.chmod(path, correction_list[path][1])
