@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+
+import os, sys, optparse, time
+
+version = '0.1'
+
+parser = optparse.OptionParser(version="%prog " + version)
+parser.add_option("-d", "--directory", dest="directory", default=".", 
+                  help="Check DIRECTORY and subdirs", metavar="DIRECTORY")
+
+(options, args) = parser.parse_args()
+current_time = time.time()
+correction_list = []
+for root, dirs, files in os.walk(options.directory):
+    for fn in files:
+        filename = os.path.join(root, fn)
+        correction_list.append(filename)
+        
+    for dir in dirs:
+        dirname = os.path.join(root, dir)
+        correction_list.append(dirname)
+        
+change_perms = raw_input("Make changes to files and directories? ")
+if change_perms.upper() != 'Y':
+    sys.stdout.write("Exiting due to user cancellation\n")
+    sys.exit(0)
+for path in correction_list:
+    os.utime(path, (current_time, current_time))
