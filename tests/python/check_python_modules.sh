@@ -1,6 +1,9 @@
 #!/bin/bash
 version=`python --version 2>&1`
 exit_code=0
+hostname=`hostname -f`
+cur_time=`data`
+echo "Hostname $hostname\nTime: $cur_time\n"
 echo "System version of python: $version"
 
 test_numpy () {
@@ -59,10 +62,10 @@ then
   exit 1
 fi
 module load all-pkgs
-(( exit_code = exit_code || $(test_numpy) ))
-(( exit_code = exit_code || $(test_scipy) ))
-(( exit_code = exit_code || $(test_nltk) ))
-(( exit_code = exit_code || $(test_matplotlib) ))
+test_numpy
+test_scipy
+test_nltk
+test_matplotlib
 
 module unload python/2.7
 module unload all-pkgs
@@ -76,9 +79,9 @@ then
 fi
 module load all-pkgs
 # NLTK not compatible with python3 right now
-(( exit_code = exit_code || $(test_numpy) ))
-(( exit_code = exit_code || $(test_scipy) ))
-(( exit_code = exit_code || $(test_matplotlib) ))
+test_numpy
+test_scipy
+test_matplotlib
 
 exit $exit_code
 
