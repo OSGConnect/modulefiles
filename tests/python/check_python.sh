@@ -2,7 +2,8 @@
 version=`python --version 2>&1`
 hostname=`hostname -f`
 cur_time=`date`
-echo "Hostname $hostname\nTime: $cur_time\n"
+echo "Hostname $hostname"
+echo "Time: $cur_time"
 echo "System version of python: $version"
 
 source /cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/5.6.2/init/bash

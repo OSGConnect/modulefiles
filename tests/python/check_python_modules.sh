@@ -3,7 +3,8 @@ version=`python --version 2>&1`
 exit_code=0
 hostname=`hostname -f`
 cur_time=`date`
-echo "Hostname $hostname\nTime: $cur_time\n"
+echo "Hostname $hostname"
+echo "Time: $cur_time"
 echo "System version of python: $version"
 
 test_numpy () {
