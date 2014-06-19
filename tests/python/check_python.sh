@@ -1,7 +1,7 @@
 #!/bin/bash
 version=`python --version 2>&1`
 hostname=`hostname -f`
-cur_time=`data`
+cur_time=`date`
 echo "Hostname $hostname\nTime: $cur_time\n"
 echo "System version of python: $version"
 
