@@ -1,0 +1,36 @@
+universe = vanilla
+notification=never
+executable = ./check_python.sh
+output = check_python/results.out.$(Cluster).$(Process)
+error = check_python/results.err.$(Cluster).$(Process)
+log = check_python/results.log
++ProjectName = "OSG-Staff"
+ShouldTransferFiles = YES
+when_to_transfer_output = ON_EXIT
+
+
+Requirements = (GLIDEIN_ResourceName == "AGLT2") && (IS_GLIDEIN == True)
+queue 5
+Requirements = (GLIDEIN_ResourceName == "BNL-ATLAS") && (IS_GLIDEIN == True)
+queue 5
+Requirements = (GLIDEIN_ResourceName == "cinvestav") && (IS_GLIDEIN == True)
+queue 5
+Requirements = (GLIDEIN_ResourceName == "Crane") && (IS_GLIDEIN == True)
+queue 5
+Requirements = regexp("uct2-c[0-3][0-9][0-9].*", Machine)
+queue 5
+Requirements = (GLIDEIN_ResourceName == "Nebraska") && (IS_GLIDEIN == True)
+queue 5
+Requirements = (GLIDEIN_ResourceName == "NWICG_NDCMS") && (IS_GLIDEIN == True)
+queue 5
+Requirements = (GLIDEIN_ResourceName == "Nebraska") && (IS_GLIDEIN == True)
+queue 5
+Requirements = regexp("uc3-c[0-1][0-9].*", Machine)
+queue 5
+Requirements = (GLIDEIN_ResourceName == "UCD") && (IS_GLIDEIN == True)
+queue 5
+Requirements = (GLIDEIN_ResourceName == "UConn-OSG") && (IS_GLIDEIN == True)
+queue 5
+Requirements = (GLIDEIN_ResourceName == "UCSDT2") && (IS_GLIDEIN == True)
+queue 5
+Requirements = (GLIDEIN_ResourceName == "UTA_SWT2") && (IS_GLIDEIN == True)
