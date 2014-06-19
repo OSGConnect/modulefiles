@@ -4,59 +4,48 @@ exit_code=0
 echo "System version of python: $version"
 
 test_numpy () {
-    local exit_code=0
     python -c 'import numpy;numpy.test("full")'
-    echo $?
+    (( exit_code = exit_code || $? ))
     if [ "$?" -ne "0" ];
     then
         echo "ERROR: numpy tests failed"
-        exit_code=1
     fi
-    echo $exit_code
 }
 
 test_scipy () {
-    local exit_code=0
     python -c 'import scipy;scipy.test("full")'
+    (( exit_code = exit_code || $? ))
     if [ $? -ne 0 ];
     then
         echo "ERROR: scipy tests failed"
-        exit_code=1
     fi
-    echo $exit_code
 }
 
 test_nltk () {
-    local exit_code=0
     python -c 'import nltk'
+    (( exit_code = exit_code || $? ))
     if [ $? -ne 0 ];
     then
         echo "ERROR: matplotlib tests failed"
-        exit_code=1
     fi
-    echo $exit_code
 }
 
 test_pandas () {
-    local exit_code=0
     nosetest pandas
+    (( exit_code = exit_code || $? ))
     if [ $? -ne 0 ];
     then
         echo "ERROR: pandas tests failed"
-        exit_code=1
     fi
-    echo $exit_code
 }
 
 test_matplotlib () {
-    local exit_code=0
     python -c 'import matplotlib'
+    (( exit_code = exit_code || $? ))
     if [ $? -ne 0 ];
     then
         echo "ERROR: matplotlib tests failed"
-        exit_code=1
     fi
-    echo $exit_code
 }
 
 
@@ -76,6 +65,7 @@ module load all-pkgs
 (( exit_code = exit_code || $(test_matplotlib) ))
 
 module unload python/2.7
+module unload all-pkgs
 module load python/3.4
 version=`python3 --version 2>&1`
 echo "Module version of python3: $version"
