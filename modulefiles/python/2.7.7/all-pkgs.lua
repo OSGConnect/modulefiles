@@ -12,6 +12,7 @@ pushenv("VIRTUAL_ENV", base)
 prepend_path("PATH", pathJoin(base, "bin"))
 pushenv("PYTHONHOME", base)
 
+prereq('atlas', 'lapack')
 -- Setup Modulepath for packages built by this python stack
 local mroot = os.getenv("MODULEPATH_ROOT")
 local mdir = pathJoin(mroot,"Python",version)

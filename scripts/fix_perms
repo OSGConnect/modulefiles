@@ -28,7 +28,7 @@ for root, dirs, files in os.walk(options.directory):
     for dir in dirs:
         dirname = os.path.join(root, dir)
         perms = os.lstat(dirname).st_mode
-        if perms and not (stat.S_IRGRP|stat.S_IROTH|stat.S_IXGRP|stat.S_IXOTH):
+        if not ( perms & (stat.S_IRGRP|stat.S_IROTH|stat.S_IXGRP|stat.S_IXOTH)):
             if dirname not in correction_list:
                 correction_list[dirname] = ['directory', perms]
             correction_list[dirname][1] |= (stat.S_IRGRP|stat.S_IROTH|stat.S_IXGRP|stat.S_IXOTH)

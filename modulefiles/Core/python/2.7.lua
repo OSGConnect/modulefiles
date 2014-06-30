@@ -9,7 +9,7 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/python-"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
 
-
+family('python')
 -- Setup Modulepath for packages built by this python stack
 local mroot = os.getenv("MODULEPATH_ROOT")
 local mdir = pathJoin(mroot,"python",version)
