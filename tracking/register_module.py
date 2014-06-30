@@ -14,16 +14,43 @@ def log_usage(environ, start_response):
     """ Get GET parameters and put into mongoDB"""
 
     query_dict = parse_qs(environ['QUERY_STRING'])
-    record = { 'host' : escape(d.get('host', [''])), 
-               'user' : escape(d.get('user', [''])),
-               'module' : escape(d.get('module', [''])),
-               'site' : escape(d.get('site', ['']))}
+    record = {}
+    if 'host' in query_dict:
+        record['host'] = escape(query_dict['host'][0])
+    else:
+        record['host'] = ''
+    if 'user' in query_dict:
+        record['user'] = escape(query_dict['user'][0])
+    else:
+        record['user'] = ''
+    if 'module' in query_dict:
+        record['module'] = escape(query_dict['module'][0])
+    else:
+        record['module'] = ''
+    if 'site' in query_dict:
+        record['site'] = escape(query_dict['site'][0])
+    else:
+        record['site'] = ''
+    if (record['module']  == '' or record['site'] == ''):
+        status = '200 OK'
+        response_body = 'No record to insert!'
+        response_headers = [('Content-Type', 'text/html'),
+                            ('Content-Length', str(len(response_body)))]
+        start_response(status, response_headers)
+        return [response_body]
 
+    response_body = 'Record inserted'
     db = get_db_client()        
     try:
-        db.insert(record)
+        db.usage.insert(record)
     except pymongo.errors.OperationFailure, e:
-        sys.stderr.write("Error %s while recording %s" % (e, record))
+        response_body = "Error %s while recording %s" % (e, record)
+        sys.stderr.write(response_body)
+    status = '200 OK'
+    response_headers = [('Content-Type', 'text/html'),
+                     ('Content-Length', str(len(response_body)))]
+    start_response(status, response_headers)
+    return [response_body]
 
 if __name__ == '__main__':
     from wsgiref.simple_server import make_server
