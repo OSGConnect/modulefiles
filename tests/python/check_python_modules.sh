@@ -62,6 +62,8 @@ then
   echo "ERROR: Wrong version of python loaded"
   exit 1
 fi
+module load lapack
+module load atlas
 module load all-pkgs
 test_numpy
 test_scipy
@@ -78,6 +80,8 @@ then
   echo "ERROR: Wrong version of python loaded"
   exit 1
 fi
+module load lapack
+module load atlas
 module load all-pkgs
 # NLTK not compatible with python3 right now
 test_numpy
