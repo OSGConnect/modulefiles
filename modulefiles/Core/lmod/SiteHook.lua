@@ -3,6 +3,16 @@ local TIMEOUT = 5
 local hook = require("Hook")
 local http = require("socket.http")
 
+function url_quote(str)
+  if (str) then
+    str = string.gsub (str, "\n", "\r\n")
+    str = string.gsub (str, "([^%w %-%_%.%~])",
+        function (c) return string.format ("%%%02X", string.byte(c)) end)
+    str = string.gsub (str, " ", "+")
+  end
+  return str    
+end
+
 -- By using the hook.register function, this function "load_hook" is called
 -- ever time a module is loaded with the file name and the module name.
 
@@ -24,6 +34,10 @@ function load_hook(t)
    local dirname = os.getenv("LMOD_PACKAGE_PATH")
 
    local username = os.getenv("USER")
+   local site = os.getenv("OSG_SITE_NAME")
+   local fhandle = io.popen('/bin/hostname -f', 'r')
+   local host = fhandle:read()
+   fhandle:close()
 
    if dirname ~= '' and username ~= '' and t.modFullName ~= '' then
       -- We don't want failure to log to block jobs or give errors. Make an
@@ -32,6 +46,9 @@ function load_hook(t)
       local uri = 'http://stash.osgconnect.net/lmod/logModuleUsage.py?'
       uri = uri .. 'user=' .. url_quote(username)
       uri = uri .. '&module=' .. url_quote(t.modFullName)
+      uri = uri .. '&site=' .. url_quote(site)
+      uri = uri .. '&host=' .. url_quote(host)
+
       http.request(url=uri)
    end
 end
