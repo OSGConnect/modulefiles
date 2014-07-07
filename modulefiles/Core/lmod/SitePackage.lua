@@ -43,13 +43,13 @@ function load_hook(t)
       -- We don't want failure to log to block jobs or give errors. Make an
       -- effort to log things, but ignore anything that goes wrong. Also do
       -- not wait on the subprocess.
-      local uri = 'http://stash.osgconnect.net/lmod/logModuleUsage.py?'
+      local uri = 'http://login.osgconnect.net:8080/?'
       uri = uri .. 'user=' .. url_quote(username)
       uri = uri .. '&module=' .. url_quote(t.modFullName)
       uri = uri .. '&site=' .. url_quote(site)
       uri = uri .. '&host=' .. url_quote(host)
 
-      http.request(url=uri)
+      http.request(uri)
    end
 end
 
