@@ -1,0 +1,2 @@
+Requirements = (GLIDEIN_ResourceName == "SITENAME") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
