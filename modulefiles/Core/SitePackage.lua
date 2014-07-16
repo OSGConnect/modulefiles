@@ -34,22 +34,45 @@ function load_hook(t)
    local dirname = os.getenv("LMOD_PACKAGE_PATH")
 
    local username = os.getenv("USER")
+   if username == nil then
+      username = 'UNAVAILABLE'
+   end
    local site = os.getenv("OSG_SITE_NAME")
+   if site == nil then
+      site = 'UNAVAILABLE'
+   end
    local fhandle = io.popen('/bin/hostname -f', 'r')
    local host = fhandle:read()
    fhandle:close()
+   if host == nil then
+      host = 'UNAVAILABLE'
+   end
 
+
+   fhandle = io.open('/tmp/mod.log', 'a')
+   fhandle:write("Module invocation load\n")
+   fhandle:write(username)
+   fhandle:write("\n")
+   fhandle:write(site)
+   fhandle:write("\n")
+   fhandle:write(host)
+   fhandle:write("\n")
+   fhandle:write(t.modFullName)
+   fhandle:write("\n")
+   fhandle:close()
    if dirname ~= '' and username ~= '' and t.modFullName ~= '' then
       -- We don't want failure to log to block jobs or give errors. Make an
       -- effort to log things, but ignore anything that goes wrong. Also do
       -- not wait on the subprocess.
-      local uri = 'http://stash.osgconnect.net/lmod/logModuleUsage.py?'
+      local uri = 'http://web-dev.ci-connect.net/~sthapa/register_module.wsgi?'
       uri = uri .. 'user=' .. url_quote(username)
       uri = uri .. '&module=' .. url_quote(t.modFullName)
       uri = uri .. '&site=' .. url_quote(site)
       uri = uri .. '&host=' .. url_quote(host)
-
-      http.request(url=uri)
+      fhandle = io.open("/tmp/mod.log", 'a')
+      fhandle:write(uri)
+      fhandle:close()
+      http.request(uri)
    end
 end
 
