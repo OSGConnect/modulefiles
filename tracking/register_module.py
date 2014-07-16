@@ -7,7 +7,7 @@ import pymongo
 def get_db_client():
     """ Instantiate DB client and pass connection back """
 
-    client = pymongo.MongoClient(host='mc.mwt2.org', port=27017)
+    client = pymongo.MongoClient(host='db.mwt2.org', port=27017)
     return client.module_usage
 
 def log_usage(environ, start_response):
@@ -50,9 +50,10 @@ def log_usage(environ, start_response):
     response_headers = [('Content-Type', 'text/html'),
                      ('Content-Length', str(len(response_body)))]
     start_response(status, response_headers)
+    print response_body
     return [response_body]
 
 if __name__ == '__main__':
     from wsgiref.simple_server import make_server
-    srv = make_server('localhost', 8080, log_usage)
+    srv = make_server('login.osgconnect.net', 8080, log_usage)
     srv.serve_forever()
