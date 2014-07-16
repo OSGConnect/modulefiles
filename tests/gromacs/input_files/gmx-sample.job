@@ -1,0 +1,11 @@
+#!/bin/csh
+#BSUB -n 4
+#BSUB -W 0:20
+#BSUB -oo bsub.out
+#BSUB -J gmx-test
+
+module load gromacs
+
+mpirun -srun ${GMXBIN}/mdrun_mpi -np $SLURM_NPROCS -s topol.tpr -n index.ndx
+
+

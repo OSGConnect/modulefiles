@@ -6,6 +6,9 @@ cur_time=`date`
 echo "Hostname $hostname"
 echo "Time: $cur_time"
 echo "System version of python: $version"
+echo "OSG Site: $OSG_SITE_NAME"
+echo "GWMS Entry Name: $GLIDEIN_Entry_Name"
+echo "GWMS Resource Name: $GLIDEIN_ResourceName"
 
 test_numpy () {
     python -c 'import numpy;numpy.test("full")'

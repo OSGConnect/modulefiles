@@ -5,6 +5,9 @@ cur_time=`date`
 echo "Hostname $hostname"
 echo "Time: $cur_time"
 echo "System version of python: $version"
+echo "OSG Site: $OSG_SITE_NAME"
+echo "GWMS Entry Name: $GLIDEIN_Entry_Name"
+echo "GWMS Resource Name: $GLIDEIN_ResourceName"
 
 source /cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/5.6.2/init/bash
 module load python/2.7
