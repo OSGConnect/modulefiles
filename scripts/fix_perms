@@ -18,7 +18,7 @@ for root, dirs, files in os.walk(options.directory):
         perms = os.lstat(filename).st_mode
         if not (perms & (stat.S_IRGRP|stat.S_IROTH)) :
             if filename not in correction_list:
-                correction_list[filename] = ['file', perms]
+                correction_list[filename] = ['file', perms, perms]
             correction_list[filename][1] |=  (stat.S_IRGRP|stat.S_IROTH)
         if (perms & stat.S_IXUSR ) and not (perms & (stat.S_IXGRP|stat.S_IXOTH)):
             if filename not in correction_list:
@@ -30,20 +30,24 @@ for root, dirs, files in os.walk(options.directory):
         perms = os.lstat(dirname).st_mode
         if not ( perms & (stat.S_IRGRP|stat.S_IROTH|stat.S_IXGRP|stat.S_IXOTH)):
             if dirname not in correction_list:
-                correction_list[dirname] = ['directory', perms]
+                correction_list[dirname] = ['directory', perms, perms]
             correction_list[dirname][1] |= (stat.S_IRGRP|stat.S_IROTH|stat.S_IXGRP|stat.S_IXOTH)
         
 for path in correction_list:
     perm = oct(correction_list[path][1])
+    orig_perm = oct(correction_list[path][2])
     if correction_list[path][0] == 'file':
-        sys.stdout.write("File %s permissions will be changed to %s\n" % (path, perm))
+        sys.stdout.write("File %s permissions will be changed from %s to %s\n" % (path, perm, orig_perms))
     elif correction_list[path][0] == 'directory':
-        sys.stdout.write("Directory %s permissions will be changed to %s\n" % (path, perm))
+        sys.stdout.write("Directory %s permissions will be changed from %s to %s\n" % (path, perm, orig_perms))
 
 if options.check:
     sys.stdout.write("Exiting without changes due to check option\n")
     sys.exit(0)
 
+if len(correction_list) == 0:
+    sys.stdout.write("No changes need to be made, exiting\n")
+    sys.exit(0)
 change_perms = raw_input("Make changes to files and directories? ")
 if change_perms.upper() != 'Y':
     sys.stdout.write("Exiting due to user cancellation\n")
