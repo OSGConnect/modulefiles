@@ -15,7 +15,7 @@ cd input_files
 Rscript test.Rscript > nlm.out
 output=`diff -w -B nlm.test nlm.out`
 
-if [ "$output" -ne "" ];
+if [ "$output" != "" ];
 then
   echo "Error! Difference in outputs:"
   echo $output
