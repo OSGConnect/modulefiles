@@ -37,9 +37,9 @@ for path in correction_list:
     perm = oct(correction_list[path][1])
     orig_perm = oct(correction_list[path][2])
     if correction_list[path][0] == 'file':
-        sys.stdout.write("File %s permissions will be changed from %s to %s\n" % (path, perm, orig_perms))
+        sys.stdout.write("File %s permissions will be changed from %s to %s\n" % (path, orig_perm, perm))
     elif correction_list[path][0] == 'directory':
-        sys.stdout.write("Directory %s permissions will be changed from %s to %s\n" % (path, perm, orig_perms))
+        sys.stdout.write("Directory %s permissions will be changed from %s to %s\n" % (path, orig_perm, perm))
 
 if options.check:
     sys.stdout.write("Exiting without changes due to check option\n")
