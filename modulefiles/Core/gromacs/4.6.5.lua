@@ -11,4 +11,4 @@ prepend_path("PATH", pathJoin(base, "bin"))
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
 
 family('gromacs')
-prereq('fftw/fftw-3.3.4-gromacs', 'atlas', 'lapack')
+prereq('fftw/3.3.4-gromacs', 'atlas', 'lapack')
