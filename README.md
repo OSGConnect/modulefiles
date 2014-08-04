@@ -13,6 +13,9 @@ This repository has three different directories:
    
    tests - a set of submit scripts to test modulefile functionality on various
    sites that OSG connect may submit to
+   
+   tracking - scripts and infrastructure to visualize module usage through OSG Connect 
+   
 
                  
                  
