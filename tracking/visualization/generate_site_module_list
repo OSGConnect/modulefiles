@@ -36,8 +36,13 @@ def run_main():
     db_client = pymongo.MongoClient(host='db.mwt2.org', port=27017)
     db = db_client.module_usage
     usage_list = process_usage_history(db)
-    print usage_list
-    pickle.dump(usage_list, open(sys.argv[1], 'w'))
+    if (len(sys.argv) == 2 and sys.argv[1].lower() == 'memcached'):
+        print "memcache"
+        import memcache
+        mc = memcache.Client(['mc.mwt2.org:11211'], debug=0)
+        mc.set('site_module_list', usage_list)
+    else:
+        pickle.dump(usage_list, open(sys.argv[1], 'w'))
 
 
 if __name__ == '__main__':

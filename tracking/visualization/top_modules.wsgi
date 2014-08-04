@@ -2,6 +2,7 @@
 
 import json
 import sys
+import memcache
 from cgi import parse_qs, escape
 
 try:
@@ -9,13 +10,13 @@ try:
 except:
    import pickle
 
-MODULE_DB_LOCATION = "/home/sthapa/www/module_site_db"
 
 def get_site_modulelist(top = 10):
     """
     Unpickle and give up to the top 20     
     """
-    module_info = pickle.load(open(MODULE_DB_LOCATION))
+    mc = memcache.Client(['mc.mwt2.org:11211'], debug=0)
+    module_info = mc.get('site_module_list')
     site_module_location = {}
     for site in module_info:
         site_module_location[site] = module_info[site][0:top]
