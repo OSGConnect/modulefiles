@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+
+import pymongo
+import sys
+try:
+   import cPickle as pickle
+except:
+   import pickle
+
+def process_usage_history(db):
+    """
+    scan the db and compile the top 20 modules used for each site
+    """
+    usage_list = {}
+    for record in db.usage.find():
+        site = record['site']
+        if site not in usage_list:
+            usage_list[site] = {}
+        module = record['module']
+        if module not in usage_list[site]:
+            usage_list[site][module] = 0
+        usage_list[site][module] += 1
+    sorted_usage = {}
+    for site in usage_list:
+        temp = sorted(usage_list[site])
+        sorted_usage[site] = temp[0:20]
+    return sorted_usage
+
+def run_main():
+    """
+    Main function, fix records by converting ints and floats to appropriate types
+    """
+    if len(sys.argv) != 2:
+        sys.stderr.write("Usage: %s output-file\n" % sys.argv[0])
+    
+    db_client = pymongo.MongoClient(host='db.mwt2.org', port=27017)
+    db = db_client.module_usage
+    usage_list = process_usage_history(db)
+    print usage_list
+    pickle.dump(usage_list, open(sys.argv[1], 'w'))
+
+
+if __name__ == '__main__':
+    run_main()
+
