@@ -5,6 +5,7 @@ import memcache
 import htcondor
 
 SITE_INFO_CSV = "./site_list"
+SITE_CORRESPONDENCE_CSV = "./site_translations"
 
 def get_site_info(mc):
     """
@@ -22,6 +23,21 @@ def get_site_info(mc):
     except csv.Error:
         pass
     mc.set('osg_site_info', site_info)
+
+def get_site_names(mc):
+    """
+    Get site name translations from csv file and return as a dictionary containing a
+    list with glidein resource names -> osg site name 
+    """
+    site_info  = {}
+    f = open(SITE_CORRESPONDENCE_CSV, 'rb')
+    reader = csv.reader(f)
+    try:
+        for row in reader:
+            site_info[row[0]] = row[1]
+    except csv.Error:
+        pass
+    mc.set('osg_site_name_conversions', site_info)
 
 def get_sites(mc, pool = 'gfactory-1.t2.ucsd.edu'):
     """
@@ -48,4 +64,5 @@ def get_sites(mc, pool = 'gfactory-1.t2.ucsd.edu'):
 if __name__ ==  '__main__':
     mc = memcache.Client(['mc.mwt2.org:11211'], debug=0)
     get_site_info(mc)
+    get_site_names(mc)
     get_sites(mc)

@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 
-import pymongo
 import sys
 try:
    import cPickle as pickle
 except:
    import pickle
+
+
+import memcache
+import pymongo
 
 def process_usage_history(db):
     """
@@ -21,9 +24,15 @@ def process_usage_history(db):
             usage_list[site][module] = 0
         usage_list[site][module] += 1
     sorted_usage = {}
+    mc = memcache.Client(['mc.mwt2.org:11211'], debug=0)
+    site_translation = mc.get('osg_site_name_conversions')
     for site in usage_list:
+        if site in site_translation:
+            site_name = site_translation[site]
+        else:
+            site_name = site
         temp = sorted(usage_list[site])
-        sorted_usage[site] = temp[0:20]
+        sorted_usage[site_name] = temp[0:20]
     return sorted_usage
 
 def run_main():
