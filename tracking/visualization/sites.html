@@ -3,41 +3,6 @@
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script>
     var siteLocationList = null;
-/*    siteLocationList = {"SPRACE": [-23.524329999999999, -46.665469000000002],
- "TTU-ANTAEUS": [33.610017999999997, -101.821292],
- "SMU_HPC": [32.846297, -96.783885999999995],
- "UTA_SWT2": [32.771419000000002, -97.291483999999997],
- "NUMEP-OSG": [42.054079999999999, -87.688090000000003],
- "USCMS-FNAL-WC1": [41.841368000000003, -88.255056999999994],
- "SWT2_CPB": [32.771419000000002, -97.291483999999997],
- "Tusker": [41.247320999999999, -96.016817000000003],
- "UCSDT2": [33.016928, -116.846046],
- "FLTECH": [28.077494000000002, -80.619870000000006],
- "NWICG_NDCMS": [41.701414999999997, -86.244979999999998],
- "IU_OSG": [39.173557000000002, -86.501091000000002],
- "MIT_CMS": [42.364347000000002, -71.200000000000003],
- "PNNL_OSG": [46.347282999999997, -119.307833],
- "cinvestav": [19.50798, -99.129424],
- "UCD": [38.536669000000003, -121.751304],
- "GROW-PROD": [37.160316999999999, -98.701172],
- "Crane": [41.247320999999999, -96.016817000000003],
- "Sandhills": [40.819817999999998, -96.705651000000003],
- "FNAL_FERMIGRID": [41.851430000000001, -88.242767000000001],
- "BNL-ATLAS": [40.868386000000001, -72.878366],
- "GridUNESP_CENTRAL": [-23.524246000000002, -46.665443000000003],
- "SMU_PHY": [32.836094000000003, -96.795240000000007],
- "AGLT2": [42.291637000000001, -83.718310000000002],
- "Purdue-Hadoop": [40.424923, -87.0],
- "NYSGRID-CCR-U2": [42.768413000000002, -78.900000000000006],
- "VT_OSG": [37.203774000000003, -80.413420000000002],
- "Nebraska": [40.819654999999997, -96.705693999999994],
- "MWT2": [41.779384, -87.700000000000003],
- "GLOW": [43.074655999999997, -89.384122000000005],
- "UConn-OSG": [41.777200999999998, -72.217940999999996],
- "BU_ATLAS_Tier2": [42.338723999999999, -71.072760000000002],
- "GRASE-CSE-MAGIC": [42.619813000000001, -79.035645000000002],
- "NYSGRID_CORNELL_NYS1": [42.449454000000003, -76.496849999999995],
- "CIT_CMS_T2": [34.137987000000003, -118.124281]}; */ 
     var siteModuleList = [ ['Lat', 'Long', 'Description'] ];
     var foo = {  "MWT2" : ["python/3.2", "test"] };
     function recordSites(siteInfo) {
@@ -48,11 +13,9 @@
         if (siteLocationList == null) {
             return;
         };
-        console.log(moduleList);
         for (site in moduleList) {
            var entry = [];
            if (site in siteLocationList) {
-                console.log('a')
            } else {
                 continue;
            }
@@ -61,7 +24,6 @@
            desc = site + "\n";
            var moduleCount = 0;
            var topModuleList = "";
-           console.log(moduleList[site]);
            for (module in moduleList[site]) {
                 moduleCount++;
                 topModuleList += moduleCount + " - " + moduleList[site][module] + "\n";
@@ -72,19 +34,16 @@
            siteModuleList.push(entry);  
         };
     };
-    /*getModuleList(foo)*/
   </script>
-  <script type="text/javascript" src="http://web-dev.ci-connect.net/~sthapa/get_available_sites.wsgi?function=recordSites">
+  <script type="text/javascript" src="http://web-dev.ci-connect.net/~sthapa/modulefino.wsgi?jsonfunc=recordSites">
   </script>
-  <script type="text/javascript" src="http://web-dev.ci-connect.net/~sthapa/top_modules.wsgi?function=getModuleList">
+  <script type="text/javascript" src="http://web-dev.ci-connect.net/~sthapa/top_modules.wsgi?jsonfunc=getModuleList">
   </script> 
   <script>
     google.load('visualization', '1', { 'packages': ['map'] });
     google.setOnLoadCallback(drawMap);
 
-    console.log(siteModuleList);
     function drawMap() {
-      console.log(siteModuleList);
       var data = google.visualization.arrayToDataTable(siteModuleList);
 
       var options = { showTip: true, mapType: 'terrain'};

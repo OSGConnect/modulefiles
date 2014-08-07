@@ -15,43 +15,59 @@ def process_usage_history(db):
     scan the db and compile the top 20 modules used for each site
     """
     usage_list = {}
-    for record in db.usage.find():
-        site = record['site']
-        if site not in usage_list:
-            usage_list[site] = {}
-        module = record['module']
-        if module not in usage_list[site]:
-            usage_list[site][module] = 0
-        usage_list[site][module] += 1
-    sorted_usage = {}
+    top_modules = {}
+    top_sites = {}
     mc = memcache.Client(['mc.mwt2.org:11211'], debug=0)
     site_translation = mc.get('osg_site_name_conversions')
-    for site in usage_list:
+    for record in db.usage.find():
+        site = record['site']
         if site in site_translation:
             site_name = site_translation[site]
         else:
             site_name = site
+        if site_name not in usage_list:
+            usage_list[site_name] = {}
+        # track top sites
+        if site_name not in top_sites:
+            top_sites[site_name] = 0
+        top_sites[site_name] += 1
+        module = record['module']
+        # track module usage
+        if module not in top_modules:
+            top_modules[module] = 0
+        top_modules[module] += 1
+
+        if module not in usage_list[site_name]:
+            usage_list[site_name][module] = 0
+        usage_list[site_name][module] += 1
+    # get top 20 modules used by site 
+    sorted_usage = {}
+    for site in usage_list:
         temp = sorted(usage_list[site])
-        sorted_usage[site_name] = temp[0:20]
-    return sorted_usage
+        sorted_usage[site] = temp[0:20]
+    mc.set('site_module_list', sorted_usage)
+    # get sorted list of  modules used
+    temp = sorted(top_modules)
+    sorted_modules = {}
+    for module in temp:
+      sorted_modules[module] = top_modules[module]
+    mc.set('sorted_module_list', sorted_modules)
+    # translate site names and get sorted list of sites used
+    temp = sorted(top_sites)
+    sorted_sites = {}
+    for site in temp:
+      if site == 'UNAVAILABLE':
+        continue
+      sorted_sites[site] = top_sites[site]
+    mc.set('sorted_site_list', sorted_sites)
 
 def run_main():
     """
     Main function, fix records by converting ints and floats to appropriate types
     """
-    if len(sys.argv) != 2:
-        sys.stderr.write("Usage: %s output-file\n" % sys.argv[0])
-    
     db_client = pymongo.MongoClient(host='db.mwt2.org', port=27017)
     db = db_client.module_usage
     usage_list = process_usage_history(db)
-    if (len(sys.argv) == 2 and sys.argv[1].lower() == 'memcached'):
-        print "memcache"
-        import memcache
-        mc = memcache.Client(['mc.mwt2.org:11211'], debug=0)
-        mc.set('site_module_list', usage_list)
-    else:
-        pickle.dump(usage_list, open(sys.argv[1], 'w'))
 
 
 if __name__ == '__main__':
