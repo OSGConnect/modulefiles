@@ -1,0 +1,14 @@
+PAGER('/dev/null');
+load("-hdf5", "matrixA.hdf5");
+C = A' * A;
+load("-hdf5", "matrixB.hdf5");
+assert(C, B, 1e9);
+[aeig, ad] = eig(A);
+load("-hdf5", "matrixAeig.hdf5");
+assert(v, aeig, 1e9);
+assert(d, ad, 1e9);
+load("-hdf5", "matrixBeig.hdf5");
+[beig, bd] = eig(B);
+assert(v2, beig, 1e9);
+assert(d2, bd, 1e9);
+
