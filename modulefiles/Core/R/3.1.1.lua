@@ -4,6 +4,7 @@ This module loads R 3.1.1 into the environment
 
 ]])
 
+whatis("Loads R, a tool for statistical analysis")
 local version = "3.1.1"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/R/"..version
 

@@ -9,6 +9,7 @@ See http://www.qhull.org/ for more information.
 
 ]])
 
+whatis("Loads QHull libaries for computing convex hull and other operations")
 local version = "2012.1"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/qhull/"..version
 

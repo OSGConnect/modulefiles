@@ -4,6 +4,8 @@ This module loads a clean install of Python 3.4.1
 
 ]])
 
+whatis("Load an clean installation of the Python 3.4.1 interpreter")
+
 local version = "3.4.1"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/python-"..version
 

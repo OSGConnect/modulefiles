@@ -1,9 +1,10 @@
 help(
 [[
-This module loads a clean install of Python 2.7.7
+This module loads a clean install of Python 2.7.7.
 
 ]])
 
+whatis("Loads a clean installation of the python 2.7.7 interpreter")
 local version = "2.7.7"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/python-"..version
 
