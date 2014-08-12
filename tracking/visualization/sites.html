@@ -1,0 +1,62 @@
+<html>
+  <head>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script>
+    var siteLocationList = null;
+    var siteModuleList = [ ['Lat', 'Long', 'Description'] ];
+    var foo = {  "MWT2" : ["python/3.2", "test"] };
+    function recordSites(siteInfo) {
+      siteLocationList = siteInfo;
+    };
+
+    function getModuleList(moduleList) {
+        if (siteLocationList == null) {
+            return;
+        };
+        for (site in moduleList) {
+           var entry = [];
+           if (site in siteLocationList) {
+           } else {
+                continue;
+           }
+           entry[0] = siteLocationList[site][0];
+           entry[1] = siteLocationList[site][1];
+           desc = site + "\n";
+           var moduleCount = 0;
+           var topModuleList = "";
+           for (module in moduleList[site]) {
+                moduleCount++;
+                topModuleList += moduleCount + " - " + moduleList[site][module] + "\n";
+           }
+           desc += "Top " + moduleCount + " modules used:\n";
+           desc += topModuleList;
+           entry[2] = desc;
+           siteModuleList.push(entry);  
+        };
+    };
+  </script>
+  <script type="text/javascript" src="http://web-dev.ci-connect.net/~sthapa/modulefino.wsgi?jsonfunc=recordSites">
+  </script>
+  <script type="text/javascript" src="http://web-dev.ci-connect.net/~sthapa/top_modules.wsgi?jsonfunc=getModuleList">
+  </script> 
+  <script>
+    google.load('visualization', '1', { 'packages': ['map'] });
+    google.setOnLoadCallback(drawMap);
+
+    function drawMap() {
+      var data = google.visualization.arrayToDataTable(siteModuleList);
+
+      var options = { showTip: true, mapType: 'terrain'};
+
+      var map = new google.visualization.Map(document.getElementById('chart_div'));
+
+      map.draw(data, options);
+    };
+
+
+  </script>
+  </head>
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>

@@ -1,0 +1,136 @@
+<html>
+  <head>
+  <!-- google maps stuff -->
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script>
+    var siteLocationList = null;
+    var siteModuleList = [ ['Lat', 'Long', 'Description'] ];
+    var foo = {  "MWT2" : ["python/3.2", "test"] };
+    function recordSites(siteInfo) {
+      siteLocationList = siteInfo;
+    };
+
+    function getModuleList(moduleList) {
+        if (siteLocationList == null) {
+            return;
+        };
+        for (site in moduleList) {
+           var entry = [];
+           if (site in siteLocationList) {
+           } else {
+                continue;
+           }
+           entry[0] = siteLocationList[site][0];
+           entry[1] = siteLocationList[site][1];
+           desc = site + "\n";
+           var moduleCount = 0;
+           var topModuleList = "";
+           for (module in moduleList[site]) {
+                moduleCount++;
+                topModuleList += moduleCount + " - " + moduleList[site][module] + "\n";
+           }
+           desc += "Top " + moduleCount + " modules used:\n";
+           desc += topModuleList;
+           entry[2] = desc;
+           siteModuleList.push(entry);  
+        };
+    };
+  </script>
+  <script type="text/javascript" src="http://web-dev.ci-connect.net/~sthapa/module_info.wsgi?function=get_sites&jsonfunc=recordSites">
+  </script>
+  <script type="text/javascript" src="http://web-dev.ci-connect.net/~sthapa/module_info.wsgi?function=site_modulelist&jsonfunc=getModuleList">
+  </script> 
+  <script>
+    google.load('visualization', '1', { 'packages': ['map'] });
+    google.setOnLoadCallback(drawMap);
+
+    function drawMap() {
+      var data = google.visualization.arrayToDataTable(siteModuleList);
+
+      var options = { showTip: true, mapType: 'terrain'};
+
+      var map = new google.visualization.Map(document.getElementById('chart_div'));
+
+      map.draw(data, options);
+    };
+
+
+  </script>
+  <!-- Datatables stuff -->
+  
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.css">
+  
+  <!-- jQuery -->
+  <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  
+  <!-- DataTables -->
+  <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.js"></script>
+  <!-- Get JSONP data -->
+  <script>
+    var moduleTable = [];
+    function recordMethodTable(data) {
+        console.log(data);
+        for (module in data) {
+          moduleTable.push([module, data[module]]);
+        }
+    };
+    var siteTable = [];
+    function recordSiteTable(data) {
+        console.log(data);
+        for (site in data) {
+          siteTable.push([site, data[site]]);
+        }
+    };
+  </script>
+  <script type="text/javascript" src="http://web-dev.ci-connect.net/~sthapa/module_info.wsgi?function=topmodules&jsonfunc=recordMethodTable"> 
+  </script>
+  <script type="text/javascript" src="http://web-dev.ci-connect.net/~sthapa/module_info.wsgi?function=topsites&jsonfunc=recordSiteTable">
+  </script>
+  <!-- Load up DataTables -->
+  <script>
+  $(document).ready( function () {
+      $('#top_modules').DataTable({ "data" : moduleTable,
+                                    "order" : [[1, "desc"]]});
+  } );
+  $(document).ready( function () {
+      $('#top_sites').DataTable({ "data" : siteTable,
+                                  "order" : [[1, "desc"]]});
+  } );
+  </script>
+  </head>
+  <body>
+    <div>
+    <h1>Modules usage report</h1>
+    </div>
+    <div>
+    <h3>Top Modules</h3>
+    <table id="top_modules" class="display">
+    <thead>
+        <tr>
+            <th>Module</th>
+            <th>Times Loaded</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    </table> 
+    </div>
+    <div>
+    <h3>Top Sites</h3>
+    <table id="top_sites" class="display">
+    <thead>
+        <tr>
+            <th>Sites</th>
+            <th>Modules Loaded</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    </table> 
+    </div>
+    <br/>
+    <h3>Map of Sites used</h3>
+    <div id="chart_div"></div>
+  </body>
+</html>

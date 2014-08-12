@@ -13,7 +13,7 @@ source /cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/5.6.2/init/bash
 module load R/3.1.1
 cd input_files
 Rscript test.Rscript > nlm.out
-output=`diff -w -B nlm.test nlm.out`
+output=`diff -u -w -B nlm.test nlm.out`
 
 if [ "$output" != "" ];
 then
