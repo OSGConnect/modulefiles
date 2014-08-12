@@ -1,9 +1,11 @@
 help(
 [[
-This module loads  Octace 3.8.1 into the environment
+This module loads Octave 3.8.1 into the environment.  Octave provides an open
+source alternative to matlab that is mostly compatible.
 
 ]])
 
+whatis("Loads Octave, an open source alternative to matlab")
 local version = "3.8.1"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/octave/"..version
 

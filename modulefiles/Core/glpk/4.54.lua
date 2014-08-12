@@ -8,6 +8,8 @@ information.
 
 ]])
 
+whatis("Loads the GLPK library for linear programming functions")
+
 local version = "4.54"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/glpk/"..version
 
