@@ -1,0 +1,82 @@
+#!/usr/bin/env python
+import argparse
+import shutil
+import os
+import sys
+import glob
+
+import git
+
+MODULEFILE_REPO_URL = "https://github.com/OSGConnect/modulefiles.git"
+
+def checkout_repo(location = None):
+    """
+    Checkout files from modulefiles repo and place in directory 
+    specified by location argument
+    """
+    if location is None:
+        location = tempfile.mkdtemp()
+    elif not os.path.exists(location) or not os.path.isdir(location):
+        sys.stderr.write("{0} is not present or not a directory\n".format(location) )
+        return None
+    try:
+        git.Repo.clone_from(MODULEFILE_REPO_URL, location)
+        return location
+    except:
+        return None
+
+def package_files(location = None):
+    """
+    Take a checked out install of modulefiles and process it to make it ready 
+    for deployment on OASIS
+    """
+    for entry in os.listdir(location):
+        real_location = os.path.join(location, entry)
+        if os.path.isdir(real_location) and entry != "modulefiles":
+            shutil.rmtree(real_location)
+        elif entry != 'modulefiles':
+            os.unlink(real_location)
+    for name in glob.glob(os.path.join(location, 'modulefiles') + "/*"):
+        shutil.move(name, location)
+    for root, dirs, files in os.walk(location):
+        for name in dirs:
+            dir_location = os.path.join(root, name)
+            if name == '.git' or name == '.gitignore':
+                shutil.rmtree(dir_location)
+            else:
+                os.chmod(dir_location, 0o755)
+        for name in files:
+            file_location = os.path.join(root, name)
+            os.chmod(file_location, 0o644)            
+    os.rmdir(os.path.join(location, "modulefiles")) 
+    return location 
+
+def main():
+    """
+    Handle parsing arguments and download and package up repo
+    """
+    parser = argparse.ArgumentParser(description='Create packaged set of modulefiles for deployment on OASIS.')
+    parser.add_argument('--location', dest='location', default=None,
+                        help='Location directory to place files in')
+    args = parser.parse_args(sys.argv[1:])
+    if args.location is None:
+        args.location = tempfile.mkdtemp()
+    elif os.path.exists(args.location):
+        overwrite = raw_input("{0} exists, overwrite? ".format(args.location))
+        if overwrite.lower().strip() != 'y':
+            sys.stderr.write("Exiting...")
+            sys.exit(0)
+        shutil.rmtree(args.location)
+        os.mkdir(args.location)
+    else:
+        os.mkdir(args.location)
+    location = checkout_repo(args.location)  
+    if location is None:
+        sys.stderr.write("Can't checkout modulefiles to {0}!\n".format(args.location))
+    package_files(location)
+    sys.stdout.write("Packaged files located at {0}\n".format(location)) 
+    
+
+if __name__ == '__main__':
+    main()
+
