@@ -2,7 +2,7 @@
 
 import json
 import sys
-import memcache
+import redis
 from cgi import parse_qs, escape
 
 try:
@@ -15,16 +15,16 @@ def get_sites():
     """
     Return a list with the names of the sites that the osg flock host can submit to
     """
-    mc = memcache.Client(['mc.mwt2.org:11211'], debug=0)
-    site_list = mc.get('osg_site_list')
+    rc = redis.Redis('db.mwt2.org')
+    site_list = pickle.loads(rc.get('osg_site_list'))
     return json.dumps(site_list)
 
 def get_site_modulelist(query_dict, top = None):
     """
     Unpickle and give up to the top 20 modules used per site
     """
-    mc = memcache.Client(['mc.mwt2.org:11211'], debug=0)
-    module_info = mc.get('site_module_list')
+    rc = redis.Redis('db.mwt2.org')
+    module_info = pickle.loads(rc.get('site_module_list'))
     if top not in query_dict:
         top = 10
     else:
@@ -47,8 +47,8 @@ def get_top_modules(query_dict, top = None):
     """
     Return a json representation of the top 10 modules used in the last week
     """
-    mc = memcache.Client(['mc.mwt2.org:11211'], debug=0)
-    module_info = mc.get('sorted_module_list')
+    rc = redis.Redis('db.mwt2.org')
+    module_info = pickle.loads(rc.get('sorted_module_list'))
 
     if top not in query_dict:
         top = 10
@@ -70,8 +70,8 @@ def get_top_sites(query_dict, top = None):
     """
     Return a json representation of the top 10 sites used in the last week
     """
-    mc = memcache.Client(['mc.mwt2.org:11211'], debug=0)
-    site_info = mc.get('sorted_site_list')
+    rc = redis.Redis('db.mwt2.org')
+    site_info = pickle.loads(rc.get('sorted_site_list'))
 
     if top not in query_dict:
         top = 10

@@ -1,13 +1,18 @@
 #!/usr/bin/env python
 
 import csv
-import memcache
+try:
+   import cPickle as pickle
+except:
+   import pickle
+
+import redis
 import htcondor
 
 SITE_INFO_CSV = "./site_list"
 SITE_CORRESPONDENCE_CSV = "./site_translations"
 
-def get_site_info(mc):
+def get_site_info(redis_client):
     """
     Get site info from csv file and return as a dictionary containing a
     list with lat/long for each site
@@ -22,9 +27,9 @@ def get_site_info(mc):
             site_info[site_name] = location
     except csv.Error:
         pass
-    mc.set('osg_site_info', site_info)
+    redis_client.set('osg_site_info', pickle.dumps(site_info))
 
-def get_site_names(mc):
+def get_site_names(redis_client):
     """
     Get site name translations from csv file and return as a dictionary containing a
     list with glidein resource names -> osg site name 
@@ -37,9 +42,9 @@ def get_site_names(mc):
             site_info[row[0]] = row[1]
     except csv.Error:
         pass
-    mc.set('osg_site_name_conversions', site_info)
+    redis_client.set('osg_site_name_conversions', pickle.dumps(site_info))
 
-def get_sites(mc, pool = 'gfactory-1.t2.ucsd.edu'):
+def get_sites(redis_client, pool = 'gfactory-1.t2.ucsd.edu'):
     """
     Return a list with the names of the sites that the osg flock host can submit to
     """
@@ -50,7 +55,7 @@ def get_sites(mc, pool = 'gfactory-1.t2.ucsd.edu'):
     site_list = {}
     for ad in ads:
         site_list[ad['GLIDEIN_ResourceName']] = []
-    site_info = mc.get('osg_site_info')
+    site_info = pickle.loads(redis_client.get('osg_site_info'))
     delete_sites = []
     for site in site_list:
         if site in site_info:
@@ -59,10 +64,10 @@ def get_sites(mc, pool = 'gfactory-1.t2.ucsd.edu'):
             delete_sites.append(site)
     for site in delete_sites:
         del site_list[site]
-    mc.set('osg_site_list', site_list)
+    redis_client.set('osg_site_list', pickle.dumps(site_list))
 
 if __name__ ==  '__main__':
-    mc = memcache.Client(['mc.mwt2.org:11211'], debug=0)
-    get_site_info(mc)
-    get_site_names(mc)
-    get_sites(mc)
+    redis_client = redis.Redis(host='db.mwt2.org')
+    get_site_info(redis_client)
+    get_site_names(redis_client)
+    get_sites(redis_client)

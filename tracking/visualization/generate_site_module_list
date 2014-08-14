@@ -7,7 +7,7 @@ except:
    import pickle
 
 
-import memcache
+import redis
 import pymongo
 
 def process_usage_history(db):
@@ -17,8 +17,8 @@ def process_usage_history(db):
     usage_list = {}
     top_modules = {}
     top_sites = {}
-    mc = memcache.Client(['mc.mwt2.org:11211'], debug=0)
-    site_translation = mc.get('osg_site_name_conversions')
+    redis_client = redis.Redis(host='db.mwt2.org')
+    site_translation = pickle.loads(redis_client.get('osg_site_name_conversions'))
     for record in db.usage.find():
         site = record['site']
         if site in site_translation:
@@ -45,13 +45,13 @@ def process_usage_history(db):
     for site in usage_list:
         temp = sorted(usage_list[site])
         sorted_usage[site] = temp[0:20]
-    mc.set('site_module_list', sorted_usage)
+    redis_client.set('site_module_list', pickle.dumps(sorted_usage))
     # get sorted list of  modules used
     temp = sorted(top_modules)
     sorted_modules = {}
     for module in temp:
       sorted_modules[module] = top_modules[module]
-    mc.set('sorted_module_list', sorted_modules)
+    redis_client.set('sorted_module_list', pickle.dumps(sorted_modules))
     # translate site names and get sorted list of sites used
     temp = sorted(top_sites)
     sorted_sites = {}
@@ -59,7 +59,7 @@ def process_usage_history(db):
       if site == 'UNAVAILABLE':
         continue
       sorted_sites[site] = top_sites[site]
-    mc.set('sorted_site_list', sorted_sites)
+    redis_client.set('sorted_site_list', pickle.dumps(sorted_sites))
 
 def run_main():
     """
