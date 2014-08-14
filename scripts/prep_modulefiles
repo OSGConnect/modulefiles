@@ -4,6 +4,8 @@ import shutil
 import os
 import sys
 import glob
+import tarfile
+import tempfile
 
 import git
 
@@ -25,6 +27,25 @@ def checkout_repo(location = None):
     except:
         return None
 
+def tar_files(location = None, tarfile_name = None):
+    """
+    Create a tarball called tarfile_name with the contents of the directory
+    specified by location
+    """
+    if not os.path.isdir(location) or tarfile_name is None:
+        return None
+    if os.path.exists(tarfile_name):
+        overwrite = raw_input("{0} exists, overwrite? ".format(tarfile_name))
+        if overwrite.lower().strip() != 'y':
+            sys.stderr.write("Exiting...")
+            sys.exit(0)
+    tar = tarfile.open(tarfile_name, "w:gz")
+    pwd = os.getcwd()
+    os.chdir(location)
+    for name in os.listdir(location):
+        tar.add(name)
+    return tarfile_name
+        
 def package_files(location = None):
     """
     Take a checked out install of modulefiles and process it to make it ready 
@@ -48,7 +69,8 @@ def package_files(location = None):
         for name in files:
             file_location = os.path.join(root, name)
             os.chmod(file_location, 0o644)            
-    os.rmdir(os.path.join(location, "modulefiles")) 
+    os.rmdir(os.path.join(location, "modulefiles"))
+
     return location 
 
 def main():
@@ -58,6 +80,8 @@ def main():
     parser = argparse.ArgumentParser(description='Create packaged set of modulefiles for deployment on OASIS.')
     parser.add_argument('--location', dest='location', default=None,
                         help='Location directory to place files in')
+    parser.add_argument('--tarfile', dest='tarfile', default=None,
+                        help='Name of tarfile to generate')
     args = parser.parse_args(sys.argv[1:])
     if args.location is None:
         args.location = tempfile.mkdtemp()
@@ -74,7 +98,13 @@ def main():
     if location is None:
         sys.stderr.write("Can't checkout modulefiles to {0}!\n".format(args.location))
     package_files(location)
-    sys.stdout.write("Packaged files located at {0}\n".format(location)) 
+    if args.tarfile is None:
+        args.tarfile = "/tmp/moduleupdate.tar.gz"
+    if tar_files(location, args.tarfile) is None:
+        sys.stderr.write("Error generating tarfile, exiting\n")
+        sys.exit(1)
+    shutil.rmtree(location)
+    sys.stdout.write("Packaged files located at {0}\n".format(args.tarfile)) 
     
 
 if __name__ == '__main__':
