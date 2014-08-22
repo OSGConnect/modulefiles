@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import sys
+import time
+import datetime
 try:
    import cPickle as pickle
 except:
@@ -17,9 +19,18 @@ def process_usage_history(db):
     usage_list = {}
     top_modules = {}
     top_sites = {}
+    user_records = {}
     redis_client = redis.Redis(host='db.mwt2.org')
     site_translation = pickle.loads(redis_client.get('osg_site_name_conversions'))
-    for record in db.usage.find():
+    today = datetime.date.today()
+    weekstart = time.mktime((today - 
+                                datetime.timedelta(days = today.isoweekday())).timetuple())
+    print 'a'
+    print weekstart
+    for record in db.usage.find({"CompletionDate" : { "$gt" : weekstart}}):
+        print 'b'
+        print record
+    #for record in db.usage.find():
         site = record['site']
         if site in site_translation:
             site_name = site_translation[site]
@@ -40,6 +51,16 @@ def process_usage_history(db):
         if module not in usage_list[site_name]:
             usage_list[site_name][module] = 0
         usage_list[site_name][module] += 1
+        # track user specific stats
+        user = record['User'].split('@')[0]
+        if user not in user_records:
+            user_records[user] = { 'modules' : {}, 'sites' : {} }
+        if site_name not in user_records[user]['sites']:
+            user_records[user]['sites'][site_name] = 0
+        user_records[user]['sites'][site_name] += 1
+        if module not in user_records[user]['modules']:
+            user_records[user]['modules'][module] = 0
+        user_records[user]['modules'][module] += 1
     # get top 20 modules used by site 
     sorted_usage = {}
     for site in usage_list:
@@ -60,7 +81,27 @@ def process_usage_history(db):
         continue
       sorted_sites[site] = top_sites[site]
     redis_client.set('sorted_site_list', pickle.dumps(sorted_sites))
+    # get sorted list of modules and sites for users:
+    for user in user_records:
+        # sort modules
+        user_modules = user_records[user]['modules']
+        temp = sorted(user_modules)
+        sorted_modules = {}
+        for module in temp:
+            sorted_modules[module] = user_modules[module]
+        user_records[user]['modules'] = sorted_modules
+        # sort sites
+        user_sites = user_records[user]['sites']
+        sorted_sites = {}
+        temp = sorted(user_sites)
+        for site in temp:
+            if site == 'UNAVAILABLE':
+                continue
+            sorted_sites[site] = user_sites[site]
+        user_records[user]['sites'] = sorted_sites
+    redis_client.set('user_records', pickle.dumps(user_records))
 
+            
 def run_main():
     """
     Main function, fix records by converting ints and floats to appropriate types
