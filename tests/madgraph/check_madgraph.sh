@@ -10,8 +10,9 @@ echo "GWMS Resource Name: $GLIDEIN_ResourceName"
 
 
 source /cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/5.6.2/init/bash
+module load gcc/4.6.2
 module load madgraph/2.1.2
-cd input
+cd input_files
 mg5_aMC -f pp2z.madgraph
 cd pp2z
 ./bin/generate_events --laststep=pgs -f
