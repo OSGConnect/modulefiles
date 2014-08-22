@@ -1,0 +1,81 @@
+universe = vanilla
+notification=never
+executable = ./check_madgraph.sh
+output = /tmp/check_madgraph/results.out.$(Cluster).$(Process)
+error = /tmp/check_madgraph/results.err.$(Cluster).$(Process)
+log = /tmp/check_madgraph/results.log
++ProjectName = "OSG-Staff"
+ShouldTransferFiles = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files =  input_files
+
+Requirements = (GLIDEIN_ResourceName == "SPRACE") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "TTU-ANTAEUS") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "UConn-OSG") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "UTA_SWT2") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "NUMEP-OSG") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "USCMS-FNAL-WC1") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "SWT2_CPB") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "Tusker") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "UCSDT2") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "FLTECH") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "NWICG_NDCMS") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "IU_OSG") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "MIT_CMS") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "PNNL_OSG") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "cinvestav") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "UCD") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "GROW-PROD") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "MWT2") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "Sandhills") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "FNAL_FERMIGRID") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "BNL-ATLAS") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "GridUNESP_CENTRAL") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "SMU_PHY") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "AGLT2") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "Purdue-Hadoop") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "NYSGRID-CCR-U2") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "VT_OSG") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "Nebraska") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "Crane") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "GLOW") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "SMU_HPC") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "GRASE-CSE-MAGIC") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "BU_ATLAS_Tier2") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "NYSGRID_CORNELL_NYS1") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
+Requirements = (GLIDEIN_ResourceName == "CIT_CMS_T2") && (IS_GLIDEIN == True) && (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE) && (OpSys == "LINUX" && OpSysMajorVer == 6)
+queue 1
