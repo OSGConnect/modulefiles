@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from cgi import parse_qs, escape
+import time
 
 import pymongo
 
@@ -10,7 +11,7 @@ def get_db_client():
     client = pymongo.MongoClient(host='db.mwt2.org', port=27017)
     return client.module_usage
 
-def log_usage(environ, start_response):
+def application(environ, start_response):
     """ Get GET parameters and put into mongoDB"""
 
     query_dict = parse_qs(environ['QUERY_STRING'])
@@ -38,7 +39,8 @@ def log_usage(environ, start_response):
                             ('Content-Length', str(len(response_body)))]
         start_response(status, response_headers)
         return [response_body]
-
+    record['date'] = time.time()
+    #response_body = 'Record inserted:\n{0}\n'.format(record)
     response_body = 'Record inserted'
     db = get_db_client()        
     try:

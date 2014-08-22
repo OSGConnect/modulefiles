@@ -25,12 +25,7 @@ def process_usage_history(db):
     today = datetime.date.today()
     weekstart = time.mktime((today - 
                                 datetime.timedelta(days = today.isoweekday())).timetuple())
-    print 'a'
-    print weekstart
-    for record in db.usage.find({"CompletionDate" : { "$gt" : weekstart}}):
-        print 'b'
-        print record
-    #for record in db.usage.find():
+    for record in db.usage.find({"date" : { "$gt" : weekstart}}):
         site = record['site']
         if site in site_translation:
             site_name = site_translation[site]
@@ -52,7 +47,7 @@ def process_usage_history(db):
             usage_list[site_name][module] = 0
         usage_list[site_name][module] += 1
         # track user specific stats
-        user = record['User'].split('@')[0]
+        user = record['user']
         if user not in user_records:
             user_records[user] = { 'modules' : {}, 'sites' : {} }
         if site_name not in user_records[user]['sites']:

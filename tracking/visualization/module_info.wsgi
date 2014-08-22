@@ -106,6 +106,10 @@ def application(environ, start_response):
         json_string = get_top_modules(query_dict)
     elif function == 'topsites':
         json_string = get_top_sites(query_dict)
+    elif function == 'topusermodules':
+        json_string = get_user_top_modules(query_dict)
+    elif function == 'topusersites':
+        json_string = get_user_top_sites(query_dict)
     elif function == 'moduleloads':
         json_string = get_moduleloads(query_dict)
     elif function == 'get_sites':
