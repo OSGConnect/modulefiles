@@ -10,7 +10,7 @@ echo "GWMS Resource Name: $GLIDEIN_ResourceName"
 
 
 source /cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/5.6.2/init/bash
-module load fftw/fftw-3.3.4-gromacs 
+module load fftw/3.3.4-gromacs 
 module load atlas
 module load lapack
 module load gromacs/5.0.0
