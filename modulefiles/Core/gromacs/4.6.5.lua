@@ -1,6 +1,6 @@
 help(
 [[
-This module loads a Gromacs 4.6.5 into the environment. Gromacs is a 
+This module loads Gromacs 4.6.5 into the environment. Gromacs is a 
 molecular dynamics application.
 
 ]])
