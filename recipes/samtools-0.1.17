@@ -1,0 +1,7 @@
+wget 'http://downloads.sourceforge.net/project/samtools/samtools/0.1.17/samtools-0.1.17.tar.bz2?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fsamtools%2Ffiles%2Fsamtools%2F0.1.17%2F&ts=1409770680&use_mirror=colocrossing'
+tar xvjf samtools-0.1.17.tar.bz2
+cd samtools
+make
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/samtools/1.17/
+cp razip samtools /cvmfs/oasis.opensciencegrid.org/osg/modules/samtools/1.17/
+copy scripts executables from bcftools and misc subdirectories to appropriate subdirectory

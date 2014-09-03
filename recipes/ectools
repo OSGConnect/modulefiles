@@ -1,0 +1,5 @@
+run:
+
+git clone https://github.com/jgurtowski/ectools
+cd ectools
+remove .git subdirectory and copy to OASIS dir
