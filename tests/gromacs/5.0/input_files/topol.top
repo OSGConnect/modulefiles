@@ -1,0 +1,11 @@
+;####include "ffoplsaa.itp"
+#include "ffgmx.itp"
+#include "spc.itp"
+
+[ system ]
+; Name
+vetta 
+
+[ molecules ]
+; Compound        #mols
+SOL 216
