@@ -11,5 +11,5 @@ whatis("Loads the FFTW library which provides functions for computing FFTs. Comp
 local version = "3.3.4-gromacs"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/fftw/"..version
 
-prepend_path("LD_LIBRARY_PATH", base)
+prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
 family('fftw')
