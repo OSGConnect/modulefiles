@@ -1,5 +1,5 @@
 wget 'http://www.graphviz.org/pub/graphviz/stable/SOURCES/graphviz-2.38.0.tar.gz'
-./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/graphviz-2.38.0
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/graphviz/2.38.0
 
 needs perl-ExtUtils-Embed 
 
