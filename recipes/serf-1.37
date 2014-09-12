@@ -1,0 +1,6 @@
+wget http://serf.googlecode.com/svn/src_releases/serf-1.3.7.tar.bz2
+wget 'http://prdownloads.sourceforge.net/scons/scons-local-2.3.0.tar.gz' 
+ln scons.py to scons.py in PATH
+scons.py APR=/cvmfs/oasis.opensciencegrid.org/osg/modules/apr/1.5.1 APU=/cvmfs/oasis.opensciencegrid.org/osg/modules/apr-util/1.5.3 PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/serf/1.37
+scons.py check
+scons.py install

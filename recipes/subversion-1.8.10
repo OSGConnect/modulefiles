@@ -1,0 +1,5 @@
+Needs serf, apr, apr-util
+ wget 'http://apache.mirrors.pair.com/subversion/subversion-1.8.10.tar.bz2'
+ wget 'http://www.sqlite.org/sqlite-amalgamation-3071501.zip'
+ untar and mv sqlite directory to sqlite-amalgamation within subversion directory
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/subversion/1.8.10 --with-apr=/cvmfs/oasis.opensciencegrid.org/osg/modules/apr/1.5.1/ --with-apr-util=/cvmfs/oasis.opensciencegrid.org/osg/modules/apr-util/1.5.3 --with-serf=/cvmfs/oasis.opensciencegrid.org/osg/modules/serf/1.37
