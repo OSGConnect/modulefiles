@@ -14,4 +14,4 @@ prepend_path("PATH", pathJoin(base, "bin"))
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
 
 family('subversion')
-prereq('apr/1.5.1', 'apr-util/1.5.3', 'serf/1.37')
+prereq('apr/1.5.1', 'aprutil/1.5.3', 'serf/1.37')

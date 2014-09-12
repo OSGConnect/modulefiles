@@ -12,5 +12,5 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/apr-util/"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
-family('apr-util')
+family('aprutil')
 prereq('apr')
