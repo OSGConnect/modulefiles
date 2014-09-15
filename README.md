@@ -15,7 +15,8 @@ This repository has three different directories:
    sites that OSG connect may submit to
    
    tracking - scripts and infrastructure to visualize module usage through OSG Connect 
-   
+
+   recipes - text files with brief instructions on building the various modules
 
                  
                  
