@@ -1,0 +1,31 @@
+Need:
+
+    git
+    for /usr/bin/git
+    make
+    for /usr/bin/make
+    g++
+    (ROOT 6 requires g++ 4.8 or clang 3.4; for SLC5/SLC6, gcc 4.8 is available in the developer toolset)
+    for /usr/bin/g++
+    gcc
+    for /usr/bin/gcc
+    binutils
+    for /usr/bin/ld
+    libX11-devel
+    for usr/include/X11/Xlib.h and for /usr/lib/libX11.so
+    libXpm-devel
+    for /usr/include/X11/xpm.h and for /usr/lib/libXpm.so
+    libXft-devel
+    for /usr/include/X11/Xft/Xft.h and for /usr/lib/libXft.so
+    libXext-devel
+    for /usr/include/X11/extensions/shape.h and for /usr/lib/libXext.so
+    python
+    (ROOT6 requires version >= 2.5)
+
+http://root.cern.ch/drupal/content/build-prerequisites
+
+
+wget ftp://root.cern.ch/root/root_v5.34.21.source.tar.gz
+./configure linuxx8664gcc --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/root/5.34-21
+make
+make install
