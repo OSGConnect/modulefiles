@@ -1,0 +1,10 @@
+Needs zlib-static and glibc-static
+Needs hdf5 1.8.11
+See http://www.vcru.wisc.edu/simonlab/bioinformatics/programs/install/blasr.htm
+
+wget 'https://github.com/PacificBiosciences/blasr/archive/smrtanalysis-2.1.zip'
+export HDF5LIBDIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/hdf5/1.8.13/lib
+export HDF5INCLUDEDIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/hdf5/1.8.13/include
+edit common.mk and set the above variables
+make
+make install

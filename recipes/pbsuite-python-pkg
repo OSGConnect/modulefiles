@@ -9,7 +9,7 @@ Create requirements file containing:
 numpy ==  1.6
 h5py
 pysam  ==  0.7.6
-networkx == 1.1
+networkx == 1.7
 
 export HDF5_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/hdf5/1.8.13
 pip install -r requirements
