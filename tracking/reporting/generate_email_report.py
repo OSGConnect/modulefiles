@@ -137,7 +137,7 @@ def generate_report(start_date, end_date, email=False):
     :param end_date: timedate.date object giving the date to end on
     :return: None
     """
-    start_date = get_week_start()
+    start_date = get_week_start(start_date)
     report_text = ""
     report_text += "{0:^80}\n".format("Modules usage report for week of " +
                                       start_date.isoformat())
