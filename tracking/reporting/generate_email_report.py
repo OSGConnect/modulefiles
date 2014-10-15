@@ -142,7 +142,7 @@ def generate_report(email=False):
     sites.sort()
     for site in sites:
         for module, count in sites[site]:
-        report_text += "|{0:^20}|{1:^20}|{0:^20}|".format(site, module, count)
+            report_text += "|{0:^20}|{1:^20}|{0:^20}|".format(site, module, count)
     report_text += "\n\n"
 
     if email:
