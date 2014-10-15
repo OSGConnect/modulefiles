@@ -4,27 +4,27 @@ import sys
 import time
 import datetime
 try:
-   import cPickle as pickle
+    import cPickle as pickle
 except:
-   import pickle
+    import pickle
 
 
 import redis
 import pymongo
 
-def process_usage_history(db, start_date = datetime.date.today()):
+def process_usage_history(db, start_date=datetime.date.today()):
     """
     scan the db and compile the top 20 modules used for each site
     for each week from start_date to the current date
     """
     today = datetime.date.today()
-    weekstart = start_date - datetime.timedelta(days = start_date.isoweekday())
-    while (weekstart < today):
-        calculate_weekly_usage(db, weekstart)
-        weekstart += datetime.timedelta(days = 7)
+    week_start = start_date - datetime.timedelta(days=start_date.isoweekday())
+    while week_start < today:
+        calculate_weekly_usage(db, week_start)
+        week_start += datetime.timedelta(days=7)
         
 
-def calculate_weekly_usage(db, start_date = datetime.date.today()):
+def calculate_weekly_usage(db, start_date=datetime.date.today()):
     """
     scan the db and compile the module usage by site for the 7 days following
     start_date
@@ -36,8 +36,8 @@ def calculate_weekly_usage(db, start_date = datetime.date.today()):
     end_date = start_date + datetime.timedelta(days=7)
     end_datetime = time.mktime(datetime.datetime.combine(end_date, midnight).timetuple())
     start_datetime = time.mktime(datetime.datetime.combine(start_date, midnight).timetuple())
-    for record in db.usage.find({"date" : { "$gte" : start_datetime, 
-                                            "$lt" : end_datetime}}):
+    for record in db.usage.find({"date": {"$gte": start_datetime,
+                                          "$lt": end_datetime}}):
         site = record['site']
         module = record['module']
         if site in site_translation:
@@ -45,18 +45,18 @@ def calculate_weekly_usage(db, start_date = datetime.date.today()):
         else:
             site_name = site
         if site_name not in usage_list:
-            usage_list[site_name] = { module : 1 }
+            usage_list[site_name] = {module: 1}
         elif module not in usage_list[site_name]:
             usage_list[site_name][module] = 1
         else:
             usage_list[site_name][module] += 1
     for site in usage_list:
         for module in usage_list[site]:
-            record = { "site" :  site,
-                       "module" : module,
-                       "count" : usage_list[site][module],
-                       "date" : start_date.isoformat()}
-            result = db.weekly_count.insert(record)
+            record = {"site":  site,
+                      "module": module,
+                      "count": usage_list[site][module],
+                      "date": start_date.isoformat()}
+            db.weekly_count.insert(record)
 
             
 def run_main():
@@ -78,9 +78,8 @@ def run_main():
             
     else:
         start_date = datetime.date.today()
-    usage_list = process_usage_history(db, start_date )
+    process_usage_history(db, start_date)
 
 
 if __name__ == '__main__':
     run_main()
-
