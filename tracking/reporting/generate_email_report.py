@@ -2,9 +2,26 @@
 
 import sys
 import datetime
-
+import argparse
 
 import pymongo
+
+def parse_date(date=None):
+    """
+    Parse a string in YYYY-MM-DD format into a datetime.date object.
+    Throws ValueError if input is invalid
+
+    :param date: string in YYYY-MM-DD format giving a date
+    :return: a datetime.date object corresponding to the date given
+    """
+    if date is None:
+        raise ValueError
+    fields = date.split('-')
+    if len(fields) != 3:
+        raise ValueError
+    return datetime.date(year=int(fields[0]),
+                         month=int(fields[1]),
+                         day=int(fields[2]))
 
 def get_week_start(date=None):
     """
@@ -105,11 +122,13 @@ def get_moduleloads(start_date, top=None):
                                              {"$sort": {"sum": -1}},
                                              {"$limit": top}])['result']['sum']
 
-def generate_report(email=False):
+def generate_report(start_date, end_date, email=False):
     """
     Generate a report of module usage over the week and optionally email it
 
     :param email: boolean that indicates whether to email report or not
+    :param start_date: timedate.date object giving the date to start from
+    :param end_date: timedate.date object giving the date to end on
     :return: None
     """
     start_date = get_week_start()
@@ -151,10 +170,17 @@ def generate_report(email=False):
         sys.stdout.write(report_text)
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Create a condor submit file for processing job log data.')
+    parser.add_argument('--start-date', dest='start_date', default=datetime.date.today().isoformat(),
+                        help='Date to start processing logs from')
+    parser.add_argument('--end-date', dest='end_date', default=datetime.date.today().isoformat(),
+                        help='Date to stop processing logs')
+    parser.add_argument('--email', dest='email', default=False,
+                        type=bool,help='Date to stop processing logs')
+    args = parser.parse_args(sys.argv[1:])
+    args.start_date = parse_date(args.start_date)
+    args.end_date = parse_date(args.end_date)
 
-    if len(sys.argv) == 2 and sys.argv[1] == 'email':
-        generate_report(email=True)
-    else:
-        generate_report()
+    generate_report(email=args.email)
 
 
