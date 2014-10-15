@@ -184,7 +184,7 @@ if __name__ == "__main__":
     parser.add_argument('--email', dest='email', default=False,
                         type=bool,help='Date to stop processing logs')
     args = parser.parse_args(sys.argv[1:])
-    args.start_date = parse_date(args.start_date)
+    args.start_date = parse_date(start_date, end_date, args.start_date)
     args.end_date = parse_date(args.end_date)
 
     generate_report(email=args.email)
