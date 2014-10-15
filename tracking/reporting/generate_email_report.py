@@ -16,7 +16,13 @@ def get_week_start(date=None):
         start_date = datetime.date.today()
     else:
         start_date = date
-    week_start = start_date - datetime.timedelta(days=start_date.isoweekday())
+    week_day  = start_date.isoweekday()
+    if week_day != 7 and week_day != 0:
+        week_start = start_date - datetime.timedelta(days=week_day)
+    else:
+        week_start = start_date
+    print start_date
+    print week_start
     return week_start
 
 def get_mongodb_client():
@@ -41,8 +47,8 @@ def get_site_modulelist(start_date=None, top=None):
         top = 10
 
     site_list = {}
-    for record in db.weekly_count.find({"date": start_date},
-                                       sort=('count', -1)):
+    for record in db.weekly_count.find({"date": start_date.isoformat()},
+                                       sort=[('count', -1)]):
         site = record['site']
         if site not in site_list:
             site_list[site] = []
@@ -115,7 +121,7 @@ def generate_report(email=False):
     start_date = get_week_start()
     report_text = ""
     report_text += "{0:^80}\n".format("Modules usage report for week of " +
-                                      start_date)
+                                      start_date.isoformat())
 
     report_text += "{0:-^80}\n".format(' Top 10 modules used')
     report_text += "\n\n"
