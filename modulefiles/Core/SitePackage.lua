@@ -33,8 +33,12 @@ function load_hook(t)
    -- be better to compute this, but my lua skills are lacking.)
    local dirname = os.getenv("LMOD_PACKAGE_PATH")
 
-   local username = os.getenv("USER")
+   local username = os.getenv("OSGVO_SUBMITTER")
    if username == nil then
+      username = 'UNAVAILABLE'
+   end
+   local project = os.getenv("OSGVO_SUBMITTER")
+   if project == nil then
       username = 'UNAVAILABLE'
    end
    local site = os.getenv("OSG_SITE_NAME")
@@ -55,6 +59,7 @@ function load_hook(t)
       -- not wait on the subprocess.
       local uri = 'http://web-dev.ci-connect.net/~sthapa/register_module.wsgi?'
       uri = uri .. 'user=' .. url_quote(username)
+      uri = uri .. '&project=' .. url_quote(project)
       uri = uri .. '&module=' .. url_quote(t.modFullName)
       uri = uri .. '&site=' .. url_quote(site)
       uri = uri .. '&host=' .. url_quote(host)

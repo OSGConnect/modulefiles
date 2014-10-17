@@ -5,11 +5,13 @@ import time
 
 import pymongo
 
+
 def get_db_client():
     """ Instantiate DB client and pass connection back """
 
     client = pymongo.MongoClient(host='db.mwt2.org', port=27017)
     return client.module_usage
+
 
 def application(environ, start_response):
     """ Get GET parameters and put into mongoDB"""
@@ -24,6 +26,10 @@ def application(environ, start_response):
         record['user'] = escape(query_dict['user'][0])
     else:
         record['user'] = ''
+    if 'project' in query_dict:
+        record['project'] = escape(query_dict['project'][0])
+    else:
+        record['project'] = ''
     if 'module' in query_dict:
         record['module'] = escape(query_dict['module'][0])
     else:
@@ -32,7 +38,7 @@ def application(environ, start_response):
         record['site'] = escape(query_dict['site'][0])
     else:
         record['site'] = ''
-    if (record['module']  == '' or record['site'] == ''):
+    if record['module'] == '' or record['site'] == '':
         status = '200 OK'
         response_body = 'No record to insert!'
         response_headers = [('Content-Type', 'text/html'),
@@ -57,5 +63,5 @@ def application(environ, start_response):
 
 if __name__ == '__main__':
     from wsgiref.simple_server import make_server
-    srv = make_server('login.osgconnect.net', 8080, log_usage)
+    srv = make_server('login.osgconnect.net', 8080, application)
     srv.serve_forever()
