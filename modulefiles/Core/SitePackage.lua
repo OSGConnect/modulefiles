@@ -39,7 +39,7 @@ function load_hook(t)
    end
    local project = os.getenv("OSGVO_SUBMITTER")
    if project == nil then
-      username = 'UNAVAILABLE'
+      project = 'UNAVAILABLE'
    end
    local site = os.getenv("OSG_SITE_NAME")
    if site == nil then
