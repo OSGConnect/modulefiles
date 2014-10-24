@@ -56,9 +56,9 @@ def calculate_weekly_usage(db, start_date=datetime.date.today()):
             user = 'UNAVAILABLE'
         if project is None:
             project = 'UNAVAILABLE'
-        dict_key = frozenset("site:{0}".format(site),
-                             "user:{0}".format(user),
-                             "project:{0}".format(project))
+        dict_key = frozenset(["site:{0}".format(site),
+                              "user:{0}".format(user),
+                              "project:{0}".format(project)])
         if dict_key not in usage_list:
             usage_list[dict_key] = {module: 1}
         elif module not in usage_list[dict_key]:
