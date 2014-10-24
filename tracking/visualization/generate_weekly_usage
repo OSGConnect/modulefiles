@@ -40,11 +40,11 @@ def calculate_weekly_usage(db, start_date=datetime.date.today()):
                                           "$lt": end_datetime}}):
         site = record['site']
         module = record['module']
-        if user in record:
+        if 'user' in record:
             user = record['user']
         else:
             user = 'UNAVAILABLE'
-        if project in record:
+        if 'project' in record:
             project = record['project']
         else:
             project = 'UNAVAILABLE'
