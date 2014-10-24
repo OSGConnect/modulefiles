@@ -68,7 +68,7 @@ def calculate_weekly_usage(db, start_date=datetime.date.today()):
     for dict_key in usage_list:
         for module in usage_list[dict_key]:
             record = {"module": module,
-                      "count": usage_list[site][module],
+                      "count": usage_list[dict_key][module],
                       "date": start_date.isoformat()}
             # populate site, user, project fields from frozenset
             for member in dict_key:
