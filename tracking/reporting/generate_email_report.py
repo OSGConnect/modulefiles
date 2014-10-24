@@ -33,7 +33,7 @@ def get_week_start(date=None):
         start_date = datetime.date.today()
     else:
         start_date = date
-    week_day  = start_date.isoweekday()
+    week_day = start_date.isoweekday()
     if week_day != 7 and week_day != 0:
         week_start = start_date - datetime.timedelta(days=week_day)
     else:
@@ -48,9 +48,37 @@ def get_mongodb_client():
     db = db_client.module_usage
     return db
 
-def get_site_modulelist(start_date=None, top=None):
+def get_modulelist_by_category(start_date=None, category, top=10):
     """
-    Give up to the top N modules used per site
+    Give up to the top N modules used per category
+
+    :param
+    start_date - date indicating week that should be examined
+    top        - integer giving how many entries to return
+    cateogory  - string giving category to examine
+                 should be one of ('sites', 'user', 'project')
+    """
+    if category not in ('sites', 'user', 'project'):
+        return {}
+    db = get_mongodb_client()
+    if start_date is None:
+        start_date = get_week_start()
+    else:
+        start_date = get_week_start(start_date)
+
+    category_list = {}
+    for record in db.weekly_count.find({"date": start_date.isoformat()},
+                                       sort=[('count', -1)]):
+        category = record['category']
+        if category not in category_list:
+            category_list[category] = []
+        if len(category_list[category]) < top:
+            category_list[category].append((record['module'], record['count']))
+    return category_list
+
+def get_user_modulelist(start_date=None, top=None):
+    """
+    Give up to the top N modules used per user
     """
     db = get_mongodb_client()
     if start_date is None:
@@ -61,10 +89,10 @@ def get_site_modulelist(start_date=None, top=None):
     if top is None:
         top = 10
 
-    site_list = {}
+    user_list = {}
     for record in db.weekly_count.find({"date": start_date.isoformat()},
                                        sort=[('count', -1)]):
-        site = record['site']
+        site = record['user']
         if site not in site_list:
             site_list[site] = []
         if len(site_list[site]) < top:
@@ -121,10 +149,10 @@ def get_moduleloads(start_date, top=None):
     if top is None:
         top = 10
     return db.weekly_count.aggregate([{"$match": {"date": start_date.isoformat()}},
-                                             {"$group": {"_id": "$date",
+                                      {"$group": {"_id": "$date",
                                                          "sum": {"$sum": 1}}},
-                                             {"$sort": {"sum": -1}},
-                                             {"$limit": top}])['result']['sum']
+                                      {"$sort": {"sum": -1}},
+                                      {"$limit": top}])['result']['sum']
 
 def generate_report(start_date, end_date, email=False):
     """

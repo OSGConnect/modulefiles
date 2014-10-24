@@ -40,22 +40,34 @@ def calculate_weekly_usage(db, start_date=datetime.date.today()):
                                           "$lt": end_datetime}}):
         site = record['site']
         module = record['module']
+        user = record['user']
+        project = record['project']
         if site in site_translation:
             site_name = site_translation[site]
         else:
             site_name = site
-        if site_name not in usage_list:
-            usage_list[site_name] = {module: 1}
-        elif module not in usage_list[site_name]:
-            usage_list[site_name][module] = 1
+        if user is None:
+            user = 'UNAVAILABLE'
+        if project is None:
+            project = 'UNAVAILABLE'
+        dict_key = frozenset("site:{0}".format(site),
+                             "user:{0}".format(user),
+                             "project:{0}".format(project))
+        if dict_key not in usage_list:
+            usage_list[dict_key] = {module: 1}
+        elif module not in usage_list[dict_key]:
+            usage_list[dict_key][module] = 1
         else:
-            usage_list[site_name][module] += 1
-    for site in usage_list:
-        for module in usage_list[site]:
-            record = {"site":  site,
-                      "module": module,
+            usage_list[dict_key][module] += 1
+    for dict_key in usage_list:
+        for module in usage_list[dict_key]:
+            record = {"module": module,
                       "count": usage_list[site][module],
                       "date": start_date.isoformat()}
+            # populate site, user, project fields from frozenset
+            for member in dict_key:
+                (field, value) = member.split(":")
+                record[field] = value
             db.weekly_count.insert(record)
 
             
