@@ -1,0 +1,8 @@
+wget 'ftp://ftp.unidata.ucar.edu/pub/udunits/udunits-2.2.17.tar.gz'
+tar xvzf udunits-2.2.17.tar.gz
+cd udunits-2.2.17
+export CPPFLAGS='-L/cvmfs/oasis.opensciencegrid.org/osg/modules/expat/2.1.0/lib -I/cvmfs/oasis.opensciencegrid.org/osg/modules/expat/2.1.0/include'
+export LDFLAGS='-L/cvmfs/oasis.opensciencegrid.org/osg/modules/expat/2.1.0/lib'
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/udunits/2.2.17
+make
+make install
