@@ -1,0 +1,6 @@
+wget 'http://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.5-patch1/src/hdf5-1.8.5-patch1.tar.bz2'
+tar xvjf hdf5-1.8.5-patch1.tar.bz2
+cd hdf5-1.8.5-patch1
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/hdf5/1.8.5p1 --enable-cxx
+make
+make install
