@@ -15,4 +15,4 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/udunits/"..version
 prepend_path("PATH", pathJoin(base, "bin"))
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
 family('udunits')
-prereq('expact/2.1.0')
+prereq('expat/2.1.0')
