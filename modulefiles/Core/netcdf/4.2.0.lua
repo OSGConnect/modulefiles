@@ -13,4 +13,5 @@ local version = "4.2.0"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/netcdf/"..version
 
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
+prepend_path("PATH", pathJoin(base, "bin"))
 family('netcdf')
