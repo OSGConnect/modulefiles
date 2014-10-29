@@ -1,0 +1,8 @@
+wget 'https://github.com/Unidata/netcdf-c/archive/netcdf-4.2.0.tar.gz'
+tar xvzf netcdf-4.2.0.tar.gz
+cd netcdf-c-netcdf-4.2.0
+export LDFLAGS='-L/cvmfs/oasis.opensciencegrid.org/osg/modules/hdf5/1.8.9/lib'
+export CPPFLAGS='-L/cvmfs/oasis.opensciencegrid.org/osg/modules/hdf5/1.8.9/lib -I/cvmfs/oasis.opensciencegrid.org/osg/modules/hdf5/1.8.9/include'
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/netcdf/4.2.0 --disable-doxygen
+make
+make check
