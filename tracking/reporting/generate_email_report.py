@@ -185,14 +185,14 @@ def generate_report(start_date, end_date, email=False):
     report_text += "\n\n"
 
 
-    report_text += "{0:-^80}\n".format(' Top 10 modules used at each site')
+    report_text += "{0:-^80}\n".format(' Top 10 modules used by each user')
     report_text += "\n\n"
     report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format('Site', 'Module', '# of times used')
     user_module_list = get_user_modulelist(start_date)
     users = user_module_list.keys()
     users.sort()
     for user in users:
-        for module, count in user_module_list[site]:
+        for module, count in user_module_list[user]:
             report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format(user, module, count)
     report_text += "\n\n"
 
