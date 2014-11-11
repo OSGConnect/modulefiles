@@ -1,0 +1,9 @@
+wget 'http://downloads.sourceforge.net/project/expat/expat/2.1.0/expat-2.1.0.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fexpat%2F&ts=1414440689&use_mirror=iweb'
+mv expat-2.1.0.tar.gz\?r=http:%2F%2Fsourceforge.net%2Fprojects%2Fexpat%2F\&ts=1414440689\&use_mirror=iweb expat-2.1.0.tar.gz
+tar xvzf expat-2.1.0.tar.gz
+cd expat-2.1.0
+ls
+./configure --help
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/expat/2.1.0
+make
+make install

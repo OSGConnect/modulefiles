@@ -1,0 +1,15 @@
+module load python/2.7
+virtualenv-2.7 /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/psims
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/psims
+create requirements file with:
+
+[sthapa@itb2 psims]$ cat requirements
+h5py
+numpy
+netCDF4
+
+export HDF5_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/hdf5/1.8.9
+export NETCDF4_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/netcdf/4.2.0
+pip install -r requirements
+
+tar and install on OASIS
