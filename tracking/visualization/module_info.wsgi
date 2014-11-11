@@ -74,6 +74,37 @@ def get_site_modulelist(query_dict, start_date=None, top=None):
             site_list[site].append(record['module'])
     return json.dumps(site_list)
 
+def get_site_modulelist(query_dict, start_date=None, top=None):
+    """
+    Unpickle and give up to the top N modules used per site
+    """
+    db = get_mongodb_client()
+    if start_date is None:
+        start_date = get_week_start()
+    else:
+        start_date = get_week_start(start_date)
+    if top not in query_dict:
+        top = 10
+    else:
+        top = escape(query_dict['top'][0])
+        if top is None:
+            top = 10
+        else:
+            try:
+                top = int(top)
+            except ValueError:
+                top = 10
+
+    site_list = {}
+    for record in db.weekly_count.find({"date": start_date},
+                                       sort=('count', -1)):
+        site = record['site']
+        if site not in site_list:
+            site_list[site] = []
+        if len(site_list[site]) < top:
+            site_list[site].append(record['module'])
+    return json.dumps(site_list)
+
 def get_top_modules(query_dict, start_date, top=None):
     """
     Return a json representation of the top N modules used in the last week
@@ -181,6 +212,8 @@ def application(environ, start_response):
         json_string = get_moduleloads(query_dict, week_start)
     elif function == 'get_sites':
         json_string = get_sites()
+    else:
+        json_string = ''
 
     status = '200 OK'
     response_body = ""

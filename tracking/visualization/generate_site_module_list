@@ -24,8 +24,8 @@ def process_usage_history(db):
     site_translation = pickle.loads(redis_client.get('osg_site_name_conversions'))
     today = datetime.date.today()
     weekstart = time.mktime((today - 
-                                datetime.timedelta(days = today.isoweekday())).timetuple())
-    for record in db.usage.find({"date" : { "$gt" : weekstart}}):
+                                datetime.timedelta(days=today.isoweekday())).timetuple())
+    for record in db.usage.find({"date": {"$gt": weekstart}}):
         site = record['site']
         if site in site_translation:
             site_name = site_translation[site]
@@ -49,7 +49,7 @@ def process_usage_history(db):
         # track user specific stats
         user = record['user']
         if user not in user_records:
-            user_records[user] = { 'modules' : {}, 'sites' : {} }
+            user_records[user] = {'modules': {}, 'sites': {}}
         if site_name not in user_records[user]['sites']:
             user_records[user]['sites'][site_name] = 0
         user_records[user]['sites'][site_name] += 1
@@ -66,15 +66,15 @@ def process_usage_history(db):
     temp = sorted(top_modules)
     sorted_modules = {}
     for module in temp:
-      sorted_modules[module] = top_modules[module]
+        sorted_modules[module] = top_modules[module]
     redis_client.set('sorted_module_list', pickle.dumps(sorted_modules))
     # translate site names and get sorted list of sites used
     temp = sorted(top_sites)
     sorted_sites = {}
     for site in temp:
-      if site == 'UNAVAILABLE':
-        continue
-      sorted_sites[site] = top_sites[site]
+        if site == 'UNAVAILABLE':
+            continue
+        sorted_sites[site] = top_sites[site]
     redis_client.set('sorted_site_list', pickle.dumps(sorted_sites))
     # get sorted list of modules and sites for users:
     for user in user_records:
@@ -103,7 +103,7 @@ def run_main():
     """
     db_client = pymongo.MongoClient(host='db.mwt2.org', port=27017)
     db = db_client.module_usage
-    usage_list = process_usage_history(db)
+    process_usage_history(db)
 
 
 if __name__ == '__main__':

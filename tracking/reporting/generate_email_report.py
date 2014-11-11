@@ -48,7 +48,7 @@ def get_mongodb_client():
     db = db_client.module_usage
     return db
 
-def get_modulelist_by_category(start_date=None, category, top=10):
+def get_modulelist_by_category(start_date=None, category='user', top=10):
     """
     Give up to the top N modules used per category
 
@@ -69,7 +69,7 @@ def get_modulelist_by_category(start_date=None, category, top=10):
     category_list = {}
     for record in db.weekly_count.find({"date": start_date.isoformat()},
                                        sort=[('count', -1)]):
-        category = record['category']
+        category = record[category]
         if category not in category_list:
             category_list[category] = []
         if len(category_list[category]) < top:
@@ -92,12 +92,12 @@ def get_user_modulelist(start_date=None, top=None):
     user_list = {}
     for record in db.weekly_count.find({"date": start_date.isoformat()},
                                        sort=[('count', -1)]):
-        site = record['user']
-        if site not in site_list:
-            site_list[site] = []
-        if len(site_list[site]) < top:
-            site_list[site].append((record['module'], record['count']))
-    return site_list
+        user = record['user']
+        if user not in user_list:
+            user_list[user] = []
+        if len(user_list[user]) < top:
+            user_list[user].append((record['module'], record['count']))
+    return user_list
 
 def get_top_modules(start_date, top=None):
     """
@@ -188,12 +188,12 @@ def generate_report(start_date, end_date, email=False):
     report_text += "{0:-^80}\n".format(' Top 10 modules used at each site')
     report_text += "\n\n"
     report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format('Site', 'Module', '# of times used')
-    site_module_list = get_site_modulelist(start_date)
-    sites = site_module_list.keys()
-    sites.sort()
-    for site in sites:
-        for module, count in site_module_list[site]:
-            report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format(site, module, count)
+    user_module_list = get_user_modulelist(start_date)
+    users = user_module_list.keys()
+    users.sort()
+    for user in users:
+        for module, count in user_module_list[site]:
+            report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format(user, module, count)
     report_text += "\n\n"
 
     if email:
