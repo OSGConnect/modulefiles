@@ -52,10 +52,6 @@ def calculate_weekly_usage(db, start_date=datetime.date.today()):
             site_name = site_translation[site]
         else:
             site_name = site
-        if user is None:
-            user = 'UNAVAILABLE'
-        if project is None:
-            project = 'UNAVAILABLE'
         dict_key = frozenset(["site:{0}".format(site),
                               "user:{0}".format(user),
                               "project:{0}".format(project)])
