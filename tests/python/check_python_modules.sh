@@ -11,27 +11,33 @@ echo "GWMS Entry Name: $GLIDEIN_Entry_Name"
 echo "GWMS Resource Name: $GLIDEIN_ResourceName"
 
 test_numpy () {
-    python -c 'import numpy;numpy.test("full")'
+    python -c 'import numpy;a = numpy.random.random((2,3)); numpy.trace(a)'
     (( exit_code = exit_code || $? ))
-    if [ "$?" -ne "0" ];
+    if [ $exit_code -ne 0 ];
     then
         echo "ERROR: numpy tests failed"
     fi
 }
 
 test_scipy () {
-    python -c 'import scipy;scipy.test("full")'
+    python test_scipy.py >  scipy.out
     (( exit_code = exit_code || $? ))
-    if [ $? -ne 0 ];
+    if [ $exit_code -ne 0 ];
     then
         echo "ERROR: scipy tests failed"
+    fi
+    output=`diff -u -w -B scipy.out outputs/scipy.out`
+    if [ "$output" != "" ];
+    then
+        echo "Error! Difference in outputs:"
+        echo $output
     fi
 }
 
 test_nltk () {
-    python -c 'import nltk'
+    python test_nltk.py
     (( exit_code = exit_code || $? ))
-    if [ $? -ne 0 ];
+    if [ $exit_code -ne 0 ];
     then
         echo "ERROR: matplotlib tests failed"
     fi
@@ -40,7 +46,7 @@ test_nltk () {
 test_pandas () {
     nosetest pandas
     (( exit_code = exit_code || $? ))
-    if [ $? -ne 0 ];
+    if [ $exit_code -ne 0 ];
     then
         echo "ERROR: pandas tests failed"
     fi
@@ -49,7 +55,7 @@ test_pandas () {
 test_matplotlib () {
     python -c 'import matplotlib'
     (( exit_code = exit_code || $? ))
-    if [ $? -ne 0 ];
+    if [ $exit_code -ne 0 ];
     then
         echo "ERROR: matplotlib tests failed"
     fi
