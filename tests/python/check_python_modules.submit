@@ -5,7 +5,6 @@ output = /tmp/check_python_modules/results.out.$(Cluster).$(Process)
 error = /tmp/check_python_modules/results.err.$(Cluster).$(Process)
 log = /tmp/check_python_modules/results.log
 +ProjectName = "OSG-Staff"
-ShouldTransferFiles = NO
 when_to_transfer_output = ON_EXIT
 transfer_input_files =  outputs, test_nltk.py, test_scipy.py
 
