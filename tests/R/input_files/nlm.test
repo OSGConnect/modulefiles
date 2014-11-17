@@ -238,7 +238,7 @@ Coefficients:
 groupCtl   5.0320     0.2202   22.85 9.55e-15 ***
 groupTrt   4.6610     0.2202   21.16 3.62e-14 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.6964 on 18 degrees of freedom
 Multiple R-squared:  0.9818,	Adjusted R-squared:  0.9798 
@@ -279,7 +279,7 @@ Coefficients:
 sexF         -163.04      72.81  -2.239   0.0361 *  
 age           120.89      20.46   5.908 7.28e-06 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 177.1 on 21 degrees of freedom
 Multiple R-squared:   0.64,	Adjusted R-squared:  0.6057 
@@ -306,7 +306,7 @@ sexM -1610.28     786.08  -2.049   0.0532 .
 sexF -1773.32     794.59  -2.232   0.0367 *  
 age    120.89      20.46   5.908 7.28e-06 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 177.1 on 21 degrees of freedom
 Multiple R-squared:  0.9969,	Adjusted R-squared:  0.9965 
@@ -343,7 +343,7 @@ sexF     -2141.67    1163.60  -1.841 0.080574 .
 sexM:age   111.98      29.05   3.855 0.000986 ***
 sexF:age   130.40      30.00   4.347 0.000313 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 180.6 on 20 degrees of freedom
 Multiple R-squared:  0.9969,	Adjusted R-squared:  0.9963 
@@ -380,7 +380,7 @@ Coefficients:
 sexF         -163.04      72.81  -2.239   0.0361 *  
 age           120.89      20.46   5.908 7.28e-06 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for gaussian family taken to be 31370.04)
 
@@ -406,7 +406,7 @@ sexM -1610.28     786.08  -2.049   0.0532 .
 sexF -1773.32     794.59  -2.232   0.0367 *  
 age    120.89      20.46   5.908 7.28e-06 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for gaussian family taken to be 31370.04)
 
@@ -441,7 +441,7 @@ sexM -2318.03     801.57  -2.892  0.00902 **
 sexF -2455.44     803.79  -3.055  0.00625 ** 
 age    138.50      20.71   6.688 1.65e-06 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for gaussian family taken to be 26925.39)
 
@@ -468,7 +468,7 @@ sexF     -2141.67    1163.60  -1.841 0.080574 .
 age        111.98      29.05   3.855 0.000986 ***
 sexF:age    18.42      41.76   0.441 0.663893    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for gaussian family taken to be 32621.23)
 
@@ -507,7 +507,7 @@ Coefficients:
 (Intercept)   7.4516     0.8841   8.428  < 2e-16 ***
 x             4.9353     1.0892   4.531 5.86e-06 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for poisson family taken to be 1)
 
@@ -545,7 +545,7 @@ age         -0.11368    0.10933  -1.040  0.31389
 wgt         -0.22802    0.08329  -2.738  0.01460 * 
 prot         1.95771    0.63489   3.084  0.00712 **
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 5.956 on 16 degrees of freedom
 Multiple R-squared:  0.4805,	Adjusted R-squared:  0.3831 
@@ -571,7 +571,7 @@ Response: weight
 group      2  3.7663  1.8832  4.8461 0.01591 *
 Residuals 27 10.4921  0.3886                  
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 > summary(lmwg)
 
@@ -588,7 +588,7 @@ Coefficients:
 groupA       -0.3710     0.2788  -1.331   0.1944    
 groupB        0.4940     0.2788   1.772   0.0877 .  
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.6234 on 27 degrees of freedom
 Multiple R-squared:  0.2641,	Adjusted R-squared:  0.2096 
@@ -622,7 +622,7 @@ b          1  0.4033  0.4033  1.6351 0.248225
 a:b        2  1.2067  0.6033  2.4459 0.167164   
 Residuals  6  1.4800  0.2467                    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 > ## Achievement Scores (Page 70)
 > y <- c(6,4,5,3,4,3,6, 8,9,7,9,8,5,7, 6,7,7,7,8,5,7)
@@ -640,7 +640,7 @@ x          1 36.575  36.575  60.355 5.428e-07 ***
 m          2 16.932   8.466  13.970 0.0002579 ***
 Residuals 17 10.302   0.606                      
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 > ## Beetle Data (Page 78)
 > dose <- c(1.6907, 1.7242, 1.7552, 1.7842, 1.8113, 1.8369, 1.861, 1.8839)
@@ -665,7 +665,7 @@ Coefficients:
 (Intercept)  -60.717      5.181  -11.72   <2e-16 ***
 dose          34.270      2.912   11.77   <2e-16 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
@@ -690,7 +690,7 @@ Coefficients:
 (Intercept)  -34.935      2.648  -13.19   <2e-16 ***
 dose          19.728      1.487   13.27   <2e-16 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
@@ -715,7 +715,7 @@ Coefficients:
 (Intercept)  -39.572      3.240  -12.21   <2e-16 ***
 dose          22.041      1.799   12.25   <2e-16 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
@@ -771,7 +771,7 @@ g2           0.7963143  0.3125046   2.548   0.0108 *
 f           -0.0001227  0.0008782  -0.140   0.8889  
 g2:f        -0.0020493  0.0013483  -1.520   0.1285  
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
@@ -797,7 +797,7 @@ Coefficients:
 g2           0.405554   0.174560   2.323   0.0202 *
 f           -0.000997   0.000665  -1.499   0.1338  
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
@@ -823,7 +823,7 @@ Coefficients:
 (Intercept)   0.1231     0.1140   1.080   0.2801  
 g2            0.3985     0.1741   2.289   0.0221 *
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
@@ -880,7 +880,7 @@ typeindeterminate   0.4990     0.2174   2.295  0.02173 *
 sitetrunk           0.4439     0.1554   2.857  0.00427 ** 
 siteextremities     1.2010     0.1383   8.683  < 2e-16 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for poisson family taken to be 1)
 
@@ -917,7 +917,7 @@ outcome3    -2.930e-01  1.927e-01  -1.520   0.1285
 treatment2   1.338e-15  2.000e-01   0.000   1.0000    
 treatment3   1.421e-15  2.000e-01   0.000   1.0000    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for poisson family taken to be 1)
 
@@ -974,7 +974,7 @@ groupcontrols:cityManchester  0.84069    0.05052   16.64  < 2e-16 ***
 groupcontrols:cityNewcastle   1.07287    0.04822   22.25  < 2e-16 ***
 groupcontrols:bloodO         -0.23208    0.04043   -5.74 9.46e-09 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for poisson family taken to be 1)
 
@@ -1007,7 +1007,7 @@ bloodO                        0.18988    0.01128   16.84   <2e-16 ***
 groupcontrols:cityManchester  0.84069    0.05052   16.64   <2e-16 ***
 groupcontrols:cityNewcastle   1.07287    0.04822   22.25   <2e-16 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for poisson family taken to be 1)
 
@@ -1043,4 +1043,4 @@ Model 2: counts ~ group * (city + blood)
 1         5     62.558                          
 2         4     29.241  1   33.318 7.827e-09 ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
