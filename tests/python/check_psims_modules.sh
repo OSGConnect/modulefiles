@@ -13,7 +13,7 @@ echo "GWMS Resource Name: $GLIDEIN_ResourceName"
 test_numpy () {
     python -c 'import numpy;'
     (( exit_code = exit_code || $? ))
-    if [ "$?" -ne "0" ];
+    if [ $exit_code -ne 0 ];
     then
         echo "ERROR: numpy tests failed"
     fi
@@ -22,7 +22,7 @@ test_numpy () {
 test_h5py () {
     python -c 'import h5py'
     (( exit_code = exit_code || $? ))
-    if [ $? -ne 0 ];
+    if [ $exit_code -ne 0 ];
     then
         echo "ERROR: h5py tests failed"
     fi
@@ -31,7 +31,7 @@ test_h5py () {
 test_netcdf4 () {
     python -c 'import netCDF4'
     (( exit_code = exit_code || $? ))
-    if [ $? -ne 0 ];
+    if [ $exit_code -ne 0 ];
     then
         echo "ERROR: netCDF4 tests failed"
     fi
