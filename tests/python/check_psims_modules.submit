@@ -5,7 +5,6 @@ output = /tmp/check_psims_modules/results.out.$(Cluster).$(Process)
 error = /tmp/check_psims_modules/results.err.$(Cluster).$(Process)
 log = /tmp/check_psims_modules/results.log
 +ProjectName = "OSG-Staff"
-ShouldTransferFiles = NO
 when_to_transfer_output = ON_EXIT
 
 
