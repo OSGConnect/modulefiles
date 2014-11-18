@@ -99,6 +99,29 @@ def get_user_modulelist(start_date=None, top=None):
             user_list[user].append((record['module'], record['count']))
     return user_list
 
+def get_project_modulelist(start_date=None, top=None):
+    """
+    Give up to the top N modules used per project
+    """
+    db = get_mongodb_client()
+    if start_date is None:
+        start_date = get_week_start()
+    else:
+        start_date = get_week_start(start_date)
+
+    if top is None:
+        top = 10
+
+    project_list = {}
+    for record in db.weekly_count.find({"date": start_date.isoformat()},
+                                       sort=[('count', -1)]):
+        project = record['project']
+        if project not in project_list:
+            project_list[project] = []
+        if len(project_list[project]) < top:
+            project_list[project].append((record['module'], record['count']))
+    return project_list
+
 def get_top_modules(start_date, top=None):
     """
     Return a json representation of the top N modules used in the last week
@@ -187,13 +210,24 @@ def generate_report(start_date, end_date, email=False):
 
     report_text += "{0:-^80}\n".format(' Top 10 modules used by each user')
     report_text += "\n\n"
-    report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format('Site', 'Module', '# of times used')
+    report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format('User', 'Module', '# of times used')
     user_module_list = get_user_modulelist(start_date)
     users = user_module_list.keys()
     users.sort()
     for user in users:
         for module, count in user_module_list[user]:
             report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format(user, module, count)
+    report_text += "\n\n"
+
+    report_text += "{0:-^80}\n".format(' Top 10 modules used by each project')
+    report_text += "\n\n"
+    report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format('Project', 'Module', '# of times used')
+    project_module_list = get_project_modulelist(start_date)
+    projects = project_module_list.keys()
+    projects.sort()
+    for project in projects:
+        for module, count in project_module_list[user]:
+            report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format(project, module, count)
     report_text += "\n\n"
 
     if email:
