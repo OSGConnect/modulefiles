@@ -226,7 +226,7 @@ def generate_report(start_date, end_date, email=False):
     projects = project_module_list.keys()
     projects.sort()
     for project in projects:
-        for module, count in project_module_list[user]:
+        for module, count in project_module_list[project]:
             report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format(project, module, count)
     report_text += "\n\n"
 
