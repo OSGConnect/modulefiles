@@ -1,0 +1,7 @@
+wget 'http://ftp.gnome.org/pub/gnome/sources/glib/2.32/glib-2.32.4.tar.xz'
+tar xvif glib-2.32.4.tar.xz
+cd glib-2.32.4
+make changes outlined in glib-2.32.4.patch
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/glib/2.34.2 --enable-man=no LIBFFI_CFLAGS=-I/cvmfs/oasis.opensciencegrid.org/osg/modules/libffi/3.2.1/lib/libffi-3.2.1/include/ LIBFFI_LIBS=/cvmfs/oasis.opensciencegrid.org/osg/modules/libffi/3.2.1/lib64/libffi.la
+make
+make instal

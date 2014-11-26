@@ -1,0 +1,129 @@
+Only in glib-2.32.4-new: autom4te.cache
+Only in glib-2.32.4: config.h.win32
+Only in glib-2.32.4/docs/reference/gio/gdbus-object-manager-example: html
+Only in glib-2.32.4/docs/reference/gio: html
+Only in glib-2.32.4/docs/reference/gio: version.xml
+Only in glib-2.32.4/docs/reference/glib: html
+Only in glib-2.32.4/docs/reference/glib: version.xml
+Only in glib-2.32.4/docs/reference/gobject: html
+Only in glib-2.32.4/docs/reference/gobject: version.xml
+Only in glib-2.32.4/gio: gconstructor_as_data.h
+Only in glib-2.32.4-new/gio/gdbus-2.0/codegen: codegen_docbook.pyc
+Only in glib-2.32.4-new/gio/gdbus-2.0/codegen: codegen_main.pyc
+Only in glib-2.32.4-new/gio/gdbus-2.0/codegen: codegen.pyc
+Only in glib-2.32.4/gio/gdbus-2.0/codegen: config.py
+Only in glib-2.32.4-new/gio/gdbus-2.0/codegen: dbustypes.pyc
+Only in glib-2.32.4-new/gio/gdbus-2.0/codegen: __init__.pyc
+Only in glib-2.32.4-new/gio/gdbus-2.0/codegen: parser.pyc
+Only in glib-2.32.4-new/gio/gdbus-2.0/codegen: utils.pyc
+Only in glib-2.32.4/gio: gdbus-daemon-generated.c
+Only in glib-2.32.4/gio: gdbus-daemon-generated.h
+Only in glib-2.32.4/gio: gio.rc
+diff -u -r glib-2.32.4/gio/Makefile.in glib-2.32.4-new/gio/Makefile.in
+--- glib-2.32.4/gio/Makefile.in 2012-07-14 16:44:57.000000000 -0500
++++ glib-2.32.4-new/gio/Makefile.in     2014-11-26 10:57:07.653253635 -0600
+@@ -1264,7 +1264,8 @@
+ glib_compile_resources_LDADD = \
+        $(top_builddir)/glib/libglib-2.0.la \
+        $(top_builddir)/gobject/libgobject-2.0.la       \
+-       libgio-2.0.la
++       $(LIBFFI_LIBS) \
++       libgio-2.0.la
+
+ glib_compile_resources_SOURCES = \
+        gvdb/gvdb-format.h              \
+@@ -1277,10 +1278,11 @@
+        $(top_builddir)/glib/libglib-2.0.la             \
+        $(top_builddir)/gobject/libgobject-2.0.la       \
+        $(top_builddir)/gmodule/libgmodule-2.0.la       \
++       $(LIBFFI_LIBS) \
+        libgio-2.0.la                                   \
+        $(NULL)
+
+-glib_compile_schemas_LDADD = $(top_builddir)/glib/libglib-2.0.la
++glib_compile_schemas_LDADD = $(top_builddir)/glib/libglib-2.0.la $(LIBFFI_LIBS)
+ glib_compile_schemas_SOURCES = \
+        gconstructor_as_data.h \
+        gvdb/gvdb-format.h              \
+@@ -1291,6 +1293,7 @@
+ gsettings_LDADD = \
+        $(top_builddir)/glib/libglib-2.0.la             \
+        $(top_builddir)/gobject/libgobject-2.0.la       \
++       $(LIBFFI_LIBS) \
+        libgio-2.0.la
+
+ gsettings_SOURCES = gsettings-tool.c
+@@ -1299,6 +1302,7 @@
+ gdbus_SOURCES = gdbus-tool.c
+ gdbus_LDADD = libgio-2.0.la \
+        $(top_builddir)/glib/libglib-2.0.la             \
++       $(LIBFFI_LIBS) \
+        $(top_builddir)/gobject/libgobject-2.0.la
+
+ completiondir = $(datadir)/bash-completion/completions
+@@ -1312,6 +1316,7 @@
+ gresource_LDADD = libgio-2.0.la \
+        $(top_builddir)/glib/libglib-2.0.la             \
+        $(top_builddir)/gobject/libgobject-2.0.la \
++       $(LIBFFI_LIBS) \
+        $(LIBELF_LIBS)
+
+ all: $(BUILT_SOURCES)
+Only in glib-2.32.4-new/gio/tests: de
+Only in glib-2.32.4/gio/tests/gdbus-object-manager-example: gdbus-example-objectmanager-generated.c
+Only in glib-2.32.4/gio/tests/gdbus-object-manager-example: gdbus-example-objectmanager-generated.h
+Only in glib-2.32.4/gio/tests: gdbus-test-codegen-generated.c
+Only in glib-2.32.4/gio/tests: gdbus-test-codegen-generated.h
+diff -u -r glib-2.32.4/gio/tests/Makefile.in glib-2.32.4-new/gio/tests/Makefile.in
+--- glib-2.32.4/gio/tests/Makefile.in   2012-07-14 16:44:58.000000000 -0500
++++ glib-2.32.4-new/gio/tests/Makefile.in       2014-11-26 10:57:07.650253554 -0600
+@@ -1005,6 +1005,7 @@
+        $(top_builddir)/gthread/libgthread-2.0.la       \
+        $(top_builddir)/gobject/libgobject-2.0.la       \
+        $(top_builddir)/gmodule/libgmodule-2.0.la       \
++       $(LIBFFI_LIBS) \
+        $(top_builddir)/gio/libgio-2.0.la
+
+ SAMPLE_PROGS = resolver socket-server socket-client echo-server httpd \
+Only in glib-2.32.4/gio/tests: plugin_resources.c
+Only in glib-2.32.4/gio/tests: test_resources2.c
+Only in glib-2.32.4/gio/tests: test_resources2.h
+Only in glib-2.32.4/gio/tests: test_resources.c
+Only in glib-2.32.4/glib: glibconfig.h.win32
+Only in glib-2.32.4/glib: glib.rc
+Only in glib-2.32.4/glib: makefile.msc
+Only in glib-2.32.4/gmodule: gmodule.rc
+Only in glib-2.32.4/gmodule: makefile.msc
+Only in glib-2.32.4/gobject: gobject.rc
+diff -u -r glib-2.32.4/gobject/Makefile.in glib-2.32.4-new/gobject/Makefile.in
+--- glib-2.32.4/gobject/Makefile.in     2012-07-14 16:45:00.000000000 -0500
++++ glib-2.32.4-new/gobject/Makefile.in 2014-11-26 10:57:07.657253743 -0600
+@@ -613,7 +613,7 @@
+ glib_genmarshal_SOURCES = glib-genmarshal.c
+ testgobject_SOURCES = testgobject.c
+ # link programs against libgobject
+-progs_LDADD = ./libgobject-2.0.la $(libglib)
++progs_LDADD = ./libgobject-2.0.la $(libglib) $(LIBFFI_LIBS)
+ glib_genmarshal_LDADD = $(libglib)
+ gobject_query_LDADD = $(progs_LDADD)
+ testgobject_LDADD = $(progs_LDADD)
+Only in glib-2.32.4/gobject: makefile.msc
+diff -u -r glib-2.32.4/gobject/tests/Makefile.in glib-2.32.4-new/gobject/tests/Makefile.in
+--- glib-2.32.4/gobject/tests/Makefile.in       2012-07-14 16:45:00.000000000 -0500
++++ glib-2.32.4-new/gobject/tests/Makefile.in   2014-11-26 10:57:07.656253716 -0600
+@@ -438,7 +438,7 @@
+ INCLUDES = -g $(gobject_INCLUDES) $(GLIB_DEBUG_FLAGS)
+ @CROSS_COMPILING_FALSE@glib_genmarshal = $(top_builddir)/gobject/glib-genmarshal
+ @CROSS_COMPILING_TRUE@glib_genmarshal = $(GLIB_GENMARSHAL)
+-LDADD = ../libgobject-2.0.la $(top_builddir)/gthread/libgthread-2.0.la $(top_builddir)/glib/libglib-2.0.la
++LDADD = ../libgobject-2.0.la $(top_builddir)/gthread/libgthread-2.0.la $(top_builddir)/glib/libglib-2.0.la $(LIBFFI_LIBS)
+ signals_SOURCES = signals.c marshalers.c
+ BUILT_SOURCES = marshalers.h marshalers.c
+ CLEANFILES = marshalers.h marshalers.c
+Only in glib-2.32.4/gobject/tests: marshalers.c
+Only in glib-2.32.4/gthread: gthread.rc
+Only in glib-2.32.4/gthread: makefile.msc
+Only in glib-2.32.4: INSTALL
+Only in glib-2.32.4: README
+Only in glib-2.32.4/tests: makefile.msc
+[
