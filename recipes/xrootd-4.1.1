@@ -1,0 +1,8 @@
+wget 'http://xrootd.org/download/v4.1.1/xrootd-4.1.1.tar.gz'
+tar xvzf xrootd-4.1.1.tar.gz
+cd xrootd-4.1.1
+mkdir build
+cd build
+cmake ..  -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/xrootd/4.1.1
+make
+make install
