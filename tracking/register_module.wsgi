@@ -45,6 +45,8 @@ def application(environ, start_response):
                             ('Content-Length', str(len(response_body)))]
         start_response(status, response_headers)
         return [response_body]
+    if record['site'] == 'UNAVAILABLE' and 'uc3-' in record['host']:
+        record['site'] == 'UC3'
     record['date'] = time.time()
     #response_body = 'Record inserted:\n{0}\n'.format(record)
     response_body = 'Record inserted'
