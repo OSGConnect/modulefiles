@@ -2,6 +2,7 @@
 
 from cgi import parse_qs, escape
 import time
+import sys
 
 import pymongo
 
@@ -45,6 +46,8 @@ def application(environ, start_response):
                             ('Content-Length', str(len(response_body)))]
         start_response(status, response_headers)
         return [response_body]
+    if record['site'] == 'UNAVAILABLE' and 'uc3-' in record['host']:
+        record['site'] = 'UC3'
     record['date'] = time.time()
     #response_body = 'Record inserted:\n{0}\n'.format(record)
     response_body = 'Record inserted'
@@ -56,7 +59,7 @@ def application(environ, start_response):
         sys.stderr.write(response_body)
     status = '200 OK'
     response_headers = [('Content-Type', 'text/html'),
-                     ('Content-Length', str(len(response_body)))]
+                        ('Content-Length', str(len(response_body)))]
     start_response(status, response_headers)
     print response_body
     return [response_body]
