@@ -1,0 +1,6 @@
+wget 'https://www.ffmpeg.org/releases/ffmpeg-0.10.15.tar.gz'
+tar xvzf ffmpeg-0.10.15.tar.gz
+cd ffmpeg-0.10.15
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/ffmpeg/0.10.15
+make 
+make install
