@@ -22,4 +22,4 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/gnome/"..version
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib64"))
 prepend_path("PATH", pathJoin(base, "bin"))
 setenv("G_BROKEN_FILENAMES", "1")
-family('gnome-libs')
+family('gnome_libs')
