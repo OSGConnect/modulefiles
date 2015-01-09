@@ -1,0 +1,14 @@
+# needs python image_modules loaded
+wget 'http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/2.4.10/opencv-2.4.10.zip?r=http%3A%2F%2Fopencv.org%2Fdownloads.html&ts=1420747508&use_mirror=softlayer-dal'
+mv opencv-2.4.10.zip\?r=http:%2F%2Fopencv.org%2Fdownloads.html\&ts=1416434410\&use_mirror=softlayer-dal opencv-2.4.10.zip
+unzip opencv-2.4.10.zip
+cd opencv2
+mkdir build
+cd build
+source /cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/5.6.2/init/zsh
+module load atlas lapack netcdf/4.2.0 hdf5/1.8.13
+module load python/2.7.7
+module load image_modules
+cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/opencv/2.4.10 -DPYTHON_EXECUTABLE=/cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/image_modules/bin/python -DPYTHON_LIBRARY=/cvmfs/oasis.opensciencegrid.org/osg/modules/python-2.7.7/lib/libpython2.7.so -DPYTHON_PACKAGES_PATH=/cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/image_modules/lib/python2.7/site-packages ..
+make
+make install
