@@ -11,6 +11,7 @@ import pymongo
 REPORT_EMAIL = ["sthapa@ci.uchicago.edu"]
 EMAIL_SERVER = "mail.ci-connect.net"
 
+
 def parse_date(date=None):
     """
     Parse a string in YYYY-MM-DD format into a datetime.date object.
@@ -46,6 +47,7 @@ def get_week_start(date=None):
         week_start = start_date
     return week_start
 
+
 def get_mongodb_client():
     """
     Return a mongodb client instance setup to access the correct database
@@ -54,6 +56,7 @@ def get_mongodb_client():
     db = db_client.module_usage
     return db
 
+
 def get_modulelist_by_category(start_date=None, category='user', top=10):
     """
     Give up to the top N modules used per category
@@ -61,8 +64,8 @@ def get_modulelist_by_category(start_date=None, category='user', top=10):
     :param
     start_date - date indicating week that should be examined
     top        - integer giving how many entries to return
-    cateogory  - string giving category to examine
-                 should be one of ('sites', 'user', 'project')
+    category  - string giving category to examine
+                should be one of ('sites', 'user', 'project')
     """
     if category not in ('sites', 'user', 'project'):
         return {}
@@ -81,6 +84,7 @@ def get_modulelist_by_category(start_date=None, category='user', top=10):
         if len(category_list[category]) < top:
             category_list[category].append((record['module'], record['count']))
     return category_list
+
 
 def get_user_modulelist(start_date=None, top=None):
     """
@@ -105,6 +109,7 @@ def get_user_modulelist(start_date=None, top=None):
             user_list[user].append((record['module'], record['count']))
     return user_list
 
+
 def get_project_modulelist(start_date=None, top=None):
     """
     Give up to the top N modules used per project
@@ -127,6 +132,7 @@ def get_project_modulelist(start_date=None, top=None):
         if len(project_list[project]) < top:
             project_list[project].append((record['module'], record['count']))
     return project_list
+
 
 def get_top_modules(start_date, top=None):
     """
@@ -169,6 +175,7 @@ def get_top_sites(start_date, top=None):
         site_list.append((record['_id'], record['sum']))
     return site_list
 
+
 def get_moduleloads(start_date, top=None):
     """
     Return a json representation of the number of times modules where used
@@ -183,11 +190,11 @@ def get_moduleloads(start_date, top=None):
                                       {"$sort": {"sum": -1}},
                                       {"$limit": top}])['result']['sum']
 
+
 def generate_report(start_date, end_date):
     """
     Generate a report of module usage over the week and optionally email it
 
-    :param email: boolean that indicates whether to email report or not
     :param start_date: timedate.date object giving the date to start from
     :param end_date: timedate.date object giving the date to end on
     :return: None
@@ -213,7 +220,6 @@ def generate_report(start_date, end_date):
         report_text += "|{0:^30}|{1:^30}|\n".format(site, count)
     report_text += "\n\n"
 
-
     report_text += "{0:-^80}\n".format(' Top 10 modules used by each user')
     report_text += "\n\n"
     report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format('User', 'Module', '# of times used')
@@ -238,13 +244,14 @@ def generate_report(start_date, end_date):
 
     return report_text
 
+
 def send_email(email_body, recipient=REPORT_EMAIL, server=EMAIL_SERVER):
     """
     Send email based on text given in email_body
 
     :param email_body: email body
     :param recipient: list of email addresses to send email to
-    :param server: smtp server to use
+    :param server: SMTP server to use
     :return: No return
     """
     msg = email.mime.text.MIMEText(email_body)
@@ -254,8 +261,7 @@ def send_email(email_body, recipient=REPORT_EMAIL, server=EMAIL_SERVER):
     msg['To'] = to_addresses
     server_handle = smtplib.SMTP(server)
     server_handle.sendmail('sthapa@ci.uchicago.edu', to_addresses, msg.as_string())
-    s.quit()
-
+    server_handle.quit()
 
 
 if __name__ == "__main__":
@@ -265,7 +271,7 @@ if __name__ == "__main__":
     parser.add_argument('--end-date', dest='end_date', default=datetime.date.today().isoformat(),
                         help='Date to stop processing logs')
     parser.add_argument('--email', dest='email', default=False,
-                        type=bool,help='Date to stop processing logs')
+                        type=bool, help='Date to stop processing logs')
     args = parser.parse_args(sys.argv[1:])
     args.start_date = parse_date(args.start_date)
     args.end_date = parse_date(args.end_date)
@@ -276,5 +282,3 @@ if __name__ == "__main__":
     else:
         sys.stdout.write(report)
     sys.exit(0)
-
-
