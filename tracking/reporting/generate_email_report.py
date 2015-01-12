@@ -3,8 +3,13 @@
 import sys
 import datetime
 import argparse
+import smtplib
+import email
 
 import pymongo
+
+REPORT_EMAIL = ["sthapa@ci.uchicago.edu"]
+EMAIL_SERVER = "mail.ci-connect.net"
 
 def parse_date(date=None):
     """
@@ -22,6 +27,7 @@ def parse_date(date=None):
     return datetime.date(year=int(fields[0]),
                          month=int(fields[1]),
                          day=int(fields[2]))
+
 
 def get_week_start(date=None):
     """
@@ -177,7 +183,7 @@ def get_moduleloads(start_date, top=None):
                                       {"$sort": {"sum": -1}},
                                       {"$limit": top}])['result']['sum']
 
-def generate_report(start_date, end_date, email=False):
+def generate_report(start_date, end_date):
     """
     Generate a report of module usage over the week and optionally email it
 
@@ -230,10 +236,27 @@ def generate_report(start_date, end_date, email=False):
             report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format(project, module, count)
     report_text += "\n\n"
 
-    if email:
-        pass
-    else:
-        sys.stdout.write(report_text)
+    return report_text
+
+def send_email(email_body, recipient=REPORT_EMAIL, server=EMAIL_SERVER):
+    """
+    Send email based on text given in email_body
+
+    :param email_body: email body
+    :param recipient: list of email addresses to send email to
+    :param server: smtp server to use
+    :return: No return
+    """
+    msg = email.mime.text.MIMEText(email_body)
+    msg['Subject'] = 'Weekly module usage report'
+    msg['From'] = 'sthapa@ci.uchicago.edu'
+    to_addresses = ",".join(recipient)
+    msg['To'] = to_addresses
+    server_handle = smtplib.SMTP(server)
+    server_handle.sendmail('sthapa@ci.uchicago.edu', to_addresses, msg.as_string())
+    s.quit()
+
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create a condor submit file for processing job log data.')
@@ -247,6 +270,11 @@ if __name__ == "__main__":
     args.start_date = parse_date(args.start_date)
     args.end_date = parse_date(args.end_date)
 
-    generate_report(args.start_date, args.end_date, email=args.email)
+    report = generate_report(args.start_date, args.end_date)
+    if args.email:
+        send_email(report)
+    else:
+        sys.stdout.write(report)
+    sys.exit(0)
 
 
