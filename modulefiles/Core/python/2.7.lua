@@ -9,6 +9,7 @@ local version = "2.7.7"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/python-"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
+prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
 
 family('python')
 -- Setup Modulepath for packages built by this python stack
