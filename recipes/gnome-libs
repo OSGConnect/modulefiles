@@ -1,0 +1,20 @@
+Download following rpms for sl6
+
+Glib 2.28.8
+ATK 1.30.0
+Cairo 1.8.8
+GTK+ 2.24.23
+Pango 1.28.1
+Pixman 0.32.4
+
+
+run following to extract files
+
+for i in ../*.rpm;
+do
+ name=`echo $i | cut -f2 -d/ | cut -f1 -d-`
+ echo $name
+ rpm2cpio $i | cpio -ivd
+done
+
+copy files to common directory in modules directory (gnome-lib/1.0)
