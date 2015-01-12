@@ -4,6 +4,7 @@ from cgi import parse_qs, escape
 import time
 import sys
 
+
 import pymongo
 
 
@@ -49,7 +50,7 @@ def application(environ, start_response):
     if record['site'] == 'UNAVAILABLE' and 'uc3-' in record['host']:
         record['site'] = 'UC3'
     record['date'] = time.time()
-    #response_body = 'Record inserted:\n{0}\n'.format(record)
+    # response_body = 'Record inserted:\n{0}\n'.format(record)
     response_body = 'Record inserted'
     db = get_db_client()        
     try:
