@@ -11,3 +11,4 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/atlas/"..version
 
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib64","atlas"))
 family('atlas')
+prereq('libgfortran')
