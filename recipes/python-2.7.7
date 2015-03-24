@@ -3,3 +3,17 @@ tar xvif Python-2.7.7.tar.xz
 ./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/python-2.7.7 --enable-shared
 make 
 make install
+
+# install virtualenv
+curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-12.0.7.tar.gz
+tar xvzf virtualenv-12.0.7.tar.gz
+cd virtualenv-12.0.7
+source /cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/current/init/zsh
+module load python/2.7
+python setup.py install
+
+# install pip
+wget https://bootstrap.pypa.io/get-pip.py
+source /cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/current/init/zsh
+module load python/2.7
+python get-pip.py
