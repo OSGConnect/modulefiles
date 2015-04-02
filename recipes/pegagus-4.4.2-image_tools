@@ -1,0 +1,13 @@
+wget 'http://download.pegasus.isi.edu/pegasus/4.4.2/pegasus-source-4.4.2.tar.gz'
+tar xvzf pegasus-source-4.4.2.tar.gz
+module load gcc/4.6.4
+module load libgfortran atlas lapack
+module load ant
+module load netcdf/4.2.0 hdf5/1.8.13
+module load python/2.7
+module load image_modules
+cd  pegasus-4.4.2
+ant dist
+cd dist
+
+copy tarball to appropriate directory and untar
