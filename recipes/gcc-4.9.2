@@ -1,0 +1,10 @@
+mkdir /tmp/gcc
+cd /tmp/gcc
+wget 'http://mirrors.concertpass.com/gcc/releases/gcc-4.9.2/gcc-4.9.2.tar.gz'
+tar xzf gcc-4.9.2.tar.gz
+cd gcc-4.9.2
+mkdir objdir
+cd objdir
+/tmp/gcc/gcc-4.9.2/configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/
+make bootstrap
+make install
