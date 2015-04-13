@@ -1,0 +1,9 @@
+wget 'https://github.com/POV-Ray/povray/archive/3.7-stable.zip'
+unzip 3.7-stable.zip
+cd povray-3.7-stable/unix
+./prebuild.sh
+cd ..
+./configure COMPILED_BY="Suchandra Thapa <sthapa.@ci.uchicago.edu>" --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/povray/3.7 LIBS="-lboost_system -lboost_thread-mt"
+make
+make check
+make install
