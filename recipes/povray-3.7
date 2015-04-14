@@ -3,7 +3,8 @@ unzip 3.7-stable.zip
 cd povray-3.7-stable/unix
 ./prebuild.sh
 cd ..
-./configure COMPILED_BY="Suchandra Thapa <sthapa.@ci.uchicago.edu>" --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/povray/3.7 LIBS="-lboost_system -lboost_thread-mt"
+module load boost/1.57.0
+./configure COMPILED_BY="Suchandra Thapa <sthapa.@ci.uchicago.edu>" --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/povray/3.7 --with-boost=/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.57.0/ --with-boost-libdir=/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.57.0/lib
 make
 make check
 make install

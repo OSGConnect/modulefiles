@@ -14,3 +14,4 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/povray/"..version
 prepend_path("PATH", pathJoin(base, "bin"))
 
 family('povray')
+prereq('boost/1.57.0')
