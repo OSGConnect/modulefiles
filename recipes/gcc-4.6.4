@@ -1,0 +1,8 @@
+mkdir /tmp/gcc
+cd /tmp/gcc
+wget 'http://mirrors.concertpass.com/gcc/releases/gcc-4.6.4/gcc-4.6.4.tar.bz2'
+tar xvif gcc-4.6.4.tar.bz2
+cd gcc-4.6.4
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.6.4/
+make
+make install

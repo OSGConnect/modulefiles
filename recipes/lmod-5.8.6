@@ -1,0 +1,10 @@
+wget http://sourceforge.net/projects/lmod/files/Lmod-5.8.6.tar.bz2/download
+tar xvif Lmod-5.8.6.tar.bz2
+cd Lmod-5.8.6
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/5.8.6
+
+edit pkgs/term/Makefile and add following at top:
+LUA_INC  := /cvmfs/oasis.opensciencegrid.org/osg/modules/lua/include/
+
+make 
+make install
