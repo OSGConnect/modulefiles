@@ -47,6 +47,7 @@ then
   echo "ERROR: Wrong version of python loaded"
   exit 1
 fi
+module load libgfortran
 module load lapack
 module load atlas
 module load hdf5/1.8.9

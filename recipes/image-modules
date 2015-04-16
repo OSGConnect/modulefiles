@@ -1,0 +1,21 @@
+module load python/2.7
+virtualenv-2.7 /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/image_modules
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/image_modules
+create requirements file with:
+
+numpy
+netCDF4
+h5py
+matplotlib
+scipy
+pandas
+cython
+
+export HDF5_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/hdf5/1.8.9
+export NETCDF4_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/netcdf/4.2.0
+pip install -r requirements
+
+
+wget 'https://pymeanshift.googlecode.com/files/pymeanshift-0.2.1.tar.gz'
+pip install pymeanshift-0.2.1.tar.gz
+tar and install on OASIS

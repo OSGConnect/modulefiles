@@ -1,0 +1,11 @@
+wget http://files.luaforge.net/releases/luasocket/luasocket/luasocket-2.0.2/luasocket-2.0.2.tar.gz
+cd luasocket
+
+edit config with following:
+LUAINC=-I/cvmfs/oasis.opensciencegrid.org/osg/modules/lua/include/
+INSTALL_TOP_SHARE=/cvmfs/oasis.opensciencegrid.org/osg/modules/lua/share/
+INSTALL_TOP_LIB=/cvmfs/oasis.opensciencegrid.org/osg/modules/lua/lib/
+
+make 
+make install
+

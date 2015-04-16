@@ -1,0 +1,6 @@
+wget 'http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.bz2/download'
+mv download boost_1_57_0.tar.bz2
+tar xvif boost_1_57_0.tar.bz2
+cd boost_1_57_0
+./bootstrap.sh --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.57.0
+./b2 install --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.57.0
