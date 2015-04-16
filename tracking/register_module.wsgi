@@ -10,7 +10,7 @@ from wsgiref.simple_server import make_server
 import redis
 
 REDIS_SERVER = 'db.mwt2.org'
-REDIS_CHANNEL = 'osg-connect-history'
+REDIS_CHANNEL = 'module-usage'
 
 TIMEZONE = "US/Central"
 
@@ -46,6 +46,8 @@ SITE_IPS = {"AGLT2": "141.211.43.122",
             "USCMS-FNAL-WC1": "131.225.205.23",
             "UTA_SWT2": "129.107.255.5",
             "VT_OSG": "198.82.152.147"}
+
+
 def get_redis_client():
     """
     Get a redis client instance and return it
@@ -111,7 +113,7 @@ def application(environ, start_response):
     if record['site'] == 'UNAVAILABLE' and 'uc3-' in record['host']:
         record['site'] = 'UC3'
     timezone = pytz.timezone(TIMEZONE)
-    record['date'] = timezone.localize(datetime.datetime.now())
+    record['date'] = timezone.localize(datetime.datetime.now()).isoformat()
     if 'HTTP_X_FORWARDED_FOR' in environ:
         record['ip'] = environ['HTTP_X_FORWARDED_FOR'].split(',')[-1].strip()
     elif 'REMOTE_ADDR' in environ:
