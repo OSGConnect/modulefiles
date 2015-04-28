@@ -65,7 +65,7 @@ def publish_record(record, channel, redis_client):
     :param redis_client: a redis client instance to use
     :return: None
     """
-    if not redis_client or not channel or not classad:
+    if not redis_client or not channel:
         return
     redis_client.publish(channel, json.dumps(record))
     return
@@ -147,5 +147,5 @@ def lookup_site_ip(site_name):
 
 
 if __name__ == '__main__':
-    srv = make_server('login.osgconnect.net', 8080, application)
+    srv = make_server('modules.ci-connect.net', 8080, application)
     srv.serve_forever()

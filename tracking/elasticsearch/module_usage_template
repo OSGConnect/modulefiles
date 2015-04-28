@@ -1,0 +1,51 @@
+{
+  "template": "oasis-module-usage-*",
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "lowercase_whitespace": {
+          "type": "custom",
+          "tokenizer": "whitespace",
+          "filter": ["lowercase"]
+        }
+      }
+    },
+    "index": {
+      "number_of_replicas": 3
+    }
+  },
+  "mappings": {
+    "_default_": {
+      "properties": {
+        "client_location": {
+          "type": "object",
+          "dynamic": true,
+          "path": "full",
+          "properties": {
+            "location": {"type": "geo_point"}
+          }
+        },
+        "host": {
+          "type" : "string",
+          "analyzer" : "lowercase_whitespace"
+        },
+        "user" : {
+          "type" : "string",
+          "analyzer" : "lowercase_whitespace"
+        },
+        "project" : {
+          "type" : "string",
+          "analyzer" : "lowercase_whitespace"
+        },
+        "module" : {
+          "type" : "string",
+          "analyzer" : "lowercase_whitespace"
+        },
+        "site" : {
+          "type" : "string",
+          "analyzer" : "lowercase_whitespace"
+        }
+      }
+    }
+  }
+}
