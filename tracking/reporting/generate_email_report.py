@@ -187,7 +187,7 @@ def get_top_modules(start_date, top=None):
         return module_list
 
     for record in results['aggregations']['modules']['buckets']:
-        module_list.append([record['key'], record['doc_count'])
+        module_list.append((record['key'], record['doc_count']))
     return module_list
 
 
