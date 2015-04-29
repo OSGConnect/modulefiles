@@ -64,16 +64,22 @@ def get_indices(date=None):
     start_date = get_week_start()
     end_date = start_date + datetime.timedelta(days=7)
     if start_date.month != end_date.month:
-        return ["{0}-{1}-{2:0>2}".format(INDEX_BASE_NAME,
-                                         start_date.year,
-                                         start_date.month),
-                "{0}-{1}-{2:0>2}".format(INDEX_BASE_NAME,
-                                         end_date.year,
-                                         end_date.month)]
+        index_list = ["{0}-{1}-{2:0>2}".format(INDEX_BASE_NAME,
+                                               start_date.year,
+                                               start_date.month),
+                      "{0}-{1}-{2:0>2}".format(INDEX_BASE_NAME,
+                                               end_date.year,
+                                               end_date.month)]
     else:
-        return ["{0}-{1}-{2:0>2}".format(INDEX_BASE_NAME,
-                                         start_date.year,
-                                         start_date.month)]
+        index_list = ["{0}-{1}-{2:0>2}".format(INDEX_BASE_NAME,
+                                               start_date.year,
+                                               start_date.month)]
+    es = get_es_client()
+    for index in index_list:
+        validated_indices = []
+        if es.exists(index):
+            validated_indices.append(index)
+        return index
 
 
 def get_user_modulelist(start_date=None, top=None):
