@@ -6,8 +6,13 @@ import argparse
 import smtplib
 import email
 
-import pymongo
+import elasticsearch
+import elasticsearch.helpers
 
+
+ES_NODES = ['uct2-es-head.mwt2.org:9200', 'uct2-es-door.mwt2.org:9200']
+TZ_NAME = "UTC"
+INDEX_BASE_NAME = "oasis-module-usage"
 REPORT_EMAIL = ["sthapa@ci.uchicago.edu"]
 EMAIL_SERVER = "mail.ci-connect.net"
 
@@ -41,49 +46,34 @@ def get_week_start(date=None):
     else:
         start_date = date
     week_day = start_date.isoweekday()
-    if week_day != 7 and week_day != 0:
+    if week_day not in [0, 7]:
         week_start = start_date - datetime.timedelta(days=week_day)
     else:
         week_start = start_date
     return week_start
 
 
-def get_mongodb_client():
+def get_indices(date=None):
     """
-    Return a mongodb client instance setup to access the correct database
-    """
-    db_client = pymongo.MongoClient(host='db.mwt2.org', port=27017)
-    db = db_client.module_usage
-    return db
+    Get the relevant indices for a weekly report using the specified date
 
-
-def get_modulelist_by_category(start_date=None, category='user', top=10):
+    :param date: specifies the week the report will be on
+    :return: a list with the indices that should be used
     """
-    Give up to the top N modules used per category
 
-    :param
-    start_date - date indicating week that should be examined
-    top        - integer giving how many entries to return
-    category  - string giving category to examine
-                should be one of ('sites', 'user', 'project')
-    """
-    if category not in ('sites', 'user', 'project'):
-        return {}
-    db = get_mongodb_client()
-    if start_date is None:
-        start_date = get_week_start()
+    start_date = get_week_start()
+    end_date = start_date + datetime.timedelta(days=7)
+    if start_date.month != end_date.month:
+        return ["{0}-{1}-{2:0>2}".format(INDEX_BASE_NAME,
+                                         start_date.year,
+                                         start_date.month),
+                "{0}-{1}-{2:0>2}".format(INDEX_BASE_NAME,
+                                         end_date.year,
+                                         end_date.month)]
     else:
-        start_date = get_week_start(start_date)
-
-    category_list = {}
-    for record in db.weekly_count.find({"date": start_date.isoformat()},
-                                       sort=[('count', -1)]):
-        category = record[category]
-        if category not in category_list:
-            category_list[category] = []
-        if len(category_list[category]) < top:
-            category_list[category].append((record['module'], record['count']))
-    return category_list
+        return ["{0}-{1}-{2:0>2}".format(INDEX_BASE_NAME,
+                                         start_date.year,
+                                         start_date.month)]
 
 
 def get_user_modulelist(start_date=None, top=None):
@@ -114,7 +104,7 @@ def get_project_modulelist(start_date=None, top=None):
     """
     Give up to the top N modules used per project
     """
-    db = get_mongodb_client()
+    db = get_es_client()
     if start_date is None:
         start_date = get_week_start()
     else:
@@ -122,15 +112,31 @@ def get_project_modulelist(start_date=None, top=None):
 
     if top is None:
         top = 10
-
+    end_date = start_date + datetime.timedelta(days=7)
+    indices = ",".join(get_indices(start_date))
+    query = {"query": {
+                "filtered": {
+                    "filter": {
+                        "bool": {
+                            "must": [
+                                {"range":
+                                     {"@timestamp":
+                                         {"gte": start_date.isoformat(),
+                                          "lt": end_date.isoformat()}}}]}},
+                     "size": 0,
+                     "aggs": {
+                         "projects":
+                             {"terms":
+                                 {"field": "project",
+                                  "size": top}}}}}}
     project_list = {}
-    for record in db.weekly_count.find({"date": start_date.isoformat()},
-                                       sort=[('count', -1)]):
-        project = record['project']
-        if project not in project_list:
-            project_list[project] = []
-        if len(project_list[project]) < top:
-            project_list[project].append((record['module'], record['count']))
+    results = db.search(body=query, size=0, index=indices)
+    doc_count = results['hits']['total']
+    if doc_count == 0:
+        return project_list
+
+    for record in results['aggregations']['projects']:
+        project_list[record['project']] = record['count']
     return project_list
 
 
@@ -138,7 +144,7 @@ def get_top_modules(start_date, top=None):
     """
     Return a json representation of the top N modules used in the last week
     """
-    db = get_mongodb_client()
+    db = get_es_client()
     if start_date is None:
         start_date = get_week_start()
     else:
@@ -146,34 +152,33 @@ def get_top_modules(start_date, top=None):
 
     if top is None:
         top = 10
+    end_date = start_date + datetime.timedelta(days=7)
+    indices = ",".join(get_indices(start_date))
+    query = {"query": {
+                "filtered": {
+                    "filter": {
+                        "bool": {
+                            "must": [
+                                {"range":
+                                     {"@timestamp":
+                                         {"gte": start_date.isoformat(),
+                                          "lt": end_date.isoformat()}}}]}},
+                     "size": 0,
+                     "aggs": {
+                         "modules":
+                             {"terms":
+                                 {"field": "module",
+                                  "size": top}}}}}}
 
-    module_list = []
+    module_list = {}
+    results = db.search(body=query, size=0, index=indices)
+    doc_count = results['hits']['total']
+    if doc_count == 0:
+        return module_list
 
-    for record in db.weekly_count.aggregate([{"$match": {"date": start_date.isoformat()}},
-                                             {"$group": {"_id": "$module",
-                                                         "sum": {"$sum": "$count"}}},
-                                             {"$sort": {"sum": -1}},
-                                             {"$limit": top}])['result']:
-
-        module_list.append((record['_id'], record['sum']))
+    for record in results['aggregations']['modules']:
+        module_list[record['module']] = record['count']
     return module_list
-
-
-def get_top_sites(start_date, top=None):
-    """
-    Return a json representation of the top N sites used in the last week
-    """
-    db = get_mongodb_client()
-    if top is None:
-        top = 10
-    site_list = []
-    for record in db.weekly_count.aggregate([{"$match": {"date": start_date.isoformat()}},
-                                             {"$group": {"_id": "$site",
-                                                         "sum": {"$sum": "$count"}}},
-                                             {"$sort": {"sum": -1}},
-                                             {"$limit": top}])['result']:
-        site_list.append((record['_id'], record['sum']))
-    return site_list
 
 
 def get_moduleloads(start_date, top=None):
@@ -191,12 +196,11 @@ def get_moduleloads(start_date, top=None):
                                       {"$limit": top}])['result']['sum']
 
 
-def generate_report(start_date, end_date):
+def generate_report(start_date):
     """
     Generate a report of module usage over the week and optionally email it
 
     :param start_date: timedate.date object giving the date to start from
-    :param end_date: timedate.date object giving the date to end on
     :return: None
     """
     start_date = get_week_start(start_date)
@@ -212,24 +216,13 @@ def generate_report(start_date, end_date):
         report_text += "|{0:^30}|{1:^30}|\n".format(module, count)
     report_text += "\n\n"
 
-    report_text += "{0:-^80}\n".format(' Top 10 sites used')
-    report_text += "\n\n"
-    report_text += "|{0:^30}|{1:^30}|\n".format('Site', '# of times used')
-    site_list = get_top_sites(start_date)
-    for site, count in site_list:
-        report_text += "|{0:^30}|{1:^30}|\n".format(site, count)
-    report_text += "\n\n"
-
-    report_text += "{0:-^80}\n".format(' Top 10 modules used by each user')
-    report_text += "\n\n"
-    report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format('User', 'Module', '# of times used')
-    user_module_list = get_user_modulelist(start_date)
-    users = user_module_list.keys()
-    users.sort()
-    for user in users:
-        for module, count in user_module_list[user]:
-            report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format(user, module, count)
-    report_text += "\n\n"
+    # report_text += "{0:-^80}\n".format(' Top 10 sites used')
+    # report_text += "\n\n"
+    # report_text += "|{0:^30}|{1:^30}|\n".format('Site', '# of times used')
+    # site_list = get_top_sites(start_date)
+    # for site, count in site_list:
+    #     report_text += "|{0:^30}|{1:^30}|\n".format(site, count)
+    # report_text += "\n\n"
 
     report_text += "{0:-^80}\n".format(' Top 10 modules used by each project')
     report_text += "\n\n"
@@ -238,8 +231,10 @@ def generate_report(start_date, end_date):
     projects = project_module_list.keys()
     projects.sort()
     for project in projects:
-        for module, count in project_module_list[project]:
+        for module, count in project_module_list[user]:
             report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format(project, module, count)
+    report_text += "\n\n"
+
     report_text += "\n\n"
 
     return report_text
@@ -263,20 +258,23 @@ def send_email(email_body, recipient=REPORT_EMAIL, server=EMAIL_SERVER):
     server_handle.sendmail('sthapa@ci.uchicago.edu', to_addresses, msg.as_string())
     server_handle.quit()
 
+def get_es_client():
+    """ Instantiate DB client and pass connection back """
+    return elasticsearch.Elasticsearch(hosts=ES_NODES,
+                                       retry_on_timeout=True,
+                                       max_retries=10,
+                                       timeout=300)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Create a condor submit file for processing job log data.')
+    parser = argparse.ArgumentParser(description='Create a report of module usage for given week')
     parser.add_argument('--start-date', dest='start_date', default=datetime.date.today().isoformat(),
-                        help='Date to start processing logs from')
-    parser.add_argument('--end-date', dest='end_date', default=datetime.date.today().isoformat(),
-                        help='Date to stop processing logs')
+                        help='Date specifying ISO week that the report should be on')
     parser.add_argument('--email', dest='email', default=False,
-                        type=bool, help='Date to stop processing logs')
+                        type=bool, help='Email address to send report to')
     args = parser.parse_args(sys.argv[1:])
     args.start_date = parse_date(args.start_date)
-    args.end_date = parse_date(args.end_date)
 
-    report = generate_report(args.start_date, args.end_date)
+    report = generate_report(args.start_date)
     if args.email:
         send_email(report)
     else:

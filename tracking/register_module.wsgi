@@ -4,8 +4,10 @@ import datetime
 import pytz
 import json
 import urlparse
+import argparse
 from wsgiref.simple_server import make_server
-
+import socket
+import sys
 
 import redis
 
@@ -146,6 +148,13 @@ def lookup_site_ip(site_name):
         return SITE_IPS[site_name]
 
 
+
+
 if __name__ == '__main__':
-    srv = make_server('modules.ci-connect.net', 8080, application)
+    parser = argparse.ArgumentParser(description='Parse GET from module '
+                                                 'sitehook and publish to Redis')
+    parser.add_argument('--host', dest='hostname', default=socket.getfqdn(),
+                        help='hostname of server')
+    args = parser.parse_args(sys.argv[1:])
+    srv = make_server(args.hostname, 8080, application)
     srv.serve_forever()
