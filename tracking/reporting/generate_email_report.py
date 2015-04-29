@@ -124,16 +124,16 @@ def get_project_modulelist(start_date=None, top=None):
     query = {"query": {
                 "filtered": {
                     "filter": {
-                        {"range":
-                            {"@timestamp":
-                                {"gte": start_date.isoformat(),
-                                 "lt": end_date.isoformat()}}}}},
-                     "size": 0,
-                     "aggs": {
-                         "projects":
-                             {"terms":
-                                 {"field": "project",
-                                  "size": top}}}}}
+                        "range": {
+                            "@timestamp": {
+                                "gte": start_date.isoformat(),
+                                "lt": end_date.isoformat()}}}},
+              "size": 0,
+              "aggs": {
+                  "projects":
+                      {"terms":
+                          {"field": "project",
+                           "size": top}}}}}
     project_list = {}
     results = db.search(body=query, size=0, index=indices)
     doc_count = results['hits']['total']
@@ -162,16 +162,16 @@ def get_top_modules(start_date, top=None):
     query = {"query": {
                 "filtered": {
                     "filter": {
-                        {"range":
-                            {"@timestamp":
-                                {"gte": start_date.isoformat(),
-                                 "lt": end_date.isoformat()}}}}},
-                     "size": 0,
-                     "aggs": {
-                         "modules":
-                             {"terms":
-                                 {"field": "module",
-                                  "size": top}}}}}
+                        "range": {
+                            "@timestamp": {
+                                "gte": start_date.isoformat(),
+                                "lt": end_date.isoformat()}}}}},
+             "size": 0,
+             "aggs": {
+                 "modules":
+                     {"terms":
+                         {"field": "module",
+                          "size": top}}}}
 
     module_list = {}
     results = db.search(body=query, size=0, index=indices)
