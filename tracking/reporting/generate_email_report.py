@@ -133,19 +133,22 @@ def get_project_modulelist(start_date=None, top=None):
                  "projects": {
                      "terms": {
                          "field": "project",
-                         "size": 50}},
-                 "aggs": {
-                     "terms": {
-                         "field": "module",
-                         "size": top}}}}
-    project_list = {}
+                         "size": 50},
+                     "aggs": {
+                        "modules": {
+                            "terms": {
+                                "field": "module",
+                                "size": top}}}}}}
+    project_list = []
     results = db.search(body=query, size=0, index=indices)
     doc_count = results['hits']['total']
     if doc_count == 0:
         return project_list
 
     for record in results['aggregations']['projects']['buckets']:
-        project_list[record['key']] = record['doc_count']
+        project_name = record['key']
+        for x in record['modules']['buckets']:
+            project_list.append((project_name, x['key'], x['doc_count']))
     return project_list
 
 
