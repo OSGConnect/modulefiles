@@ -76,11 +76,11 @@ def get_indices(date=None):
                                                start_date.month)]
     es = get_es_client()
     index_client = elasticsearch.client.IndicesClient(es)
+    validated_indices = []
     for index in index_list:
-        validated_indices = []
         if index_client.exists(index=index):
             validated_indices.append(index)
-        return index
+    return validated_indices
 
 
 def get_user_modulelist(start_date=None, top=None):
