@@ -5,6 +5,7 @@ import datetime
 import argparse
 import smtplib
 import email
+import email.mime.text
 
 import elasticsearch
 import elasticsearch.helpers
