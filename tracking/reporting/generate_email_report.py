@@ -141,7 +141,7 @@ def get_project_modulelist(start_date=None, top=None):
         return project_list
 
     for record in results['aggregations']['projects']['buckets']:
-        project_list[record['project']] = record[record['doc_count']]
+        project_list[record['key']] = record['doc_count']
     return project_list
 
 
@@ -180,7 +180,7 @@ def get_top_modules(start_date, top=None):
         return module_list
 
     for record in results['aggregations']['modules']['buckets']:
-        module_list[record['module']] = record[record['doc_count']]
+        module_list[record['key']] = record['doc_count']
     return module_list
 
 
