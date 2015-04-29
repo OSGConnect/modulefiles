@@ -124,26 +124,24 @@ def get_project_modulelist(start_date=None, top=None):
     query = {"query": {
                 "filtered": {
                     "filter": {
-                        "bool": {
-                            "must": [
-                                {"range":
-                                     {"@timestamp":
-                                         {"gte": start_date.isoformat(),
-                                          "lt": end_date.isoformat()}}}]}},
+                        {"range":
+                            {"@timestamp":
+                                {"gte": start_date.isoformat(),
+                                 "lt": end_date.isoformat()}}}}},
                      "size": 0,
                      "aggs": {
                          "projects":
                              {"terms":
                                  {"field": "project",
-                                  "size": top}}}}}}
+                                  "size": top}}}}}
     project_list = {}
     results = db.search(body=query, size=0, index=indices)
     doc_count = results['hits']['total']
     if doc_count == 0:
         return project_list
 
-    for record in results['aggregations']['projects']:
-        project_list[record['project']] = record['count']
+    for record in results['aggregations']['projects']['buckets']:
+        project_list[record['project']] = record[record['doc_count']]
     return project_list
 
 
@@ -164,18 +162,16 @@ def get_top_modules(start_date, top=None):
     query = {"query": {
                 "filtered": {
                     "filter": {
-                        "bool": {
-                            "must": [
-                                {"range":
-                                     {"@timestamp":
-                                         {"gte": start_date.isoformat(),
-                                          "lt": end_date.isoformat()}}}]}},
+                        {"range":
+                            {"@timestamp":
+                                {"gte": start_date.isoformat(),
+                                 "lt": end_date.isoformat()}}}}},
                      "size": 0,
                      "aggs": {
                          "modules":
                              {"terms":
                                  {"field": "module",
-                                  "size": top}}}}}}
+                                  "size": top}}}}}
 
     module_list = {}
     results = db.search(body=query, size=0, index=indices)
@@ -183,8 +179,8 @@ def get_top_modules(start_date, top=None):
     if doc_count == 0:
         return module_list
 
-    for record in results['aggregations']['modules']:
-        module_list[record['module']] = record['count']
+    for record in results['aggregations']['modules']['buckets']:
+        module_list[record['module']] = record[record['doc_count']]
     return module_list
 
 
