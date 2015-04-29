@@ -75,9 +75,10 @@ def get_indices(date=None):
                                                start_date.year,
                                                start_date.month)]
     es = get_es_client()
+    index_client = elasticsearch.client.IndicesClient(es)
     for index in index_list:
         validated_indices = []
-        if es.exists(index):
+        if index_client.exists(index=index):
             validated_indices.append(index)
         return index
 
