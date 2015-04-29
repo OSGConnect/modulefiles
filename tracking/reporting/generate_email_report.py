@@ -127,13 +127,17 @@ def get_project_modulelist(start_date=None, top=None):
                         "range": {
                             "@timestamp": {
                                 "gte": start_date.isoformat(),
-                                "lt": end_date.isoformat()}}}},
-              "size": 0,
-              "aggs": {
-                  "projects":
-                      {"terms":
-                          {"field": "project",
-                           "size": top}}}}}
+                                "lt": end_date.isoformat()}}}}},
+             "size": 0,
+             "aggs": {
+                 "projects": {
+                     "terms": {
+                         "field": "project",
+                         "size": 50}},
+                 "aggs": {
+                     "terms": {
+                         "field": "module",
+                         "size": top}}}}
     project_list = {}
     results = db.search(body=query, size=0, index=indices)
     doc_count = results['hits']['total']
@@ -173,14 +177,14 @@ def get_top_modules(start_date, top=None):
                          {"field": "module",
                           "size": top}}}}
 
-    module_list = {}
+    module_list = []
     results = db.search(body=query, size=0, index=indices)
     doc_count = results['hits']['total']
     if doc_count == 0:
         return module_list
 
     for record in results['aggregations']['modules']['buckets']:
-        module_list[record['key']] = record['doc_count']
+        module_list.append([record['key'], record['doc_count'])
     return module_list
 
 
@@ -231,11 +235,8 @@ def generate_report(start_date):
     report_text += "\n\n"
     report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format('Project', 'Module', '# of times used')
     project_module_list = get_project_modulelist(start_date)
-    projects = project_module_list.keys()
-    projects.sort()
-    for project in projects:
-        for module, count in project_module_list[user]:
-            report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format(project, module, count)
+    for (project, module, count) in project_module_list:
+        report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format(project, module, count)
     report_text += "\n\n"
 
     report_text += "\n\n"
