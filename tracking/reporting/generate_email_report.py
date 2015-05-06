@@ -236,7 +236,7 @@ def generate_report(start_date):
     report_html += "<thead><tr><td>Module</td><td># of times used</td></tr></thead>\n"
     report_html += "<tbody>"
     for module, count in module_list:
-        report_text += "<tr><td>{0}</td><td>{1</td></tr>\n".format(module, count)
+        report_html += "<tr><td>{0}</td><td>{1}</td></tr>\n".format(module, count)
     report_html += "</tbody></table>"
 
     report_text += "{0:-^80}\n".format(' Top 10 modules used by each project')
@@ -252,7 +252,7 @@ def generate_report(start_date):
     report_html += "<td># of times used</td></tr></thead>\n"
     report_html += "<tbody>"
     for (project, module, count) in project_module_list:
-        report_text += "<tr><td>{0}</td><td>{1}</td><td>{2}</td></tr>\n".format(project, module, count)
+        report_html += "<tr><td>{0}</td><td>{1}</td><td>{2}</td></tr>\n".format(project, module, count)
     report_html += "</tbody></table>"
 
     report_html += '<iframe src="http://kibana.mwt2.org/#/dashboard/' \
@@ -281,13 +281,15 @@ def send_email(text_body, html_body, recipient=REPORT_EMAIL, server=EMAIL_SERVER
     :param server: SMTP server to use
     :return: No return
     """
-    msg = email.mime.multipart.MIMEMultipart()
+    msg = email.mime.multipart.MIMEMultipart('alternative')
     msg['Subject'] = 'Weekly module usage report'
     msg['From'] = 'sthapa@ci.uchicago.edu'
     to_addresses = ",".join(recipient)
     msg['To'] = to_addresses
-    msg.attach(html_body)
-    msg.attach(text_body)
+    text_part = email.mime.text.MIMEText(text_body, 'plain')
+    msg.attach(text_part)
+    html_part = email.mime.text.MIMEText(html_body, 'html')
+    msg.attach(html_part)
     server_handle = smtplib.SMTP(server)
     server_handle.sendmail('sthapa@ci.uchicago.edu', to_addresses, msg.as_string())
     server_handle.quit()
@@ -308,7 +310,7 @@ if __name__ == "__main__":
     args = parser.parse_args(sys.argv[1:])
     args.start_date = parse_date(args.start_date)
 
-    text_report, html_report = generate_report(args.start_date)
+    (text_report, html_report) = generate_report(args.start_date)
     if args.email:
         send_email(text_report, html_report)
     else:
