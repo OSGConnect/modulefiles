@@ -218,7 +218,11 @@ def generate_report(start_date):
     start_date = get_week_start(start_date)
     iso_start = start_date.isoformat()
     report_title = "Modules usage report for week of {0}".format(iso_start)
-    report_html = "<html><head><title>{0}</title></head>".format(report_title)
+    report_html = "<html><head>"
+    report_html += "<title>{0}</title>\n".format(report_title)"
+    report_html += "<style>table, th, td { border: 1px solid black; \n"
+    report_html += "border-collapse: collapse;}</style>\n"
+    report_html += "</head>"
     report_html += "<body>"
 
     report_html += "<h1 align='center'>{0}</h1>\n".format(report_title)
@@ -232,7 +236,7 @@ def generate_report(start_date):
         report_text += "|{0:^30}|{1:^30}|\n".format(module, count)
     report_text += "\n\n"
 
-    report_html += "<table><caption>{0}</caption>\n".format('Top 10 modules used')
+    report_html += "<table style='width: 100%'><caption>{0}</caption>\n".format('Top 10 modules used')
     report_html += "<thead><tr><td>Module</td><td># of times used</td></tr></thead>\n"
     report_html += "<tbody>"
     for module, count in module_list:
@@ -254,20 +258,6 @@ def generate_report(start_date):
     for (project, module, count) in project_module_list:
         report_text += "<tr><td>{0}</td><td>{1}</td><td>{2}</td></tr>\n".format(project, module, count)
     report_html += "</tbody></table>"
-
-    report_html += '<iframe src="http://kibana.mwt2.org/#/dashboard/' \
-                   'Module-usage-dashboard?embed&_g=' \
-                   '(refreshInterval:(display:Off,section:0,value:0),' \
-                   'time:(from:now-7d,mode:quick,to:now)' \
-                   ')&_a=(filters:!(),panels:!((col:1,id:Top-5-Modules-used,' \
-                   'row:1,size_x:12,size_y:6,type:visualization),(col:1,id:' \
-                   'Module-Usage-locations,row:12,size_x:12,size_y:6,type:' \
-                   'visualization),(col:1,id:Module-usage-by-site,row:7,' \
-                   'size_x:6,size_y:5,type:visualization),(col:7,' \
-                   'id:Module-usage-by-project,row:7,size_x:6,size_y:5,' \
-                   'type:visualization)),query:(query_string:(analyze_wildcard:' \
-                   '!t,query:\'*\')),title:\'Module%20usage%20dashboard\')" ' \
-                   'height="600" width="800"></iframe>'
     return report_text, report_html
 
 
