@@ -6,6 +6,7 @@ import argparse
 import smtplib
 import email
 import email.mime.text
+import email.mime.multipart
 
 import elasticsearch
 import elasticsearch.helpers
@@ -209,17 +210,21 @@ def get_moduleloads(start_date, top=None):
 
 def generate_report(start_date):
     """
-    Generate a report of module usage over the week and optionally email it
+    Generate text and html report of module usage over the week
 
     :param start_date: timedate.date object giving the date to start from
-    :return: None
+    :return: a tuple with the text and html report -- (text, html)
     """
     start_date = get_week_start(start_date)
-    report_text = ""
-    report_text += "{0:^80}\n".format("Modules usage report for week of " +
-                                      start_date.isoformat())
+    iso_start = start_date.isoformat()
+    report_title = "Modules usage report for week of {0}".format(iso_start)
+    report_html = "<html><head><title>{0}</title></head>".format(report_title)
+    report_html += "<body>"
 
-    report_text += "{0:-^80}\n".format(' Top 10 modules used')
+    report_html += "<h1 align='center'>{0}</h1>\n".format(report_title)
+    report_text = "{0:^80}\n".format(report_title)
+
+    report_text += "{0:-^80}\n".format('Top 10 modules used')
     report_text += "\n\n"
     report_text += "|{0:^30}|{1:^30}|\n".format('Module', '# of times used')
     module_list = get_top_modules(start_date)
@@ -227,13 +232,12 @@ def generate_report(start_date):
         report_text += "|{0:^30}|{1:^30}|\n".format(module, count)
     report_text += "\n\n"
 
-    # report_text += "{0:-^80}\n".format(' Top 10 sites used')
-    # report_text += "\n\n"
-    # report_text += "|{0:^30}|{1:^30}|\n".format('Site', '# of times used')
-    # site_list = get_top_sites(start_date)
-    # for site, count in site_list:
-    #     report_text += "|{0:^30}|{1:^30}|\n".format(site, count)
-    # report_text += "\n\n"
+    report_html += "<table><caption>{0}</caption>\n".format('Top 10 modules used')
+    report_html += "<thead><tr><td>Module</td><td># of times used</td></tr></thead>\n"
+    report_html += "<tbody>"
+    for module, count in module_list:
+        report_text += "<tr><td>{0}</td><td>{1</td></tr>\n".format(module, count)
+    report_html += "</tbody></table>"
 
     report_text += "{0:-^80}\n".format(' Top 10 modules used by each project')
     report_text += "\n\n"
@@ -243,25 +247,47 @@ def generate_report(start_date):
         report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format(project, module, count)
     report_text += "\n\n"
 
-    report_text += "\n\n"
+    report_html += "<table><caption>{0}</caption>\n".format('Top 10 modules used by each project')
+    report_html += "<thead><tr><td>Project</td><td>Module</td>"
+    report_html += "<td># of times used</td></tr></thead>\n"
+    report_html += "<tbody>"
+    for (project, module, count) in project_module_list:
+        report_text += "<tr><td>{0}</td><td>{1}</td><td>{2}</td></tr>\n".format(project, module, count)
+    report_html += "</tbody></table>"
 
-    return report_text
+    report_html += '<iframe src="http://kibana.mwt2.org/#/dashboard/' \
+                   'Module-usage-dashboard?embed&_g=' \
+                   '(refreshInterval:(display:Off,section:0,value:0),' \
+                   'time:(from:now-7d,mode:quick,to:now)' \
+                   ')&_a=(filters:!(),panels:!((col:1,id:Top-5-Modules-used,' \
+                   'row:1,size_x:12,size_y:6,type:visualization),(col:1,id:' \
+                   'Module-Usage-locations,row:12,size_x:12,size_y:6,type:' \
+                   'visualization),(col:1,id:Module-usage-by-site,row:7,' \
+                   'size_x:6,size_y:5,type:visualization),(col:7,' \
+                   'id:Module-usage-by-project,row:7,size_x:6,size_y:5,' \
+                   'type:visualization)),query:(query_string:(analyze_wildcard:' \
+                   '!t,query:\'*\')),title:\'Module%20usage%20dashboard\')" ' \
+                   'height="600" width="800"></iframe>'
+    return report_text, report_html
 
 
-def send_email(email_body, recipient=REPORT_EMAIL, server=EMAIL_SERVER):
+def send_email(text_body, html_body, recipient=REPORT_EMAIL, server=EMAIL_SERVER):
     """
     Send email based on text given in email_body
 
-    :param email_body: email body
+    :param text_body: text version of email
+    :param html_body: html version of email
     :param recipient: list of email addresses to send email to
     :param server: SMTP server to use
     :return: No return
     """
-    msg = email.mime.text.MIMEText(email_body)
+    msg = email.mime.multipart.MIMEMultipart()
     msg['Subject'] = 'Weekly module usage report'
     msg['From'] = 'sthapa@ci.uchicago.edu'
     to_addresses = ",".join(recipient)
     msg['To'] = to_addresses
+    msg.attach(html_body)
+    msg.attach(text_body)
     server_handle = smtplib.SMTP(server)
     server_handle.sendmail('sthapa@ci.uchicago.edu', to_addresses, msg.as_string())
     server_handle.quit()
@@ -282,9 +308,9 @@ if __name__ == "__main__":
     args = parser.parse_args(sys.argv[1:])
     args.start_date = parse_date(args.start_date)
 
-    report = generate_report(args.start_date)
+    text_report, html_report = generate_report(args.start_date)
     if args.email:
-        send_email(report)
+        send_email(text_report, html_report)
     else:
-        sys.stdout.write(report)
+        sys.stdout.write(text_report)
     sys.exit(0)
