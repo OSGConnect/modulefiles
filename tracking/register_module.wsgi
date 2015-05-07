@@ -122,6 +122,9 @@ def application(environ, start_response):
         record['ip'] = environ['REMOTE_ADDR']
     else:
         record['ip'] = lookup_site_ip(record['site'])
+    if 'ip' in record and record['site'] in ('UNAVAILABLE', ''):
+        if record['ip'].startswith('192.170.227'):
+            record['site'] = 'UC3'
     # response_body = 'Record inserted:\n{0}\n'.format(record)
     response_body = 'Record inserted'
     rc = get_redis_client()
