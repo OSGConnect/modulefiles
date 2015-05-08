@@ -7,6 +7,7 @@ import smtplib
 import email
 import email.mime.text
 import email.mime.multipart
+import jinja2
 
 import elasticsearch
 import elasticsearch.helpers
@@ -217,15 +218,12 @@ def generate_report(start_date):
     """
     start_date = get_week_start(start_date)
     iso_start = start_date.isoformat()
-    report_title = "Modules usage report for week of {0}".format(iso_start)
-    report_html = "<html><head>"
-    report_html += "<title>{0}</title>\n".format(report_title)"
-    report_html += "<style>table, th, td { border: 1px solid black; \n"
-    report_html += "border-collapse: collapse;}</style>\n"
-    report_html += "</head>"
-    report_html += "<body>"
 
-    report_html += "<h1 align='center'>{0}</h1>\n".format(report_title)
+    # setup jinja template
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader( searchpath="." ))
+    template = env.get_template('templates/status.html')
+    report_title = "Modules usage report for week of {0}".format(iso_start)
+
     report_text = "{0:^80}\n".format(report_title)
 
     report_text += "{0:-^80}\n".format('Top 10 modules used')
@@ -236,12 +234,6 @@ def generate_report(start_date):
         report_text += "|{0:^30}|{1:^30}|\n".format(module, count)
     report_text += "\n\n"
 
-    report_html += "<table style='width: 100%'><caption>{0}</caption>\n".format('Top 10 modules used')
-    report_html += "<thead><tr><td>Module</td><td># of times used</td></tr></thead>\n"
-    report_html += "<tbody>"
-    for module, count in module_list:
-        report_text += "<tr><td>{0}</td><td>{1</td></tr>\n".format(module, count)
-    report_html += "</tbody></table>"
 
     report_text += "{0:-^80}\n".format(' Top 10 modules used by each project')
     report_text += "\n\n"
@@ -251,13 +243,12 @@ def generate_report(start_date):
         report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format(project, module, count)
     report_text += "\n\n"
 
-    report_html += "<table><caption>{0}</caption>\n".format('Top 10 modules used by each project')
-    report_html += "<thead><tr><td>Project</td><td>Module</td>"
-    report_html += "<td># of times used</td></tr></thead>\n"
-    report_html += "<tbody>"
-    for (project, module, count) in project_module_list:
-        report_text += "<tr><td>{0}</td><td>{1}</td><td>{2}</td></tr>\n".format(project, module, count)
-    report_html += "</tbody></table>"
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader( searchpath="."))
+    template = env.get_template('templates/email_template.html')
+    report_html = template.render(module_list=module_list,
+                                  project_module_list=project_module_list,
+                                  date=iso_start)
+
     return report_text, report_html
 
 
