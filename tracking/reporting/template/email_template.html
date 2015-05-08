@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}" />
+</head>
+
+<body>
+
+<div id="content">
+
+    <h1 align="center">Modules usage report for week of {{ date }}</h2>
+
+        <h2 align="center"> Top 10 modules used  </h2>
+        <table style="border: 1px solid black; border-collapse: collapse;">
+            <thead>
+            <tr>
+                <td>Module</td>
+                <td># of times used</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for module in module_list  %}
+            <tr>
+                <td>
+                    {{ module.module }}
+                </td>
+                <td>
+                    {{ module.count }}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <h2 align="center"> Top 10 modules used by project </h2>
+        <table style="border: 1px solid black; border-collapse: collapse;">
+            <thead>
+            <tr>
+                <td>Project</td>
+                <td>Module</td>
+                <td># of times used</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for module in project_module_list  %}
+            <tr>
+                <td>
+                    {{ module.project }}
+                </td>
+                <td>
+                    {{ module.module }}
+                </td>
+                <td>
+                    {{ module.count }}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+</div>
+
+</body>
+</html>
