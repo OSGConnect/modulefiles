@@ -13,6 +13,34 @@ function url_quote(str)
   return str    
 end
 
+
+function get_project(str)
+    if (str) then
+        for match in string.gmatch(str, "ProjectName%s+=%s+\"(.*)\"") do
+            project = match
+        end
+    end
+    return project
+end
+
+function get_username(str)
+    if (str) then
+        for match in string.gmatch(str, "Owner%s+=%s+\"(.*)\"") do
+            username = match
+        end
+    end
+    return username
+end
+
+function get_site(str)
+    if (str) then
+        for match in string.gmatch(str, "JOBGLIDEIN_ResourceName%s+=%s+\"(.*)\"") do
+            site = match
+        end
+    end
+    return site
+end
+
 -- By using the hook.register function, this function "load_hook" is called
 -- ever time a module is loaded with the file name and the module name.
 
@@ -52,7 +80,17 @@ function load_hook(t)
       host = 'UNAVAILABLE'
    end
 
-
+   local condor_classad_file = os.getenv('_CONDOR_JOB_AD')
+   local classads = io.open(condor_classad_file, 'r')
+   if classads ~= nil then
+       username = get_username(classads)
+       if site == 'UNAVAILABLE' then
+           site = get_sitename(classads)
+       end
+       if project == 'UNAVAILABLE' then
+           project = get_project(classads)
+       end
+   end
    if dirname ~= '' and username ~= '' and t.modFullName ~= '' then
       -- We don't want failure to log to block jobs or give errors. Make an
       -- effort to log things, but ignore anything that goes wrong. Also do

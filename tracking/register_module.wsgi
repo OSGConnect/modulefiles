@@ -102,6 +102,10 @@ def application(environ, start_response):
         record['module'] = ''
     if 'site' in query_dict:
         record['site'] = query_dict['site'][0]
+        if record['site'].startswith('uc3'):
+            record['site'] = 'UC3'
+        elif record['site'].startswith('syr'):
+            record['site'] = 'Syracuse'
     else:
         record['site'] = ''
 
