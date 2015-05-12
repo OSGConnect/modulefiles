@@ -15,8 +15,9 @@ end
 
 
 function get_project(str)
+    local project = nil
     if (str) then
-        for match in string.gmatch(str, "ProjectName%s+=%s+\"(.*)\"") do
+        for match in string.gmatch(str, "ProjectName%s+=%s+\"(.-)\"") do
             project = match
         end
     end
@@ -24,8 +25,9 @@ function get_project(str)
 end
 
 function get_username(str)
+    local username = nil
     if (str) then
-        for match in string.gmatch(str, "Owner%s+=%s+\"(.*)\"") do
+        for match in string.gmatch(str, "Owner%s+=%s+\"(.-)@.-\"") do
             username = match
         end
     end
@@ -33,8 +35,9 @@ function get_username(str)
 end
 
 function get_site(str)
+    local site = nil
     if (str) then
-        for match in string.gmatch(str, "JOBGLIDEIN_ResourceName%s+=%s+\"(.*)\"") do
+        for match in string.gmatch(str, "JOBGLIDEIN_ResourceName%s+=%s+\"(.-)\"") do
             site = match
         end
     end
@@ -81,11 +84,12 @@ function load_hook(t)
    end
 
    local condor_classad_file = os.getenv('_CONDOR_JOB_AD')
-   local classads = io.open(condor_classad_file, 'r')
+   local f = io.open(condor_classad_file, 'r')
+   local classads = f:read("*all")
    if classads ~= nil then
        username = get_username(classads)
        if site == 'UNAVAILABLE' then
-           site = get_sitename(classads)
+           site = get_site(classads)
        end
        if project == 'UNAVAILABLE' then
            project = get_project(classads)
