@@ -84,15 +84,17 @@ function load_hook(t)
    end
 
    local condor_classad_file = os.getenv('_CONDOR_JOB_AD')
-   local f = io.open(condor_classad_file, 'r')
-   local classads = f:read("*all")
-   if classads ~= nil then
-       username = get_username(classads)
-       if site == 'UNAVAILABLE' then
-           site = get_site(classads)
-       end
-       if project == 'UNAVAILABLE' then
-           project = get_project(classads)
+   if condor_classad_file ~= nil then
+       local f = io.open(condor_classad_file, 'r')
+       local classads = f:read("*all")
+       if classads ~= nil then
+           username = get_username(classads)
+           if site == 'UNAVAILABLE' then
+               site = get_site(classads)
+           end
+           if project == 'UNAVAILABLE' then
+               project = get_project(classads)
+           end
        end
    end
    if dirname ~= '' and username ~= '' and t.modFullName ~= '' then
