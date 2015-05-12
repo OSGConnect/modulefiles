@@ -219,9 +219,6 @@ def generate_report(start_date):
     start_date = get_week_start(start_date)
     iso_start = start_date.isoformat()
 
-    # setup jinja template
-    env = jinja2.Environment(loader=jinja2.FileSystemLoader( searchpath="." ))
-    template = env.get_template('templates/status.html')
     report_title = "Modules usage report for week of {0}".format(iso_start)
 
     report_text = "{0:^80}\n".format(report_title)
@@ -242,7 +239,7 @@ def generate_report(start_date):
     report_text += "\n\n"
 
     env = jinja2.Environment(loader=jinja2.FileSystemLoader( searchpath="."))
-    template = env.get_template('templates/email_template.html')
+    template = env.get_template('template/email_template.html')
     report_html = template.render(module_list=module_list,
                                   project_module_list=project_module_list,
                                   date=iso_start)
