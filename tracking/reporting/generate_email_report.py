@@ -219,9 +219,6 @@ def generate_report(start_date):
     start_date = get_week_start(start_date)
     iso_start = start_date.isoformat()
 
-    # setup jinja template
-    env = jinja2.Environment(loader=jinja2.FileSystemLoader( searchpath="." ))
-    template = env.get_template('templates/status.html')
     report_title = "Modules usage report for week of {0}".format(iso_start)
 
     report_text = "{0:^80}\n".format(report_title)
@@ -233,8 +230,6 @@ def generate_report(start_date):
     for module, count in module_list:
         report_text += "|{0:^30}|{1:^30}|\n".format(module, count)
     report_text += "\n\n"
-
-
     report_text += "{0:-^80}\n".format(' Top 10 modules used by each project')
     report_text += "\n\n"
     report_text += "|{0:^20}|{1:^20}|{2:^20}|\n".format('Project', 'Module', '# of times used')
@@ -244,7 +239,7 @@ def generate_report(start_date):
     report_text += "\n\n"
 
     env = jinja2.Environment(loader=jinja2.FileSystemLoader( searchpath="."))
-    template = env.get_template('templates/email_template.html')
+    template = env.get_template('template/email_template.html')
     report_html = template.render(module_list=module_list,
                                   project_module_list=project_module_list,
                                   date=iso_start)
@@ -262,13 +257,15 @@ def send_email(text_body, html_body, recipient=REPORT_EMAIL, server=EMAIL_SERVER
     :param server: SMTP server to use
     :return: No return
     """
-    msg = email.mime.multipart.MIMEMultipart()
+    msg = email.mime.multipart.MIMEMultipart('alternative')
     msg['Subject'] = 'Weekly module usage report'
     msg['From'] = 'sthapa@ci.uchicago.edu'
     to_addresses = ",".join(recipient)
     msg['To'] = to_addresses
-    msg.attach(html_body)
-    msg.attach(text_body)
+    text_part = email.mime.text.MIMEText(text_body, 'plain')
+    msg.attach(text_part)
+    html_part = email.mime.text.MIMEText(html_body, 'html')
+    msg.attach(html_part)
     server_handle = smtplib.SMTP(server)
     server_handle.sendmail('sthapa@ci.uchicago.edu', to_addresses, msg.as_string())
     server_handle.quit()
@@ -289,7 +286,7 @@ if __name__ == "__main__":
     args = parser.parse_args(sys.argv[1:])
     args.start_date = parse_date(args.start_date)
 
-    text_report, html_report = generate_report(args.start_date)
+    (text_report, html_report) = generate_report(args.start_date)
     if args.email:
         send_email(text_report, html_report)
     else:

@@ -14,7 +14,7 @@
     <h1 align="center">Modules usage report for week of {{ date }}</h2>
 
         <h2 align="center"> Top 10 modules used  </h2>
-        <table style="border: 1px solid black; border-collapse: collapse;">
+        <table style="border: 1px solid black; border-collapse: collapse;width: 100%">
             <thead>
             <tr>
                 <td>Module</td>
@@ -23,19 +23,19 @@
             </thead>
             <tbody>
             {% for module in module_list  %}
-            <tr>
+            <tr style="border: 1px solid black; border-collapse: collapse;{{ loop.cycle('background-color: white', 'background-color: lightblue') }}">
                 <td>
-                    {{ module.module }}
+                    {{ module[0] }}
                 </td>
                 <td>
-                    {{ module.count }}
+                    {{ module[1] }}
                 </td>
             </tr>
             {% endfor %}
             </tbody>
         </table>
         <h2 align="center"> Top 10 modules used by project </h2>
-        <table style="border: 1px solid black; border-collapse: collapse;">
+        <table style="border: 1px solid black; border-collapse: collapse;width: 100%">
             <thead>
             <tr>
                 <td>Project</td>
@@ -45,21 +45,25 @@
             </thead>
             <tbody>
             {% for module in project_module_list  %}
-            <tr>
+            <tr style="border: 1px solid black; border-collapse: collapse;{{ loop.cycle('background-color: white', 'background-color: lightblue') }}">
                 <td>
-                    {{ module.project }}
+                    {{ module[0] }}
                 </td>
                 <td>
-                    {{ module.module }}
+                    {{ module[1] }}
                 </td>
                 <td>
-                    {{ module.count }}
+                    {{ module[2] }}
                 </td>
             </tr>
             {% endfor %}
             </tbody>
         </table>
 </div>
-<a href="http://kibana.mwt2.org:6601/#/dashboard/Module-usage-dashboard?_g=(refreshInterval:(display:Off,section:0,value:0),time:(from:now-7d,mode:quick,to:now))&_a=(filters:!(),panels:!((col:1,id:Top-5-Modules-used,row:1,size_x:12,size_y:6,type:visualization),(col:1,id:Module-Usage-locations,row:12,size_x:12,size_y:6,type:visualization),(col:1,id:Module-usage-by-site,row:7,size_x:6,size_y:5,type:visualization),(col:7,id:Module-usage-by-project,row:7,size_x:6,size_y:5,type:visualization)),query:(query_string:(analyze_wildcard:!t,query:'*')),title:'Module%20usage%20dashboard')">Module dashboard for the previous week</a>
+<div>
+<br/>
+<br/>
+<a style="font:larger" align="center" href="http://kibana.mwt2.org:6601/#/dashboard/Module-usage-dashboard?_g=(refreshInterval:(display:Off,section:0,value:0),time:(from:now-7d,mode:quick,to:now))&_a=(filters:!(),panels:!((col:1,id:Top-5-Modules-used,row:1,size_x:12,size_y:6,type:visualization),(col:1,id:Module-Usage-locations,row:12,size_x:12,size_y:6,type:visualization),(col:1,id:Module-usage-by-site,row:7,size_x:6,size_y:5,type:visualization),(col:7,id:Module-usage-by-project,row:7,size_x:6,size_y:5,type:visualization)),query:(query_string:(analyze_wildcard:!t,query:'*')),title:'Module%20usage%20dashboard')">Module dashboard for the previous week</a>
+</div>
 </body>
 </html>
