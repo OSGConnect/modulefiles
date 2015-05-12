@@ -27,7 +27,10 @@ end
 function get_username(str)
     local username = nil
     if (str) then
-        for match in string.gmatch(str, "Owner%s+=%s+\"(.-)@.-\"") do
+        for match in string.gmatch(str, "Owner%s+=%s+\"(.-)\"\n") do
+            username = match
+        end
+        for match in string.gmatch(str, "Owner%s+=%s+\"(.-)@.-\"\n") do
             username = match
         end
     end
