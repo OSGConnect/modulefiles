@@ -127,7 +127,13 @@ def application(environ, start_response):
     else:
         record['ip'] = lookup_site_ip(record['site'])
     if 'ip' in record and record['site'] in ('UNAVAILABLE', ''):
-        if record['ip'].startswith('192.170.227'):
+        if record['ip'] == '192.170.227.195':
+            record['project'] = 'interactive'
+            record['site'] = 'interactive'
+        elif record['ip'] == '192.170.227.251':
+            record['project'] = 'interactive'
+            record['site'] = 'interactive'
+        elif record['ip'].startswith('192.170.227'):
             record['site'] = 'UC3'
     # response_body = 'Record inserted:\n{0}\n'.format(record)
     response_body = 'Record inserted'
