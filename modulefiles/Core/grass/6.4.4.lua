@@ -16,8 +16,14 @@ whatis("Loads the GRASS GIS system")
 local version = "6.4.4"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/grass/"..version
 
-prepend_path("PATH", pathJoin(base, "bin"))
-prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
+setenv("GISBASE", base.."/grass-"..version)
+
+prepend_path("PATH", base.."/bin")
+prepend_path("PATH", base.."/grass-"..version.."/bin")
+prepend_path("PATH", base.."/grass-"..version.."/scripts")
+prepend_path("LD_LIBRARY_PATH", base.."/lib")
+prepend_path("LD_LIBRARY_PATH", base.."/grass-"..version.."/lib")
+prepend_path("PYTHONPATH", base.."/grass-"..version.."/lib/python2.7/site-packages")
 
 family('grass')
 

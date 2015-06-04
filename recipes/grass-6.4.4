@@ -34,7 +34,7 @@ wget http://download.osgeo.org/geos/geos-3.4.2.tar.bz2
 make && make install
 
 wget http://grass.osgeo.org/grass64/source/grass-6.4.4.tar.gz
-CPPFLAGS="-I$TARGET/include" LDFLAGS="-L$TARGET/lib" ./configure --prefix=$TARGET --with-proj-lib=$ TARGET/lib --with-proj-share=$TARGET/share/proj/ --with-proj-includes=$TARGET/include --with-gdal=$TARGET --with-cxx --without-fftw --without-python --with-geos=$TARGET/bin --with-libs=$TARGET/lib --without-opengl --without-tcltk
+CPPFLAGS="-I$TARGET/include" LDFLAGS="-L$TARGET/lib" ./configure --prefix=$TARGET --with-proj-lib=$TARGET/lib --with-proj-share=$TARGET/share/proj/ --with-proj-includes=$TARGET/include --with-gdal=$TARGET --with-cxx --without-fftw --without-python --with-geos=$TARGET/bin --with-libs=$TARGET/lib --without-opengl --without-tcltk
 make && make install
 
 wget http://download.osgeo.org/gdal/gdal-grass-1.4.3.tar.gz
