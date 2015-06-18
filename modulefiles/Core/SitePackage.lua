@@ -15,36 +15,36 @@ end
 
 
 function get_project(str)
-    local project = nil
     if (str) then
         for match in string.gmatch(str, "ProjectName%s+=%s+\"(.-)\"") do
-            project = match
+            return match
         end
     end
-    return project
+    return ''
 end
 
 function get_username(str)
-    local username = nil
     if (str) then
-        for match in string.gmatch(str, "Owner%s+=%s+\"(.-)\"\n") do
-            username = match
+        for match in string.gmatch(str, "Owner%s+=%s+\"(%S-)\"") do
+            return match
         end
-        for match in string.gmatch(str, "Owner%s+=%s+\"(.-)@.-\"\n") do
-            username = match
+        for match in string.gmatch(str, "Owner%s+=%s+\"(%S-)@%S-\"") do
+            return match
         end
     end
-    return username
+    return ''
 end
 
 function get_site(str)
-    local site = nil
     if (str) then
-        for match in string.gmatch(str, "JOBGLIDEIN_ResourceName%s+=%s+\"(.-)\"") do
-            site = match
+        for match in string.gmatch(str, "JOBGLIDEIN_ResourceName%s+=%s+\"(%S-)\"") do
+            return match
+        end
+        for match in string.gmatch(str, "GLIDEIN_Site%s+=%s+\"(%S-)\"") do
+            return match
         end
     end
-    return site
+    return ''
 end
 
 -- By using the hook.register function, this function "load_hook" is called
@@ -86,20 +86,28 @@ function load_hook(t)
       host = 'UNAVAILABLE'
    end
 
+   local classads = ''
    local condor_classad_file = os.getenv('_CONDOR_JOB_AD')
    if condor_classad_file ~= nil then
        local f = io.open(condor_classad_file, 'r')
-       local classads = f:read("*all")
-       if classads ~= nil then
-           username = get_username(classads)
-           if site == 'UNAVAILABLE' then
-               site = get_site(classads)
-           end
-           if project == 'UNAVAILABLE' then
-               project = get_project(classads)
-           end
+       classads = f:read("*all")
+   end
+   condor_classad_file = os.getenv('_CONDOR_MACHINE_AD')
+   if condor_classad_file ~= nil then
+       local f = io.open(condor_classad_file, 'r')
+       classads = classads .. f:read("*all")
+   end
+
+   if classads ~= nil then
+       username = get_username(classads)
+       if site == 'UNAVAILABLE' then
+           site = get_site(classads)
+       end
+       if project == 'UNAVAILABLE' then
+           project = get_project(classads)
        end
    end
+
    if dirname ~= '' and username ~= '' and t.modFullName ~= '' then
       -- We don't want failure to log to block jobs or give errors. Make an
       -- effort to log things, but ignore anything that goes wrong. Also do
