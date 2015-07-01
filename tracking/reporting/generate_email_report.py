@@ -125,12 +125,12 @@ def get_project_modulelist(start_date=None, top=None):
     end_date = start_date + datetime.timedelta(days=7)
     indices = ",".join(get_indices(start_date))
     query = {"query": {
-                "filtered": {
-                    "filter": {
-                        "range": {
-                            "@timestamp": {
-                                "gte": start_date.isoformat(),
-                                "lt": end_date.isoformat()}}}}},
+                 "filtered": {
+                     "filter": {
+                         "range": {
+                             "@timestamp": {
+                                 "gte": start_date.isoformat(),
+                                 "lt": end_date.isoformat()}}}}},
              "size": 0,
              "aggs": {
                  "projects": {
@@ -138,10 +138,10 @@ def get_project_modulelist(start_date=None, top=None):
                          "field": "project",
                          "size": 50},
                      "aggs": {
-                        "modules": {
-                            "terms": {
-                                "field": "module",
-                                "size": top}}}}}}
+                         "modules": {
+                             "terms": {
+                                 "field": "module",
+                                 "size": top}}}}}}
     project_list = []
     results = db.search(body=query, size=0, index=indices)
     doc_count = results['hits']['total']
@@ -193,6 +193,38 @@ def get_top_modules(start_date, top=None):
         module_list.append((record['key'], record['doc_count']))
     return module_list
 
+def get_multicore_users(start_date):
+    """
+    Return a json representation of users that have been
+    """
+    db = get_es_client()
+    if start_date is None:
+        start_date = get_week_start()
+    else:
+        start_date = get_week_start(start_date)
+
+    end_date = start_date + datetime.timedelta(days=1)
+    indices = ",".join(get_indices(start_date))
+    query = {"query": {
+                "filtered": {
+                    "filter": {
+                        "range": {
+                            "@timestamp": {
+                                "gte": start_date.isoformat(),
+                                "lt": end_date.isoformat()}},
+                        "script": {
+                            "script": "doc['RemoteCPUTime'].value < (doc['RemoteWalltime'].value * 1.2)"
+                        }}},
+                "size": 10000}}
+    results = db.search(body=query, size=0, index=indices)
+    doc_count = results['hits']['total']
+    user_list = []
+    if doc_count == 0:
+        return user_list
+
+    for record in results['hits']['docs']:
+        user_list.append((record['key'], record['script']))
+    return user_list
 
 def get_moduleloads(start_date, top=None):
     """
