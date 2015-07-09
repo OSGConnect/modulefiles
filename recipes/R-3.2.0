@@ -1,4 +1,4 @@
 wget 'http://ftp.ussg.iu.edu/CRAN/src/base/R-3/R-3.2.0.tar.gz'
 tar xvzf R-3.2.0.tar.gz
 cd R-3.2.0
-
+./configure --enable-R-static-lib --enable-static --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/R-3.2.0 --with-x=no
