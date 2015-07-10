@@ -7,6 +7,6 @@ tar xzf gcc-4.9.2.tar.gz
 cd gcc-4.9.2
 mkdir objdir
 cd objdir
-/tmp/gcc/gcc-4.9.2/configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/
-make bootstrap
+../configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/ --with-mpc=/cvmfs/oasis.opensciencegrid.org/osg/modules/mpc/1.0.3 --with-mpfr=/cvmfs/oasis.opensciencegrid.org/osg/modules/mpfr/3.1.3 --with-gmp=/cvmfs/oasis.opensciencegrid.org/osg/modules/gmp/6.0.0 --disable-multilib
+make -j 5 bootstrap
 make install
