@@ -1,0 +1,8 @@
+mkdir /tmp/gmp
+cd /tmp/gmp
+wget 'https://gmplib.org/download/gmp/gmp-6.0.0a.tar.lz'
+lzip -d gmp-6.0.0a.tar.lz
+tar xvf gmp-6.0.0a.tar
+make
+make check
+make install
