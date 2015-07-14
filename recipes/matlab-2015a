@@ -1,0 +1,6 @@
+mkdir /tmp/matlab
+cd /tmp/matlab
+wget 'http://www.mathworks.com/supportfiles/downloads/R2015a/deployment_files/R2015a/installers/glnxa64/MCR_R2015a_glnxa64_installer.zip'
+get installer_input.txt from m2015a directory and copy to /tmp/matlab
+./install -inputFile installer_input.txt -mode silent
+
