@@ -14,4 +14,5 @@ prepend_path("PATH", pathJoin(base, "bin"))
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
 
 family('opencv')
-prereq('gnome_libs', 'ffmpeg')
+load('gnome_libs/1.0')
+load('ffmpeg/2.5.2')

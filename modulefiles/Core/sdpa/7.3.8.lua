@@ -9,8 +9,8 @@ local version = "7.3.8"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/sdpa/"..version
 prepend_path("PATH", base)
 prepend_path("PATH", pathJoin(base, "bin"))
-prepend_path("PATH", pathJoin(base, "lib"))
-prepend_path("LD_LIBRARY_PATH", base)
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
+prepend_path("CPATH",  pathJoin(base, "include"))
+prepend_path("LIBRARY_PATH",  pathJoin(base, "lib"))
 family('sdpa')
 

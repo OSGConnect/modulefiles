@@ -10,6 +10,5 @@ local version = "2.6.4"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/fpc/"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
-prepend_path("PATH", pathJoin(base, "lib"))
-
+prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
 family('fpc')

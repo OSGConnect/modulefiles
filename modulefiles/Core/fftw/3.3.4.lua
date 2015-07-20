@@ -11,4 +11,6 @@ local version = "3.3.4"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/fftw/"..version
 
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
+prepend_path("CPATH",  pathJoin(base, "include"))
+prepend_path("LIBRARY_PATH",  pathJoin(base, "lib"))
 family('fftw')

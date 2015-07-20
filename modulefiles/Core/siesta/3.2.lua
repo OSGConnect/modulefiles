@@ -10,8 +10,5 @@ SIESTA is both a method and its computer program implementation, to perform effi
 local version = "3.2"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/siesta/"..version
 whatis("SIESTA is both a method and its computer program implementation, to perform efficient electronic structure calculations and ab initio molecular dynamics simulations of molecules and solids.  ")
-prepend_path("PATH", base)
 prepend_path("PATH", pathJoin(base, "Obj"))
-prepend_path("PATH", pathJoin(base, "Pseudo"))
-prepend_path("PATH", pathJoin(base, "Util"))
 family('siesta')

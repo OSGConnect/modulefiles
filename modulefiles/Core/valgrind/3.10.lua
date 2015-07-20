@@ -8,7 +8,11 @@ The Valgrind distribution currently includes six production-quality tools: a mem
 whatis("Valgrind tools can automatically detect many memory management and threading bugs, and profile your programs in detail")
 local version = "3.10"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/valgrind/"..version
-prepend_path("PATH", base)
+prepend_path("PATH", pathJoin(base, "bin"))
 prepend_path("PATH", pathJoin(base, "coregrind"))
+prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
+prepend_path("CPATH",  pathJoin(base, "include"))
+prepend_path("LIBRARY_PATH",  pathJoin(base, "lib"))
+
 family('valgrind')
 

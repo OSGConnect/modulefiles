@@ -6,10 +6,7 @@ SCons is a build system (build tool, make tool or software construction tool) wr
 whatis("SCons is a build system (build tool, make tool or software construction tool) written in pure Python.")
 local version = "2.3.4"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/scons/"..version
-prepend_path("PATH", base)
 prepend_path("PATH", pathJoin(base, "bin"))
-prepend_path("PATH", pathJoin(base, "engine/Scons/"))
-prepend_path("LD_LIBRARY_PATH", base)
-prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib/scons/SCons/"))
+prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
 family('scons')
 

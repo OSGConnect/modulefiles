@@ -14,4 +14,7 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/nco/"..version
 prepend_path("PATH", pathJoin(base, "bin"))
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
 family('nco')
-prereq('hdf5/1.8.9', 'netcdf/4.2.0', 'udunits/2.2.17')
+load('hdf5/1.8.9')
+load('netcdf/4.2.0')
+load('udunits/2.2.17')
+

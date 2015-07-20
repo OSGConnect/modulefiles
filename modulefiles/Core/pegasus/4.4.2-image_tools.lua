@@ -12,5 +12,5 @@ local version = "4.4.2-image_tools"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/pegasus/"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
-
+prepend_path("LD_LIBRARY_PATH", base.."/lib")
 family('pegasus')

@@ -12,7 +12,7 @@ certain rights in this software.  This software is distributed under
 the GNU General Public License.
 
 ]])
-whatis("Loads LAMMPS, which stands for Large-Scale Atomic/Molecular Massively Parallel")
+whatis("Loads LAMMPS, which stands for Large-Scale Atomic/Molecular Massively Parallel Simulator")
 local version = "2.0"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/lammps/"..version
 prepend_path("PATH", base)

@@ -14,4 +14,5 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/connect-client/"..ver
 prepend_path("PATH", pathJoin(base, "bin"))
 
 family('connect-client')
-prereq('python/2.7', 'gcc')
+load('python/2.7')
+load('gcc')

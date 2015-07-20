@@ -5,11 +5,8 @@ CASINO is a computer program system for performing quantum Monte Carlo (QMC) ele
 whatis("CASINO is a computer program system for performing quantum Monte Carlo (QMC) electronic structure calculations ")
 local version = "2.13.211"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/casino/"..version
-prepend_path("PATH", base)
 prepend_path("PATH", pathJoin(base, "bin_qmc"))
-prepend_path("PATH", pathJoin(base, "data"))
-prepend_path("PATH", pathJoin(base, "lib"))
-prepend_path("PATH", pathJoin(base, "src"))
 prepend_path("PATH", pathJoin(base, "bin_qmc/linuxpc-gnu.itb2/opt/"))
+prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
 family('casino')
 

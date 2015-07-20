@@ -11,6 +11,5 @@ local version = "1.15"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/wget/"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
-prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
 
 family('wget')

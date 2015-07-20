@@ -13,4 +13,8 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/cdo/"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
 family('cdo')
-prereq('hdf5/1.8.9', 'netcdf/4.2.0', 'udunits/2.2.17', 'curl/7.37.1', 'fftw/3.3.4')
+load('hdf5/1.8.9')
+load('netcdf/4.2.0')
+load('udunits/2.2.17')
+load('curl/7.37.1')
+load('fftw/3.3.4')

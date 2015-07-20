@@ -8,7 +8,8 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/geos/"..version
 whatis("GEOS (Geometry Engine - Open Source) is a C++ port of the  Java Topology Suite (JTS)")
 prepend_path("PATH", base)
 prepend_path("PATH", pathJoin(base, "bin"))
-prepend_path("PATH", pathJoin(base, "bin/bin"))
-prepend_path("PATH", pathJoin(base, "bin/lib"))
+prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
+prepend_path("CPATH",  pathJoin(base, "include"))
+prepend_path("LIBRARY_PATH",  pathJoin(base, "lib"))
 family('geos')
 

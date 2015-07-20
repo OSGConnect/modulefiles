@@ -13,4 +13,4 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/blasr/"..version
 prepend_path("PATH", pathJoin(base, "bin"))
 
 family('blasr')
-prereq('hdf5/1.8.12')
+load('hdf5/1.8.12')

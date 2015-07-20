@@ -15,4 +15,6 @@ pushenv("SWEETPATH", base)
 prepend_path("PYTHONPATH", base)
 
 family('pbsuite')
-prereq('blasr/1.3.1', 'python/2.7', 'pbsuite_pkgs')
+load('blasr/1.3.1')
+load('python/2.7')
+load('pbsuite_pkgs')

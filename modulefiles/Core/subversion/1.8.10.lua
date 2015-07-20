@@ -12,6 +12,9 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/subversion/"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
-
+prepend_path("CPATH",  pathJoin(base, "include"))
+prepend_path("LIBRARY_PATH",  pathJoin(base, "lib"))
 family('subversion')
-prereq('apr/1.5.1', 'aprutil/1.5.3', 'serf/1.37')
+load('apr/1.5.1')
+load('aprutil/1.5.3')
+load('serf/1.37')

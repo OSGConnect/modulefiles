@@ -13,5 +13,8 @@ whatis("Loads QHull libaries for computing convex hull and other operations")
 local version = "2012.1"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/qhull/"..version
 
-prepend_path("LD_LIBRARY_PATH", base)
+prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
+prepend_path("CPATH",  pathJoin(base, "include"))
+prepend_path("LIBRARY_PATH",  pathJoin(base, "lib"))
+
 family('qhull')

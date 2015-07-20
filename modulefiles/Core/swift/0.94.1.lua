@@ -8,10 +8,7 @@ local version = "0.94.1"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/swift/"..version
 prepend_path("PATH", base)
 prepend_path("PATH", pathJoin(base, "bin"))
-prepend_path("PATH", pathJoin(base, "etc"))
-prepend_path("PATH", pathJoin(base, "lib"))
 prepend_path("PATH", pathJoin(base, "libexec"))
-prepend_path("LD_LIBRARY_PATH", base)
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "libexec"))
 family('swift')
