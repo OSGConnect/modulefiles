@@ -1,0 +1,11 @@
+Download fiji-linux64.tar.gz from http://fiji.sc/Fiji 
+
+tar xvzf fiji-linux64.tar.gz 
+
+cd fiji.app
+
+ImageJ references java within the Fiji directory and the standard  "module load java" does not work. 
+
+To run 
+module load fiji
+ImageJ-linux64 --headless -macro example_macro.ijm example_input.tif⋅

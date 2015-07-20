@@ -1,0 +1,14 @@
+mkdir /tmp/atlas
+cd /tmp/atlas
+wget 'http://sourceforge.net/projects/math-atlas/files/Stable/3.10.2/atlas3.10.2.tar.bz2/download'
+tar xvif download
+mkdir ATLAS/build
+cd ATLAS
+wget 'http://www.netlib.org/lapack/lapack-3.5.0.tgz'
+gunzip lapack-3.5.0.tgz
+cd build
+../configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/atlas/3.10.2/ --shared --with-netlib-lapack-tarfile=/tmp/atlas/ATLAS/lapack-3.5.0.tar -b 64 -D c -DWALL -Fa alg '-g -Wa,--noexecstack -fPIC'
+make 
+make check
+make ptcheck
+make install

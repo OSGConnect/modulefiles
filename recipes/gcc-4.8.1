@@ -1,0 +1,12 @@
+# requires gmp, mpfr, mpc
+
+mkdir /tmp/gcc
+cd /tmp/gcc
+wget 'http://mirrors.concertpass.com/gcc/releases/gcc-4.8.1/gcc-4.8.1.tar.gz'
+tar xzf gcc-4.8.1.tar.gz
+cd gcc-4.8.1
+mkdir objdir
+cd objdir
+/tmp/gcc/gcc-4.8.1/configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.8.1/ --with-mpc=/cvmfs/oasis.opensciencegrid.org/osg/modules/mpc/1.0.3 --with-mpfr=/cvmfs/oasis.opensciencegrid.org/osg/modules/mpfr/3.1.3 --with-gmp=/cvmfs/oasis.opensciencegrid.org/osg/modules/gmp/6.0.0
+make -j 5 bootstrap
+make install

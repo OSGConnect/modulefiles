@@ -22,7 +22,7 @@ for root, dirs, files in os.walk(options.directory):
             correction_list[filename][1] |=  (stat.S_IRGRP|stat.S_IROTH)
         if (perms & stat.S_IXUSR ) and not (perms & (stat.S_IXGRP|stat.S_IXOTH)):
             if filename not in correction_list:
-                correction_list[filename] = ['file', perms]
+                correction_list[filename] = ['file', perms, perms]
             correction_list[filename][1] |=  (stat.S_IXGRP|stat.S_IXOTH)
         
     for dir in dirs:
