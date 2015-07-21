@@ -27,5 +27,5 @@ prepend_path("PYTHONPATH", base.."/grass-"..version.."/lib/python2.7/site-packag
 
 family('grass')
 
-prereq('python/2.7')
+load('python/2.7')
 
