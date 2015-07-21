@@ -1,0 +1,15 @@
+mkdir /tmp/xrd-lazy
+cd /tmp/xrd-lazy
+git clone https://github.com/bbockelm/xrootd-lazy-download.git
+cd xrootd-lazy-download
+mkdir build
+cd build
+cmake ..  -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/xrootd/4.2.1 -DENABLE_PERL=FALSE
+make
+make install
+vi /cvmfs/oasis.opensciencegrid.org/osg/modules/xrootd/4.2.1/etc/xrootd/client.plugins.d/lazy-download.conf
+
+###
+Change url to 
+url = root://stash-itb.grid.iu.edu;root://stash-itb.opensciencegrid.org;root://stash.grid.iu.edu;root://stash.opensciencegrid.org
+en
