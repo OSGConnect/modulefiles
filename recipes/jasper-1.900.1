@@ -1,0 +1,8 @@
+mkdir /tmp/jasper
+cd /tmp/jasper
+wget 'http://www.ece.uvic.ca/~frodo/jasper/software/jasper-1.900.1.zip'
+unzip jasper-1.900.1.zip
+cd jasper-1.900.1
+./configure --enable-shared --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/jasper/1.900.1
+make
+make install
