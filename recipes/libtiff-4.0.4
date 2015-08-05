@@ -1,0 +1,9 @@
+mkdir /tmp/tiff
+cd /tmp/tiff
+wget 'http://download.osgeo.org/libtiff/tiff-4.0.4.tar.gz'
+tar xvzf tiff-4.0.4.tar.gz
+cd tiff-4.0.4
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/libtiff/4.0.4 --enable-shared
+make
+make check
+make install
