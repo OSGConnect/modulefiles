@@ -1,0 +1,9 @@
+cd /tmp
+mkdir proj
+cd proj
+wget 'http://download.osgeo.org/proj/proj-4.9.1.tar.gz'
+tar xvzf proj-4.9.1.tar.gz
+cd proj-4.9.1
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/proj/4.9.1/ --enable-shared
+make
+make install
