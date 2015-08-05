@@ -15,7 +15,6 @@ prepend_path("PATH", pathJoin(base, "etc"))
 prepend_path("PATH", pathJoin(base, "tcl"))
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
 prepend_path("CPATH",  pathJoin(base, "include"))
-prepend_path("LIBRARY_PATH",  pathJoin(base, "lib"))
 
 
 family('fsl')
