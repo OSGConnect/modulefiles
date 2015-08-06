@@ -1,0 +1,8 @@
+mkdir /tmp/odbc
+cd /tmp/odbc
+wget 'ftp://ftp.unixodbc.org/pub/unixODBC/unixODBC-2.3.2.tar.gz'
+tar xvzf unixODBC-2.3.2.tar.gz
+cd unixODBC-2.3.2
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/unixodbc/2.3.2
+make
+make install
