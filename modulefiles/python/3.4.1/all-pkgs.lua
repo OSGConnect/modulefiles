@@ -11,7 +11,7 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-3.4/all"
 pushenv("VIRTUAL_ENV", base)
 prepend_path("PATH", pathJoin(base, "bin"))
 
-prereq('atlas', 'lapack')
+load('atlas/3.10.2', 'lapack')
 -- Setup Modulepath for packages built by this python stack
 local mroot = os.getenv("MODULEPATH_ROOT")
 local mdir = pathJoin(mroot,"Python",version)

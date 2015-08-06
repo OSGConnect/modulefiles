@@ -1,0 +1,12 @@
+module load python/2.7
+virtualenv-2.7 /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/all
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/all
+create requirements file with:
+
+matplotlib
+numpy
+pandas
+scipy
+
+pip install -r requirements
+
