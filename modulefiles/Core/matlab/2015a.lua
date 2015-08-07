@@ -11,7 +11,7 @@ The MCR is freely distributable as described by the license file located at:
 ]])
 
 local version = "2015a"
-local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/matlab/"..version
+local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/matlab/"..version.."/v85"
 
 prepend_path("PATH", pathJoin(base, "bin"))
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib64"))
