@@ -1,12 +1,12 @@
 help(
 [[
-MATLAB Compiler Runtime r2014a.
+MATLAB Compiler Runtime r2015a.
 -------------------------------
 
 This module loads a standalone set of libraries for executing MATLAB code.
 
 The MCR is freely distributable as described by the license file located at:
-  /cvmfs/oasis.opensciencegrid.org/osg/modules/matlab/r2014a/MCR_license.txt
+  /cvmfs/oasis.opensciencegrid.org/osg/modules/matlab/2015a/v85/MCR_license.txt
 
 ]])
 
