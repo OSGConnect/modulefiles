@@ -12,7 +12,7 @@ pushenv("VIRTUAL_ENV", base)
 prepend_path("PATH", pathJoin(base, "bin"))
 pushenv("PYTHONHOME", base)
 
-load('atlas/3.10.2', 'lapack', 'netcdf/4.2.0', 'hdf5/1.8.13')
+load('atlas/3.10.1', 'lapack', 'netcdf/4.2.0', 'hdf5/1.8.13')
 -- Setup Modulepath for packages built by this python stack
 local mroot = os.getenv("MODULEPATH_ROOT")
 local mdir = pathJoin(mroot,"Python",version)
