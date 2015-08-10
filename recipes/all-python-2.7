@@ -1,0 +1,16 @@
+module load python/2.7
+virtualenv-2.7 /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/all
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/all
+create requirements file with:
+
+numpy
+h5py
+matplotlib
+scipy
+pandas
+nltk
+scikit-learn
+
+export HDF5_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/hdf5/1.8.13
+source /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/all/bin/activate
+pip install -r requirements
