@@ -1,0 +1,28 @@
+mkdir /tmp/xenon1t
+cd /tmp/xenon1t
+wget 'http://geant4.web.cern.ch/geant4/support/source/geant4.9.4.p04.tar.gz'
+tar xvif geant4.9.4.p04.tar.gz
+source /cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/current/init/zsh
+module load gcc/4.9.2
+module load cmake/3.0.1
+module load clhep/2.1.0.1
+copy config.sh from recipes/geant4/9.4p04/ to /tmp/xenon1t/geant4.9.4.p04/.config/bin/Linux-g++/config.sh
+./Configure -build -d
+./Configure -install
+
+
+# for data files
+mkdir data
+cd data
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4NDL.3.14.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4EMLOW.6.19.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4PhotonEvaporation.2.1.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4RadioactiveDecay.3.3.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4ABLA.3.0.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4NEUTRONXS.1.0.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4PII.1.2.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/RealSurface.1.0.tar.gz'
+for x in *.tar.gz; do; tar xif $x;done
+rm *.tar.gz
+cp -a * /cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/9.4p04/data
+
