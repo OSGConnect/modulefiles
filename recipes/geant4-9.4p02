@@ -1,0 +1,47 @@
+mkdir /tmp/geant4-9.4p02
+cd /tmp/geant4-9.4p02
+wget 'ftp://marmot.tn.utexas.edu/pub/fink/distfiles/md5/d4e95badeb536d82278e690280633846/geant4.9.4.p02.tar.gz'
+tar xvif geant4.9.4.p02.tar.gz
+source /cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/current/init/zsh
+module load gcc/4.9.2
+module load cmake/3.0.1
+module load clhep/2.1.0.1
+copy config.sh from recipes/geant4/ to /tmp/geant4-9.4p02/geant4.9.4.p02/.config/bin/Linux-g++/config.sh
+./Configure -build -d
+./Configure -install
+
+# env vars
+G4SYSTEM=Linux-g++
+G4INSTALL=/tmp/geant4-9.4p02/geant4.9.4.p02
+G4TMP=/tmp/geant4-9.4p02/geant4.9.4.p02/tmp
+G4LIB=/tmp/geant4-9.4p02/geant4.9.4.p02/lib
+G4LEVELGAMMADATA=/cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/9.4p02/data/PhotonEvaporation2.1
+G4RADIOACTIVEDATA=/cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/9.4p02/data/RadioactiveDecay3.3
+G4LEDATA=/cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/9.4p02/data/G4EMLOW6.19
+G4NEUTRONHPDATA=/cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/9.4p02/data/G4NDL3.14
+G4ABLADATA=/cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/9.4p02/data/G4ABLA3.0
+CLHEP_BASE_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/clhep/2.1.0.1/
+CLHEP_INCLUDE_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/clhep/2.1.0.1//include
+CLHEP_LIB_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/clhep/2.1.0.1//lib
+CLHEP_LIB=CLHEP
+G4LIB_BUILD_SHARED=1
+
+
+
+
+# for data files
+mkdir data
+cd data
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4NDL.3.14.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4EMLOW.6.19.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4PhotonEvaporation.2.1.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4RadioactiveDecay.3.3.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4ABLA.3.0.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4NEUTRONXS.1.0.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4PII.1.2.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/RealSurface.1.0.tar.gz'
+for x in *.tar.gz; do; tar xif $x;done
+rm *.tar.gz
+mkdir /cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/9.4p02/data
+cp -a * /cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/9.4p02/data
+
