@@ -6,10 +6,10 @@ This module loads Geant4 9.4p02.  Geant4 is a detector simulator for HEP.
 
 whatis("Loads Geant4 9.4p02")
 
-local version "," "9.4p02"
-local base "," "/cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/"..version
+local version = "9.4p02"
+local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/"..version
 
-prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
+prepend_path("LD_LIBRARY_PATH", "/cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/9.4p02/lib/geant4/Linux-g++")
 prepend_path("LIBRARY_PATH",  pathJoin(base, "lib64"))
 pushenv("G4SYSTEM","Linux-g++")
 pushenv("G4INSTALL","/cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/9.4p02/src/geant4")
