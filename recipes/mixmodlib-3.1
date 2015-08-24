@@ -1,8 +1,8 @@
-mkdir /tmp/gsl
-cd /tmp/gsl
-wget 'http://gnu.opencube.ca/gsl/gsl-1.16.tar.gz'
-tar xvzf gsl-1.16.tar.gz
-cd gsl-1.16
+mkdir /tmp/mixmod-3.1
+cd /tmp/mixmod-3.1
+wget 'http://www.mixmod.org/IMG/tgz/mixmod_3-1-0_src.tgz'
+tar xvzf mixmod_3-1-0_src.tgz
+cd mixmodLib_3_1_0/
 ./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/gsl/1.16/
 make
 make install
