@@ -1,0 +1,11 @@
+mkdir /tmp/saga
+cd /tmp/saga
+wget 'http://downloads.sourceforge.net/project/saga-gis/SAGA%20-%202.2/SAGA%202.2.0/saga_2.2.0.tar.gz?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fsaga-gis%2Ffiles%2FSAGA%2520-%25202.2%2FSAGA%25202.2.0%2F&ts=1438875509&use_mirror=colocrossing'
+mv saga_2.2.0.tar.gz\?r=http:%2F%2Fsourceforge.net%2Fprojects%2Fsaga-gis%2Ffiles%2FSAGA%20-%202.2%2FSAGA%202.2.0%2F\&ts=1438875509\&use_mirror=colocrossing saga_2.2.0.tar.gz
+tar xvzf saga_2.2.0.tar.gz
+cd saga-2.2.0
+source /cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/current/init/zsh
+module load  proj/4.9.1 wxgtk/3.0.2 unixodbc/2.3.2 gdal/2.0.0 jasper/1.900.1
+./configure --disable-gui --enable-python --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/saga/2.2.0
+make
+make install
