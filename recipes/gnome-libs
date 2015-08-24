@@ -1,4 +1,4 @@
-Download following rpms for sl6
+Download following rpms for sl6 from scientific linux rpm repo
 
 Glib 2.28.8
 ATK 1.30.0
@@ -6,9 +6,11 @@ Cairo 1.8.8
 GTK+ 2.24.23
 Pango 1.28.1
 Pixman 0.32.4
-
+gdk-pixbuf2  2.24.1
 
 run following to extract files
+mkdir tmp
+cd tmp
 
 for i in ../*.rpm;
 do

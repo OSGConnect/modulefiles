@@ -1,0 +1,10 @@
+mkdir /tmp/wxgtk-3.0.2
+cd /tmp/wxgtk-3.0.2
+wget 'https://sourceforge.net/projects/wxwindows/files/3.0.2/wxWidgets-3.0.2.tar.bz2'
+tar xvif wxWidgets-3.0.2.tar.bz2
+cd wxWidgets-3.0.2
+source /cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/current/init/bash
+module load gnome-libs/1.0
+./configure --with-gtk=2 --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/wxgtk/3.0.2 --without-gtkprint
+make
+make install
