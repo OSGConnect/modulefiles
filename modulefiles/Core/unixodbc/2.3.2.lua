@@ -9,7 +9,7 @@ definitive standard for ODBC on non MS Windows platforms.
 
 whatis("Loads unixODBC libraries")
 local version = "2.3.2"
-local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/unixODBC/"..version
+local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/unixodbc/"..version
 
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
 prepend_path("PATH", pathJoin(base, "bin"))
