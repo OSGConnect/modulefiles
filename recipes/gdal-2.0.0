@@ -1,0 +1,8 @@
+mkdir /tmp/gdal-2.0.0
+cd /tmp/gdal-2.0.0
+wget 'http://download.osgeo.org/gdal/2.0.0/gdal-2.0.0.tar.gz'
+tar xvif gdal-2.0.0.tar.gz
+cd gdal-2.0.0
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/gdal/2.0.0
+make
+make install
