@@ -1,0 +1,8 @@
+mkdir /tmp/zlib-1.2.8
+cd /tmp/zlib-1.2.8
+wget 'http://zlib.net/zlib-1.2.8.tar.gz'
+tar xvzf zlib-1.2.8.tar.gz
+cd zlib-1.2.8
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/zlib/1.2.8
+make
+make install
