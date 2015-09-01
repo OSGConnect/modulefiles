@@ -12,6 +12,8 @@ local version = "5.3.0"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/freesurfer/"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
+prepend_path("PATH", pathJoin(base, "mni", "bin"))
+prepend_path("PATH", pathJoin(base, "fsl", "bin"))
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
 pushenv("FREESURFER_HOME", base)
 pushenv("SUBJECTS_DIR", pathJoin(base, "subjects"))
