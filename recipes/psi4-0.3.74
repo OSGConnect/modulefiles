@@ -1,0 +1,15 @@
+
+psi4: Quantum Chemistry Package 
+Location: http://www.psicode.org/psi4manual/master/conda.html#sec-quickconda
+
+Get Miniconda installer script. Either issue the command below or download from http://conda.pydata.org/miniconda.html by clicking on the appropriate link for your OS. If you already have or would prefer to use Anaconda rather than Miniconda, that’s fine. Locate or install Anaconda, check that conda is in your path, and skip to step 4.
+>>> curl -O "http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh"
+Install Miniconda. Execute the script and answer its questions, particularly your choice of installation location. You may need to replace the filename below with the correct filename for the OS/version of installer you downloaded. Execute with bash regardless of csh/bash shell. If you’re a bash user, it’s convenient to agree to its offer to prepend conda commands to your PATH in ~/.bashrc. If you’re a csh/tcsh user, it’s convenient to do the same by hand to your ~/.tcshrc: setenv PATH /path/to/miniconda/bin:${PATH}. Further directions assume that the conda command is in your path; you may have to log out and log back in for which conda to return correctly.
+>>> bash Miniconda-latest-Linux-x86_64.sh
+>>> conda update conda
+>>> conda config --add channels http://conda.anaconda.org/psi4
+>>> mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/psi4
+>>> mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/psi4/0.3.74
+>>> mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/psi4/0.3.74/bin
+>>> source activate /cvmfs/oasis.opensciencegrid.org/osg/modules/psi4/0.3.74
+>>> conda install psi4
