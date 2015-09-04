@@ -1,0 +1,3 @@
+go to : http://www.ccp4.ac.uk/
+download and untar tar -xvzf cpp4-x.tar.gz
+Run the script BINARY.setup 
