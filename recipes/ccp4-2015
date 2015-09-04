@@ -1,3 +1,7 @@
-go to : http://www.ccp4.ac.uk/
-download and untar tar -xvzf cpp4-x.tar.gz
-Run the script BINARY.setup 
+#go to : http://www.ccp4.ac.uk/
+#Click the download link, select Linux tab
+# Agree the license agreement
+# download and untar tar -xvzf ccp4-linux64-2015-07-02-0115.tar.gz
+mkdir ccp4
+mv ccp4-linux64-2015-07-02-0115 ccp4/2015
+./BINARY.setup 
