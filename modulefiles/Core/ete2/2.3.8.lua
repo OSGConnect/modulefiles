@@ -6,7 +6,7 @@ This module loads the ETE2 Toolkit, including Python
 
 whatis("Loads the ETE2 Toolkit, including Python")
 
-local version = "2.8.3"
+local version = "2.3.8"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/ete2/"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
