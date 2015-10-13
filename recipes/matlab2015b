@@ -1,2 +1,6 @@
+downlod from http://www.mathworks.com/products/compiler/mcr/
+unzip MCR_R2015b_glnxa64_installer.zip
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/matlab/2015b
+./install -mode silent -agreeToLicense yes -destinationFolder /cvmfs/oasis.opensciencegrid.org/osg/modules/matlab/2015b
 
 
