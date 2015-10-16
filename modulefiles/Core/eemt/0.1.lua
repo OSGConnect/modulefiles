@@ -7,6 +7,8 @@ whatis("Loads the EEMT GIS system")
 local version = "0.1"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/eemt/"..version
 
+setenv("GISBASE", base.."/grass-6.4.4")
+
 prepend_path("PATH", base.."/grass-6.4.4/bin")
 prepend_path("PATH", base.."/grass-6.4.4/scripts")
 prepend_path("PATH", base.."/bin")
