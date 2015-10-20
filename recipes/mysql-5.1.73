@@ -1,0 +1,5 @@
+Download mysql source from the rpm repo (lincoln gave me this)
+tar -xvzf mysql-5.1.73-nodocs.tar.gz
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/mysql/5.1.73 --exec-prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/mysql/5.1.73 --enable-static=yes --without-server --without-docs
+make 
+make install
