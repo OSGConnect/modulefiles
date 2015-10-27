@@ -1,0 +1,4 @@
+downlod from http://www.mathworks.com/products/compiler/mcr/
+unzip MCR_R2014a_glnxa64_installer.zip
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/matlab/2014a/v83
+./install -mode silent -agreeToLicense yes -destinationFolder /cvmfs/oasis.opensciencegrid.org/osg/modules/matlab/2014a/v83

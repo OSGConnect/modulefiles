@@ -1,0 +1,2 @@
+download http://chango.ibmb.csic.es/arcimboldo_lite
+tar -xvzf arc-lite.tar.gz

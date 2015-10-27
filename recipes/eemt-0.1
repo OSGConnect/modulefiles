@@ -1,0 +1,284 @@
+#!/bin/bash
+
+set -e
+set -v
+
+TARGET=/cvmfs/oasis.opensciencegrid.org/osg/modules/eemt/0.1
+
+export PATH=$TARGET/bin:$PATH
+export CPPFLAGS=-I$TARGET/include
+export CFLAGS=-fPIC
+export CXXFLAGS=-fPIC
+export LDFLAGS=-L$TARGET/lib
+export LD_LIBRARY_PATH=$TARGET/lib:$TARGET/grass-6.4.4/lib:/usr/share/pkgconfig:/usr/lib64/pkgconfig
+
+#PKD-Config
+wget http://pkgconfig.freedesktop.org/releases/pkg-config-0.25.tar.gz
+tar xzf pkg-config-0.25.tar.gz
+cd pkg-config-0.25
+./configure --prefix=$TARGET
+make install
+cd ..
+
+#python 2.7
+wget http://python.org/ftp/python/2.7.2/Python-2.7.2.tar.bz2
+tar xjf Python-2.7.2.tar.bz2
+cd Python-2.7.2
+./configure --prefix=$TARGET/ --enable-unicode=ucs4
+make
+make install
+cd ..
+
+#swig
+wget http://prdownloads.sourceforge.net/swig/swig-3.0.5.tar.gz
+tar xzf swig-3.0.5.tar.gz
+cd swig-3.0.5
+wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.37.tar.gz
+./Tools/pcre-build.sh
+./configure --prefix=$TARGET
+make
+make install
+cd ..
+
+#zlib
+wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4/zlib-1.2.8.tar.gz
+tar xzf zlib-1.2.8.tar.gz
+cd zlib-1.2.8
+./configure --prefix=$TARGET
+make install
+cd ..
+
+#hdf5
+wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4/hdf5-1.8.9.tar.gz
+tar xzf hdf5-1.8.9.tar.gz
+cd hdf5-1.8.9
+./configure --with-zlib=$TARGET --prefix=$TARGET
+make check install
+cd ..
+
+#netcdf
+wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.3.tar.gz
+tar xzf netcdf-4.3.3.tar.gz
+cd netcdf-4.3.3
+./configure --prefix=$TARGET
+make check install
+cd ..
+
+#PROJ.4
+wget http://download.osgeo.org/proj/proj-4.9.2.tar.gz
+wget http://download.osgeo.org/proj/proj-datumgrid-1.5.tar.gz
+tar xzf proj-4.9.2.tar.gz
+cd proj-4.9.2/nad
+tar xzf ../../proj-datumgrid-1.5.tar.gz
+cd ..
+./configure --prefix=$TARGET
+make
+make install
+cd ..
+
+#gdal
+wget http://download.osgeo.org/gdal/1.11.3/gdal-1.11.3.tar.gz
+tar xzf gdal-1.11.3.tar.gz
+cd gdal-1.11.3
+./configure --without-grass --with-netcdf=$TARGET -with-python --prefix=$TARGET --with-hdf5=$TARGET
+make
+make install
+cd ..
+
+#geos
+wget http://download.osgeo.org/geos/geos-3.4.2.tar.bz2
+tar -xjf geos-3.4.2.tar.bz2
+cd geos-3.4.2
+./configure --prefix=$TARGET --enable-python
+make
+make install
+cd ..
+
+#Flex
+wget http://downloads.sourceforge.net/project/flex/flex-2.5.39.tar.gz
+tar xzf flex-2.5.39.tar.gz
+cd flex-2.5.39
+./configure --prefix=$TARGET
+make install
+cd ..
+
+#Bison
+wget http://ftp.gnu.org/gnu/bison/bison-3.0.tar.gz
+tar xzf bison-3.0.tar.gz
+cd bison-3.0
+./configure --prefix=$TARGET
+make install
+cd ..
+
+#libtiff
+wget ftp://ftp.remotesensing.org/pub/libtiff/tiff-4.0.3.tar.gz
+tar xzf tiff-4.0.3.tar.gz
+cd tiff-4.0.3
+./configure --prefix=$TARGET
+make install
+cd ..
+
+#libtiff
+wget https://www.ece.uvic.ca/~frodo/jasper/software/jasper-1.900.1.zip
+unzip jasper-1.900.1.zip
+cd jasper-1.900.1
+./configure --prefix=$TARGET
+make install
+cd ..
+
+#libpng
+wget ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng16/libpng-1.6.18.tar.gz
+tar xzf libpng-1.6.18.tar.gz
+cd libpng-1.6.18
+./configure --prefix=$TARGET
+make install
+cd ..
+
+#SQLite
+wget https://www.sqlite.org/2015/sqlite-autoconf-3080900.tar.gz
+tar xzf sqlite-autoconf-3080900.tar.gz
+cd sqlite-autoconf-3080900
+./configure --prefix=$TARGET --enable-static --disable-shared
+make install 
+cd ..
+
+#FreeType
+wget http://download.savannah.gnu.org/releases/freetype/freetype-2.4.12.tar.gz
+tar xzf freetype-2.4.12.tar.gz
+cd freetype-2.4.12
+./configure --prefix=$TARGET
+make 
+#make install
+cd ..
+
+#expat
+wget http://downloads.sourceforge.net/expat/expat-2.1.0.tar.gz
+tar xzf expat-2.1.0.tar.gz
+cd expat-2.1.0
+./configure --prefix=$TARGET
+make install
+cd ..
+
+##FontConfig
+wget http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.11.1.tar.gz
+tar xf fontconfig-2.11.1.tar.gz
+cd fontconfig-2.11.1
+./configure --prefix=$TARGET
+make install
+cd ..
+
+#Pixman
+wget http://cairographics.org/releases/pixman-0.32.6.tar.gz
+tar xzf pixman-0.32.6.tar.gz
+cd pixman-0.32.6
+CPPFLAGS="-I$TARGET/include" LDFLAGS="-L$TARGET/lib" ./configure --prefix=$TARGET
+make install 
+cd ..
+
+#GLib
+wget ftp://ftp.gnome.org/pub/gnome/sources/glib/2.46/glib-2.46.0.tar.xz
+tar xf glib-2.46.0.tar.xz
+cd glib-2.46.0
+./configure --prefix=$TARGET
+make install
+cd ..
+
+#harfbuzz
+wget http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-0.9.42.tar.bz2
+tar xjf harfbuzz-0.9.42.tar.bz2
+cd harfbuzz-0.9.42
+./configure --prefix=$TARGET --with-freetype=yes
+make install
+cd ..
+
+##Cairo
+wget http://cairographics.org/releases/cairo-1.12.18.tar.xz
+tar xf cairo-1.12.18.tar.xz
+cd cairo-1.12.18
+./configure --prefix=$TARGET
+make install
+cd ..
+
+#libffi
+wget ftp://sourceware.org/pub/libffi/libffi-3.2.1.tar.gz
+tar xf libffi-3.2.1.tar.gz
+cd libffi-3.2.1
+CPPFLAGS="-I$TARGET/include" LDFLAGS="-L$TARGET/lib" ./configure --prefix=$TARGET
+make install
+cd ..
+
+#GetText
+wget http://ftp.gnu.org/pub/gnu/gettext/gettext-0.19.6.tar.gz
+tar xzf gettext-0.19.6.tar.gz
+cd gettext-0.19.6
+./configure --prefix=$TARGET
+make install 
+cd ..
+
+#ATK
+wget http://ftp.gnome.org/pub/gnome/sources/atk/2.16/atk-2.16.0.tar.xz
+tar xf atk-2.16.0.tar.xz
+cd atk-2.16.0
+./configure --prefix=$TARGET
+make install
+cd ..
+
+#Pango
+wget ftp://ftp.gnome.org/pub/gnome/sources/pango/1.37/pango-1.37.5.tar.xz
+tar xf pango-1.37.5.tar.xz
+cd pango-1.37.5
+./configure --prefix=$TARGET
+make install
+cd ..
+
+#gdk-pixbuf
+wget ftp://ftp.gnome.org/pub/gnome/sources/gdk-pixbuf/2.30/gdk-pixbuf-2.30.8.tar.xz
+tar xf gdk-pixbuf-2.30.8.tar.xz
+cd gdk-pixbuf-2.30.8
+./configure --prefix=$TARGET --without-libjpeg
+make install
+cd ..
+
+#GTK+
+wget http://ftp.gnome.org/pub/gnome/sources/gtk+/3.3/gtk+-3.3.16.tar.xz
+tar xf gtk+-3.3.16.tar.xz
+cd gtk+-3.3.16
+./configure --prefix=$TARGET
+make install
+cd ..
+
+#wxPython
+wget http://downloads.sourceforge.net/wxpython/wxPython-src-3.0.2.0.tar.bz2
+tar xjf wxPython-src-3.0.2.0.tar.bz2
+cd wxPython-src-3.0.2.0
+./configure --prefix=$TARGET
+make install
+cd ..
+
+#GRASS
+wget http://grass.osgeo.org/grass64/source/grass-6.4.4.tar.gz
+tar xzf grass-6.4.4.tar.gz
+cd grass-6.4.4
+./configure --prefix=$TARGET --with-proj-lib=$TARGET/lib --with-proj-share=$TARGET/share/proj/ --with-proj-includes=$TARGET/include --with-gdal=$TARGET  --with-cxx --without-fftw --without-python --with-geos=$TARGET/bin --with-libs=$TARGET/lib -with-opengl=no --with-freetype-includes=$TARGET/include/freetype2 --with-netcdf --without-tcltk 
+make || make
+make install
+cd ..
+
+#GDAL_GRASS
+wget http://download.osgeo.org/gdal/gdal-grass-1.4.3.tar.gz
+tar xzf gdal-grass-1.4.3.tar.gz
+cd gdal-grass-1.4.3
+./configure --with-gdal=$TARGET/bin/gdal-config --with-grass=$TARGET/grass-6.4.4/ --prefix=$TARGET
+make
+make install
+cd ..
+
+#Saga
+wget http://downloads.sourceforge.net/saga-gis/saga_2.1.4.tar.gz
+tar xzf saga_2.1.4.tar.gz
+cd saga-2.1.4
+./configure --prefix=$TARGET --disable-odbc
+make
+make install
+cd ..
+

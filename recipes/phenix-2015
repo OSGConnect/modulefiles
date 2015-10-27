@@ -1,0 +1,8 @@
+
+# Go to https://www.phenix-online.org/
+# request donwload password
+# Download the source code
+tar -xvzf phenix-installer-1.10-2152-intel-linux-2.6-x86_64-centos5.tar.gz.tar.gz
+cd phenix-installer-1.10-2152-intel-linux-2.6-x86_64-centos5.tar.gz
+mkdir -p phenix-installer-1.10-2152-intel-linux-2.6-x86_64-centos5.tar.gz
+./install --prefix=phenix-installer-1.10-2152-intel-linux-2.6-x86_64-centos5.tar.gz
