@@ -1,0 +1,41 @@
+install perl-CPAN-1.9402-130.el6_4.x86_64 rpm from yum
+cpan
+o conf mbuildpl_arg "--install_base /cvmfs/oasis.opensciencegrid.org/osg/modules/cpan/perl-5.10"
+o conf makepl_arg "PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/cpan/perl-5.10"
+o conf commit
+export PERL5LIB=/cvmfs/oasis.opensciencegrid.org/osg/modules/cpan/perl-5.10/share/perl5/
+install the each of the following modules using cpan [module]:
+
+Carp
+Clone
+Config::General
+Cwd
+Data::Dumper
+Digest::MD5
+File::Basename
+File::Spec::Functions
+File::Temp
+FindBin
+Font::TTF::Font
+GD
+GD::Image
+Getopt::Long
+IO::File
+List::MoreUtils
+List::Util
+Math::Round
+Math::Trig
+Math::VecStat
+Memoize
+Params::Validate
+Pod::Usage
+POSIX
+Readonly
+Regexp::Common
+Statistics::Basic
+Storable
+Sys::Hostname
+Text::Balanced
+Text::Format
+Time::HiRes
+
