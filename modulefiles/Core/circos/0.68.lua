@@ -15,5 +15,6 @@ local version = "0.68"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/circos/"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
-prepend_path("PERL5LIB", pathJoin(base,"/lib"))
+prepend_path("PERL5LIB", pathJoin(base,"lib"))
+load('cpan/perl-5.10')
 family('circos')
