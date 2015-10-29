@@ -44,4 +44,5 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/cpan/perl-"..version
 prepend_path("PERL5LIB", pathJoin(base, "share", "perl5"))
 prepend_path("PERL5LIB", pathJoin(base, "lib64", "perl5"))
 prepend_path("PERL5LIB", pathJoin(base, "lib", "perl5"))
+load("gd/2.1.1")
 family('cpan')
