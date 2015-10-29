@@ -41,6 +41,6 @@ Time::HiRes
 whatis("Loads cpan modules for perl 5.10")
 local version = "5.10"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/cpan/perl-"..version
-
 prepend_path("PERL5LIB", pathJoin(base, "share", "perl5"))
+prepend_path("PERL5LIB", pathJoin(base, "lib64", "perl5"))
 family('cpan')
