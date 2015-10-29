@@ -3,8 +3,7 @@ cd /tmp/libgd
 wget 'https://github.com/libgd/libgd/archive/gd-2.1.1.tar.gz'
 tar xvzf tar xvzf gd-2.1.1.tar.gz
 cd libgd-gd-2.1.1
-mkdir build 
-cd build
-cmake ..  -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/gd/2.1.1
+./bootstrap.sh
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/gd/2.1.1
 make
 make install
