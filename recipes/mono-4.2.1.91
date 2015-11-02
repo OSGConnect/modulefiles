@@ -1,0 +1,9 @@
+mkdir /tmp/mono
+cd /tmp/mono
+wget 'http://download.mono-project.com/sources/mono/mono-4.2.1.91.tar.bz2'
+tar xvif mono-4.2.1.91.tar.bz2
+cd mono-4.2.1
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/mono/4.2.1
+make
+make check # some failures to be expected
+make install
