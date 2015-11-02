@@ -1,6 +1,6 @@
 module load python/3.4
 module load hdf5/1.8.13
-virtualenv-3.4 /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-3.4/all
+pyvenv-3.4 /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-3.4/all
 cd /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-3.4/all
 create requirements file with:
 
@@ -12,10 +12,9 @@ matplotlib
 numpy
 pandas
 scipy
-
+iminuit
 
 export HDF5_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/hdf5/1.8.13
-source
-/cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/all/bin/activate
+source /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-3.4/all/bin/activate
 pip install -r requirements
 
