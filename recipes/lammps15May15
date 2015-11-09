@@ -1,4 +1,6 @@
 git clone git://git.lammps.org/lammps-ro.git mylammps 
+or
+check the versions here: http://lammps.sandia.gov/tars/
 cd mylammps/src
 make yes-all (adds standard packages colloid, meam, ...) 
 make serial
