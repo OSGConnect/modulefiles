@@ -20,7 +20,6 @@
         "client_location": {
           "type": "object",
           "dynamic": true,
-          "path": "full",
           "properties": {
             "location": {"type": "geo_point"}
           }
