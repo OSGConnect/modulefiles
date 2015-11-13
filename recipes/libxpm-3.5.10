@@ -1,0 +1,8 @@
+mkdir /tmp/libxpm
+cd /tmp/libxpm
+wget 'http://www.x.org/releases/individual/lib/libXpm-3.5.10.tar.bz2'
+tar xvif libXpm-3.5.10.tar.bz2
+cd libXpm-3.5.10
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/libxpm/3.5.10
+make
+make install
