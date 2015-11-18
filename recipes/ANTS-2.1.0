@@ -1,0 +1,4 @@
+Download the file "Linux_X_64.tar.bz2.RedHat" from https://github.com/stnava/ANTs/releases
+bunzip2 Linux_X_64.tar.bz2.RedHat
+tar -xvf Linux_X_64.tar.bz2.RedHat.out
+copy the bin directory onto OASIS
