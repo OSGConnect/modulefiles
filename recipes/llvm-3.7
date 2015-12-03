@@ -15,5 +15,5 @@ mkdir llvm-build
 cd llvm-build
 cmake -DLLVM_TARGETS_TO_BUILD="X86" -DCMAKE_CXX_LINK_FLAGS="-L/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/lib64 -Wl,-rpath,/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/lib64" -DCMAKE_CXX_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/g++ -DCMAKE_C_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/gcc -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/llvm/3.7 ../llvm-3.7.0.src
 make -j 8
-make check
+make check-all
 make install

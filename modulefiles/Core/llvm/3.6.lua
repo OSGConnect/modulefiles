@@ -6,7 +6,7 @@ technologies.
 
 whatis("Loads LLVM into the environment")
 
-local version = "3.7"
+local version = "3.6"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/llvm/"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
