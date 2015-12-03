@@ -1,6 +1,6 @@
 
-check the versions here: http://lammps.sandia.gov/tars/15May15.tar.gz 
-tar -xvzf 15May15.tar.gz 
+check the versions here: http://lammps.sandia.gov/tars/
+tar -xvzf lammps-15May15.tar.gz 
 cd 15May15/src
 make yes-all (adds standard packages colloid, meam, ...) 
 make serial
