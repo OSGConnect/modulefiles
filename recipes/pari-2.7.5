@@ -1,0 +1,10 @@
+mkdir /tmp/pari
+cd /tmp/pari
+wget 'http://pari.math.u-bordeaux.fr/pub/pari/unix/pari-2.7.5.tar.gz'
+tar xvzf pari-2.7.5.tar.gz
+cd pari-2.7.5
+./Configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/pari/2.7.5
+make -j 8 bench # compile and test
+make install
+
+
