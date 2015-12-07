@@ -1,0 +1,8 @@
+mkdir /tmp/root
+cd /tmp/root
+wget 'http://root.cern.ch/download/root_v5.34.32.source.tar.gz'
+tar xvzf root_v5.34.32.source.tar.gz
+cd root
+ ./configure linuxx8664gcc --disable-opengl --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/root/5.34-32-py34 --etcdir=/cvmfs/oasis.opensciencegrid.org/osg/modules/root/5.34-32-py34/etc --with-python-libdir=/cvmfs/oasis.opensciencegrid.org/osg/modules/python-3.4.1/lib/ --with-python-incdir=/cvmfs/oasis.opensciencegrid.org/osg/modules/python-3.4.1/include/python3.4m/
+make
+make install
