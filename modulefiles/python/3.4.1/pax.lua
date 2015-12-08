@@ -6,7 +6,7 @@ the Xenon1T PAX code
 ]])
 
 local version = "3.4.1"
-local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-3.4/pax"
+local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-3.4/xenon1t"
 
 pushenv("VIRTUAL_ENV", base)
 prepend_path("PATH", pathJoin(base, "bin"))
