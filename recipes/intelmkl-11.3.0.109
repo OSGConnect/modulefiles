@@ -1,0 +1,8 @@
+https://software.intel.com/en-us/articles/free_mkl
+
+The Intel® Math Kernel Library (Intel® MKL), the high performance math library for x86 and x86-64, is available, on Windows* or Linux*, for free for everyone (click here now to register and download). Purchasing is only necessary if you want access to Intel® Premier Support (direct 1:1 private support from Intel), older versions of the library or access to other tools in Intel® Parallel Studio XE. Intel continues to actively develop and support this very powerful library - and everyone can benefit from that!
+
+Register and download. 
+tar -xvzf intel_mkl.tar.gz
+copty the libraries from intel_mkl/11.3.0.109/compilers_and_libraries_2016.0.109/linux/mkl/lib
+
