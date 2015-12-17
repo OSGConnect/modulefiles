@@ -16,4 +16,4 @@ local version = "1.0"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/tutorial/"..version
 prepend_path("PATH", base)
 family('tutorial')
-
+load('python/2.7')
