@@ -7,5 +7,21 @@ cd geant4.10.02-build
 cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/10.02 -DGEANT4_USE_SYSTEM_CLHEP=ON -DCMAKE_VERBOSE_MAKEFILE=ON -DCLHEP_ROOT_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/clhep/2.3.1.0 -DGEANT4_USE_SYSTEM_EXPAT=OFF -DCMAKE_CXX_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/g++ /tmp/geant4/geant4.10.02
 make
 make install
-(download the data files from http://geant4.web.cern.ch/geant4/support/download.shtml)
-(copy the data files to /cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/10.02/share/Geant4-10.2.0/data/)
+​[2:56] 
+# for data files
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/10.02/share/Geant4-10.2.0/data
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/10.02/share/Geant4-10.2.0/data 
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/10.02/share/
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4ABLA3.0.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4EMLOW6.48.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4ENSDFSTATE1.2.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4NDL4.5.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4NEUTRONXS1.4.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4PII1.3.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4SAIDDATA1.1.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/G4TENDL1.0.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/PhotonEvaporation3.2.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/RadioactiveDecay4.3.tar.gz'
+wget 'http://geant4.web.cern.ch/geant4/support/source/RealSurface1.0.tar.gz'
+
+
