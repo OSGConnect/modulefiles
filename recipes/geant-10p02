@@ -7,3 +7,5 @@ cd geant4.10.02-build
 cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/10.02 -DGEANT4_USE_SYSTEM_CLHEP=ON -DCMAKE_VERBOSE_MAKEFILE=ON -DCLHEP_ROOT_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/clhep/2.3.1.0 -DGEANT4_USE_SYSTEM_EXPAT=OFF -DCMAKE_CXX_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/g++ /tmp/geant4/geant4.10.02
 make
 make install
+(download the data files from http://geant4.web.cern.ch/geant4/support/download.shtml)
+(copy the data files to /cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/10.02/share/Geant4-10.2.0/data/)
