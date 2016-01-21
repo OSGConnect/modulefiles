@@ -15,4 +15,4 @@ prepend_path("LIBRARY_PATH",  pathJoin(base, "lib"))
 prepend_path("LD_LIBRARY_PATH",  pathJoin(base, "lib"))
 
 family('geant4')
-load('gcc/4.9.2', 'clhep/2.3.1.0')
+load('gcc/4.9.2', 'clhep/2.3.1.1')
