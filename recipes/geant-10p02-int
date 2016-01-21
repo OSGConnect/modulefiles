@@ -1,0 +1,9 @@
+mkdir -p /tmp/geant4
+cd /tmp/geant4
+wget 'http://geant4.web.cern.ch/geant4/support/source/geant4.10.02.tar.gz'
+tar xvzf geant4.10.02.tar.gz
+mkdir -p geant4.10.02-int-build
+cd geant4.10.02-int-build
+cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/geant4/10.02-int -DGEANT4_USE_SYSTEM_CLHEP=OFF -DCMAKE_VERBOSE_MAKEFILE=ON -DGEANT4_USE_SYSTEM_EXPAT=OFF -DCMAKE_CXX_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/g++ /tmp/geant4/geant4.10.02
+make
+make install
