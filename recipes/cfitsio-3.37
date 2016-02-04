@@ -1,0 +1,10 @@
+
+cd /tmp
+wget ftp://heasarc.gsfc.nasa.gov/software/fitsio/c/cfitsio3370.tar.gz
+tar -xvcf cfitsio3370.tar.gz
+cd cfitsio
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/modulefiles/Core/cfitsio
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/modulefiles/Core/cfitsio
+make 
+make install
+
