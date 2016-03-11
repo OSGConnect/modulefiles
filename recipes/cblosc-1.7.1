@@ -1,0 +1,12 @@
+module load snappy/1.1.3
+module load cmake/3.4.1
+mkdir /tmp/blosc
+cd /tmp/blosc
+wget 'https://github.com/Blosc/c-blosc/archive/v1.7.1.tar.gz'
+tar xvzf v1.7.1.tar.gz 
+cd c-blosc-1.7.1/
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/cblosc/1.7.1 ..
+make -j 8
+make install
