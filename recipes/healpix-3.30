@@ -1,0 +1,25 @@
+mkdir -p /tmp/healpix
+cd /tmp/healpix
+wget http://netcologne.dl.sourceforge.net/project/healpix/Healpix_3.30/Healpix_3.30_2015Oct08.tar.gz
+tar -xvzf Healpix_3.30_2015Oct08.tar.gz
+cd Healpix_3.30
+
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/Healpix/3.30
+./configure -L /cvmfs/oasis.opensciencegrid.org/osg/modules/Healpix/3.30
+(select the following options)
+Enter your choice (configuration of packages can be done in any order): 2
+enter C compiler you want to use (gcc): gcc
+enter options for C compiler (-O2 -Wall): 
+enter archive creation (and indexing) command (ar -rsv): 
+do you want the HEALPix/C library to include CFITSIO-related functions ? (Y|n): Y
+enter full name of cfitsio library (libcfitsio.a): 
+enter location of cfitsio library (/usr/local/lib): /cvmfs/oasis.opensciencegrid.org/osg/modules/cfitsio/3.37/lib
+enter location of cfitsio header fitsio.h (/cvmfs/oasis.opensciencegrid.org/osg/modules/cfitsio/3.37/include): /cvmfs/oasis.opensciencegrid.org/osg/modules/cfitsio/3.37/include
+A static library is produced by default. Do you also want a shared library ? (y|N) N
+Editing top Makefile  for C ... done.
+
+make 
+make test
+
+
+
