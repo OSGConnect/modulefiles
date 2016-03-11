@@ -1,0 +1,17 @@
+module load python/3.4
+module load hdf5/1.8.13
+# for llvm-lite/numba python package
+module load llvm/3.6
+# llvm compiled using gcc 4.9.2
+module load gcc/4.9.2
+
+# need to make sure python executes python3 or python 2.7+
+
+mkdir /tmp/root
+cd /tmp/root
+wget 'https://root.cern.ch/download/root_v6.06.02.source.tar.gz'
+tar xvzf root_v6.06.02.source.tar.gz
+cd root-6.06.02/
+ ./configure linuxx8664gcc --disable-opengl --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/root/6.06-02-py34 --etcdir=/cvmfs/oasis.opensciencegrid.org/osg/modules/root/6.06-02-py34/etc --with-python-libdir=/cvmfs/oasis.opensciencegrid.org/osg/modules/python-3.4.1/lib/ --with-python-incdir=/cvmfs/oasis.opensciencegrid.org/osg/modules/python-3.4.1/include/python3.4m/
+make -j 8
+make install
