@@ -18,3 +18,4 @@ local mroot = os.getenv("MODULEPATH_ROOT")
 local mdir = pathJoin(mroot,"Python",version)
 prepend_path("MODULEPATH", mdir)
 
+load('gmp/6.0.0')
