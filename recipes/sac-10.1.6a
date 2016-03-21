@@ -1,0 +1,8 @@
+https://ds.iris.edu/ds/nodes/dmc/software/downloads/sac/
+### Register and download the package
+mkdir /cvmfs/oasis.opensciencegrid.org/osg/modules/modulefiles/Core/sac
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/modulefiles/Core/sac
+### copy the file sac-101.6a-linux_x86_64.tar.gz to /cvmfs/oasis.opensciencegrid.org/osg/modules/modulefiles/Core/sac
+tar -xvzf sac-101.6a-linux_x86_64.tar.gz
+mv sac/* /cvmfs/oasis.opensciencegrid.org/osg/modules/modulefiles/Core/sac/.
+rm -rf sac
