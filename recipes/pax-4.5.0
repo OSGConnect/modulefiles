@@ -1,0 +1,15 @@
+mkdir /tmp/anaconda
+cd /tmp/anaconda
+wget http://repo.continuum.io/archive/Anaconda3-2.4.0-Linux-x86_64.sh  
+bash Anaconda3-2.4.0-Linux-x86_64.sh 
+
+# install in /cvmfs/oasis.opensciencegrid.org/osg/modules/anaconda/pax-4.5.0/
+export PATH=/cvmfs/oasis.opensciencegrid.org/osg/modules/anaconda/pax-4.5.0/envs/pax/bin:$PATH
+conda create -n pax python=3.4 root=6 rootpy numpy scipy matplotlib pandas cython h5py numba=0.21.0 pip python-snappy pytables scikit-learn psutil
+source activate pax
+
+# get pax-4.5.0.tar.bz2 file
+tar xvjf pax-4.5.0.tar.bz2
+mv pax /cvmfs/oasis.opensciencegrid.org/osg/modules/anaconda/pax-4.5.0/envs/pax/
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/anaconda/pax-4.5.0/envs/pax/pax/ 
+python setup.py develop
