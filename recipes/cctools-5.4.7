@@ -1,0 +1,8 @@
+mkdir -p /tmp/cctools
+cd /tmp/cctools
+wget http://ccl.cse.nd.edu/software/files/cctools-5.4.7-x86_64-redhat6.tar.gz
+tar -xvzf cctools-5.4.7-x86_64-redhat6.tar.gz
+cd cctools-5.4.7-x86_64-redhat6
+rm -rf doc
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/cctools/5.4.7
+mv * /cvmfs/oasis.opensciencegrid.org/osg/modules/cctools/5.4.7/.
