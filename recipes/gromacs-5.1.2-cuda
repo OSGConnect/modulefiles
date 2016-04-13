@@ -1,0 +1,12 @@
+mkdir /tmp/gromacs
+cd /tmp/gromacs
+wget 'ftp://ftp.gromacs.org/pub/gromacs/gromacs-5.1.2.tar.gz'
+tar xvzf gromacs-5.1.2.tar.gz
+cd gromacs-5.1.2
+mkdir build
+cd build
+module load gcc/4.8.1
+module load llvm/3.6
+cmake .. -DGMX_MPI=OFF -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/gromacs/5.1.2-cuda -DGMX_BUILD_OWN_FFTW=ON -DGMX_SIMD=SSE2 -DGMX_BUILD_SHARED_EXE=OFF -DREGRESSIONTEST_DOWNLOAD=ON -DGMX_X11=OFF -DGMX_MPI=OFF -DGMX_GPU=Yes -DGMX_DISTRIBUTABLE_BUILD=Yes
+make -j 8
+make install
