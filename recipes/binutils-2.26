@@ -1,0 +1,8 @@
+mkdir /tmp/binutils
+cd /tmp/binutils
+wget 'http://ftp.gnu.org/gnu/binutils/binutils-2.26.tar.bz2'
+tar xvjf binutils-2.26.tar.bz2
+cd binutils-2.26
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/binutils/2.26
+make -j 8
+make install
