@@ -2,7 +2,6 @@ help(
 [[
 This module loads Gromacs 5.1.2 with cuda support into 
 the environment. Gromacs is a molecular dynamics application.
-
 ]])
 
 whatis("Loads the Gromacs molecular dynamics simulator")
@@ -18,3 +17,4 @@ load('atlas/3.10.2')
 load('lapack')
 load('gcc/4.8.1')
 load('llvm/3.6')
+load('binutils/2.26')
