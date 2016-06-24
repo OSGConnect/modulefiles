@@ -1,0 +1,13 @@
+module load python/2.7
+
+
+virtualenv-2.7 /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/AstroPy
+module load gcc/4.6.2
+module load all-pkgs
+
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/AstroPy
+source bin/activate
+pip install astropy
+deactivate
+
+tar and copy on OASIS
