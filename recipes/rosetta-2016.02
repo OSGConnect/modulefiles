@@ -1,0 +1,7 @@
+# Go to website: https://www.rosettacommons.org/software
+# request download access
+# Download the source code
+tar -xvzf rosetta_src_2016.02.58402_bundle.tgz
+cd rosetta_bin_linux_2016.02.58402_bundle/main/source
+./scons.py -j8 -D /cvmfs/oasis.opensciencegrid.org/osg/modules/rosetta/2016.02/bin extras=static mode=release bin
+cp -r bin build scripts /cvmfs/oasis.opensciencegrid.org/osg/modules/rosetta/2016.02/
