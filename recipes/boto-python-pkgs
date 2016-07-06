@@ -1,0 +1,6 @@
+ module load python/2.7
+ virtualenv-2.7 boto
+ source boto/bin/activate
+ pip install boto
+ deactivate
+ tar and copy on OASIS
