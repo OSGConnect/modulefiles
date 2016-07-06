@@ -4,7 +4,7 @@ module load gcc/4.8.1
 virtualenv-2.7 /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/AstroPy
 cd /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/AstroPy
 source bin/activate
-pip install
+pip install astropy
 deactivate
 
 tar and copy on OASIS
