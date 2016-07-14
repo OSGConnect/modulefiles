@@ -9,9 +9,9 @@ whatis("Loads the Xenon1T PAX, CAX, and HAX tools")
 
 local version = "evan-testing"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/anaconda/2.4.0/"
-prepend_path("PATH", "/cvmfs/oasis.opensciencegrid.org/osg/modules/anaconda/2.4.0/envs/pax-"..version.."/bin")
-setenv("ROOTSYS", "/cvmfs/oasis.opensciencegrid.org/osg/modules/anaconda/2.4.0/envs/pax-"..version)
+prepend_path("PATH", "/cvmfs/oasis.opensciencegrid.org/osg/modules/anaconda/2.4.0/envs/"..version.."/bin")
+setenv("ROOTSYS", "/cvmfs/oasis.opensciencegrid.org/osg/modules/anaconda/2.4.0/envs/"..version)
 setenv("CONDA_DEFAULT_ENV", "pax")
-setenv("CONDA_ENV_PATH", pathJoin(base, "envs", "pax"..version))
+setenv("CONDA_ENV_PATH", pathJoin(base, "envs", version))
 family('pax')
 
