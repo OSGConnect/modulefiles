@@ -1,0 +1,9 @@
+# remove ~/.local
+
+pip install rucio-clients-xenon1t rucio --user
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/rucio/1.6.6/
+cp -a ~/.local/* /cvmfs/oasis.opensciencegrid.org/osg/modules/rucio/1.6.6/
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/rucio/1.6.6/rucio/etc
+wget http://stash.osgconnect.net/@xenon1t/public/rucio/rucio.cfg
+
+ 
