@@ -13,3 +13,4 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/rucio/"..version
 prepend_path("PATH", pathJoin(base, "bin"))
 setenv("RUCIO_HOME", pathJoin(base, "rucio"))
 family('rucio')
+load("gfal/7.20")
