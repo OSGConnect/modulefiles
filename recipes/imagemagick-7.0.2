@@ -1,0 +1,11 @@
+Go to http://git.imagemagick.org/repos/ImageMagick/tree/7.0.2-4 and download
+tar.bz2 file
+
+
+mkdir /tmp/imagemagick
+cd /tmp/imagemagick
+tar xvjf ImageMagick-7.0.2-4-5cbdc8e011effc2ca5d2c6f15377263105c152a2.tar.bz2
+cd ImageMagick-7.0.2-4-5cbdc8e011effc2ca5d2c6f15377263105c152a2
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/imagemagick/7.0.2
+make -j 8
+make install
