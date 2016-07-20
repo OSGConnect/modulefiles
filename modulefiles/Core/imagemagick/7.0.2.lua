@@ -1,11 +1,11 @@
 help(
 [[
-This module loads Gromacs 4.6.5 into the environment. Gromacs is a 
-molecular dynamics application.
+This module loads Imagemagick 7.0.2 into the environment. Imagemagick is a
+set of image manipulation tools. 
 
 ]])
 
-whatis("Loads the Gromacs molecular dynamics simulator")
+whatis("Loads the Imagemagick image tools")
 
 local version = "7.0.2"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/imagemagick/"..version
