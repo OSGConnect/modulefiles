@@ -1,0 +1,16 @@
+wget http://www.opengatecollaboration.org/sites/default/files/gate_v7.2.tar.gz
+module load root/5.34-32
+module load geant4/10.02-int
+module load cmake
+
+
+mkdir /cvmfs/oasis.opensciencegrid.org/osg/modules/gate
+mkdir /cvmfs/oasis.opensciencegrid.org/osg/modules/gate/7.2
+mkdir gate_v7.2-build
+cd gate_v7.2-build
+
+cmake -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/gate/7.2 -DCMAKE_CXX_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/g++ -DCMAKE_C_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/gcc -DGEANT4_USE_SYSTEM_CLHEP=ON -DCLHEP_ROOT_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/clhep/2.3.1.1 ../ 
+
+make 
+make install
+
