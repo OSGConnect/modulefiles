@@ -1,0 +1,8 @@
+git clone https://github.com/stamatak/standard-RAxML
+cd standard-RAxML
+module load gcc
+make -f Makefile.gcc
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/RAxML/8.2.9/
+cp raxmlHPC /cvmfs/oasis.opensciencegrid.org/osg/modules/RAxML/8.2.9/.
+cp *.h /cvmfs/oasis.opensciencegrid.org/osg/modules/RAxML/8.2.9/.
+cp -r usefulScripts/ /cvmfs/oasis.opensciencegrid.org/osg/modules/RAxML/8.2.9/.
