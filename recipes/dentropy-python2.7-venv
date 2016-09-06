@@ -1,0 +1,6 @@
+module load python/2.7
+virtualenv-2.7 dendropy
+source dendropy/bin/activate
+pip install dendropy
+deactivate
+cp -r dendropy /cvmfs/oasis.opensciencegrid.org/osg/modules/modulefiles/python/2.7.7/.
