@@ -1,0 +1,5 @@
+
+wget https://github.com/mothur/mothur/releases/download/v1.38.1.1/Mothur.linux_64.zip
+unzip Mothur.linux_64.zip
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/1.39.0 
+cp -r mothur/* /cvmfs/oasis.opensciencegrid.org/osg/modules/1.39.0/.
