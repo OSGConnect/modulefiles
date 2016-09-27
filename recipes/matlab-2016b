@@ -1,0 +1,6 @@
+mkdir /tmp/matlab
+cd /tmp/matlab
+wget 'http://www.mathworks.com/supportfiles/downloads/R2016b/deployment_files/R2016b/installers/glnxa64/MCR_R2016b_glnxa64_installer.zip'
+unzip MCR_R2016b_glnxa64_installer.zip
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/matlab/2016b/
+./install -mode silent -agreeToLicense yes -destinationFolder /cvmfs/oasis.opensciencegrid.org/osg/modules/matlab/2016b/
