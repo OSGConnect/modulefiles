@@ -50,7 +50,8 @@ if options.check:
 if len(correction_list) == 0:
     sys.stdout.write("No changes need to be made, exiting\n")
     sys.exit(0)
-change_perms = raw_input("Make changes to files and directories? ")
+sys.stdout.write("Make changes to files and directories? ")
+change_perms = sys.stdin.readline().strip()
 if change_perms.upper() != 'Y':
     sys.stdout.write("Exiting due to user cancellation\n")
     sys.exit(0)
