@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 
-import os, sys, optparse,stat
+import os, sys, optparse, stat
 
 version = '0.1'
 
 parser = optparse.OptionParser(version="%prog " + version)
-parser.add_option("-d", "--directory", dest="directory", default=".", 
+parser.add_option("-d", "--directory", dest="directory", default=".",
                   help="Check DIRECTORY and subdirs", metavar="DIRECTORY")
 parser.add_option("-c", "--check", dest="check", default=False, action="store_true",
                   help="Don't change permissions, only check")
+parser.add_option("-f", "--force", dest="force", default=False, action="store_true",
+                  help="Make changes without promoting for confirmation")
 
 (options, args) = parser.parse_args()
 correction_list = {}
@@ -16,23 +18,25 @@ for root, dirs, files in os.walk(options.directory):
     for fn in files:
         filename = os.path.join(root, fn)
         perms = os.lstat(filename).st_mode
-        if not (perms & (stat.S_IRGRP|stat.S_IROTH)) :
+        if not (bool(perms & stat.S_IRGRP) and bool(perms & stat.S_IROTH)):
             if filename not in correction_list:
                 correction_list[filename] = ['file', perms, perms]
-            correction_list[filename][1] |=  (stat.S_IRGRP|stat.S_IROTH)
-        if (perms & stat.S_IXUSR ) and not (perms & (stat.S_IXGRP|stat.S_IXOTH)):
+            correction_list[filename][1] |= (stat.S_IRGRP | stat.S_IROTH)
+        if bool(perms & stat.S_IXUSR) and not (bool(perms & stat.S_IXGRP) and
+                                               bool(perms & stat.S_IXOTH)):
             if filename not in correction_list:
                 correction_list[filename] = ['file', perms, perms]
-            correction_list[filename][1] |=  (stat.S_IXGRP|stat.S_IXOTH)
-        
-    for dir in dirs:
-        dirname = os.path.join(root, dir)
-        perms = os.lstat(dirname).st_mode
-        if not ( perms & (stat.S_IRGRP|stat.S_IROTH|stat.S_IXGRP|stat.S_IXOTH)):
-            if dirname not in correction_list:
-                correction_list[dirname] = ['directory', perms, perms]
-            correction_list[dirname][1] |= (stat.S_IRGRP|stat.S_IROTH|stat.S_IXGRP|stat.S_IXOTH)
-        
+            correction_list[filename][1] |= (stat.S_IXGRP | stat.S_IXOTH)
+
+    for dir_name in dirs:
+        dir_path = os.path.join(root, dir_name)
+        perms = os.lstat(dir_path).st_mode
+        if not (perms & (stat.S_IRGRP | stat.S_IROTH | stat.S_IXGRP | stat.S_IXOTH)):
+            if dir_path not in correction_list:
+                correction_list[dir_path] = ['directory', perms, perms]
+            correction_list[dir_path][1] |= (stat.S_IRGRP | stat.S_IROTH |
+                                             stat.S_IXGRP | stat.S_IXOTH)
+
 for path in correction_list:
     perm = oct(correction_list[path][1])
     orig_perm = oct(correction_list[path][2])
@@ -48,9 +52,11 @@ if options.check:
 if len(correction_list) == 0:
     sys.stdout.write("No changes need to be made, exiting\n")
     sys.exit(0)
-change_perms = raw_input("Make changes to files and directories? ")
-if change_perms.upper() != 'Y':
-    sys.stdout.write("Exiting due to user cancellation\n")
-    sys.exit(0)
+if not args.force:
+    sys.stdout.write("Make changes to files and directories? ")
+    change_perms = sys.stdin.readline().strip()
+    if change_perms.upper() != 'Y':
+        sys.stdout.write("Exiting due to user cancellation\n")
+        sys.exit(0)
 for path in correction_list:
     os.chmod(path, correction_list[path][1])
