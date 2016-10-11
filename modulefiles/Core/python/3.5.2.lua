@@ -7,7 +7,7 @@ This module loads a clean install of Python 3.5.2
 whatis("Load an clean installation of the Python 3.5.2 interpreter")
 
 local version = "3.5.2"
-local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/python-"..version
+local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/python/"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib"))
