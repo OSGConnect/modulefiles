@@ -1,0 +1,13 @@
+# requires gmp, mpfr, mpc
+
+mkdir /tmp/gcc
+cd /tmp/gcc
+wget 'http://mirrors.concertpass.com/gcc/releases/gcc-6.2.0/gcc-6.2.0.tar.bz2'
+tar xjf gcc-6.2.0.tar.bz2
+cd gcc-6.2.0
+./contrib/download_prerequisites
+mkdir objdir
+cd objdir
+../gcc-6.2.0/configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/6.2.0/ --disable-multilib
+make -j 8 bootstrap
+make install
