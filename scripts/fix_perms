@@ -52,7 +52,7 @@ if options.check:
 if len(correction_list) == 0:
     sys.stdout.write("No changes need to be made, exiting\n")
     sys.exit(0)
-if not args.force:
+if not options.force:
     sys.stdout.write("Make changes to files and directories? ")
     change_perms = sys.stdin.readline().strip()
     if change_perms.upper() != 'Y':
