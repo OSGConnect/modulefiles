@@ -12,7 +12,7 @@ module list
 2) lapack/3.6.1        4) gmp/6.0.0    6) gcc/4.9.2
 ---
 mkdir build
-cp ../CMakeLists.txt .
+
 mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/simbody/3.5.3
 cmake -DBUILD_STATIC_LIBRARIES=yes -DBUILD_VISUALIZER=No -DBUILD_USING_OTHER_LAPACK=/cvmfs/oasis.opensciencegrid.org/osg/modules/lapack/3.6.1/lib64/liblapack.so -DSIMBODY_STANDARD_11=No -DCMAKE_BUILD_TYPE=Release  -DCMAKE_CXX_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/g++ -DCMAKE_C_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/gcc -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/simbody/3.5.3 ../
 make -j8 
