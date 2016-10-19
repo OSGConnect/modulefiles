@@ -1,0 +1,20 @@
+
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/opensees/6482
+
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/opensees/6482
+
+mkdir bin lib
+
+svn co svn://peera.berkeley.edu/usr/local/svn/OpenSees/trunk OpenSees
+
+cd OpenSees
+
+cp MAKES/Makefile.def.EC2-REDHAT-ENTERPRISE Makefile.def
+
+Edit Makefile.def, add:
+
+   HOME = /cvmfs/oasis.opensciencegrid.org/osg/modules/opensees/6482
+
+make
+
+
