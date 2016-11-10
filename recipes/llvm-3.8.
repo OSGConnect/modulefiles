@@ -1,0 +1,23 @@
+mkdir /tmp/llvm
+cd /tmp/llvm
+wget 'http://llvm.org/releases/3.7.0/llvm-3.8.0.src.tar.xz'
+wget 'http://llvm.org/releases/3.7.0/cfe-3.8.0.src.tar.xz'
+wget 'http://llvm.org/releases/3.7.0/compiler-rt-3.7.0.src.tar.xz'
+tar xvif llvm-3.8.0.src.tar.xz
+tar xvif cfe-3.8.0.src.tar.xz
+tar xvif compiler-rt-3.8.0.src.tar.xz
+cp -a cfe-3.8.0.src llvm-3.8.0.src/tools/clang
+cp -a compiler-rt-3.8.0.src llvm-3.8.0.src/projects/compiler-rt
+mkdir llvm-build
+cd llvm-build
+module list
+
+Currently Loaded Modules:
+  1) cmake/3.4.1   2) gcc/6.2.0   3) python/2.7
+
+
+cmake -DLLVM_TARGETS_TO_BUILD="X86" -DCMAKE_CXX_LINK_FLAGS="-L/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/6.2.0/lib64 -Wl,-rpath,/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/6.2.0/lib64" -DCMAKE_CXX_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/6.2.0/bin/g++ -DCMAKE_C_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/6.2.0/bin/gcc -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/llvm/3.8.0 ../llvm-3.8.0.src
+
+make -j 8
+make check-all
+make install
