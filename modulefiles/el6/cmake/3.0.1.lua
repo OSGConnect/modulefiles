@@ -8,7 +8,7 @@ cross platform software build tool.
 whatis("Loads the CMake build tool")
 
 local version = "3.0.1"
-local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/cmake/"..version
+local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/el6/cmake/"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
 
