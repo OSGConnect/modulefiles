@@ -1,0 +1,21 @@
+
+cd /tmp/Ipopt
+
+wget http://www.coin-or.org/download/source/Ipopt/Ipopt-3.12.6.tgz 
+tar -xvzf popt-3.12.6.tgz 
+cd 3-12.6
+mkdir build
+cd build
+
+mkdir -p  /cvmfs/oasis.opensciencegrid.org/osg/modules/ipopt
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/ipopt/3.12.6
+
+
+../configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/ipopt/3.12.6
+$ module list
+
+Currently Loaded Modules:
+  1) gcc/6.2.0   2) atlas/3.10.2   3) libgfortran/4.4.7   4) lapack/3.6.1
+
+make
+make install
