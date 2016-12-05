@@ -1,0 +1,8 @@
+mkdir /tmp/tcsh
+cd /tmp/tcsh
+wget 'ftp://ftp.astron.com/pub/tcsh/tcsh-6.20.00.tar.gz'
+tar xvzf tcsh-6.20.00.tar.gz
+cd tcsh-6.20.00
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/tcsh/6.20.00/
+make -j 8 
+make install
