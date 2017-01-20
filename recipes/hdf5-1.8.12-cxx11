@@ -1,0 +1,9 @@
+source /cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/current/init/bash
+module load gcc/6.2.0
+mkdir /tmp/hdf5
+cd /tmp/hdf5
+wget 'http://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.12/src/hdf5-1.8.12.tar.gz'
+tar xvzf hdf5-1.8.12.tar.gz
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/hdf5/1.8.12-cxx11 --enable-cxx
+make
+make install
