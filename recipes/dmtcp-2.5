@@ -1,0 +1,8 @@
+cd /tmp/dmtcp
+download from here: http://dmtcp.sourceforge.net/downloads.html
+tar -xvzf DMTCP 2.5.0.tar.gz 
+cd dmtcp-dmtcp-35386c2
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/dmtcp/2.5.0/
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/dmtcp/2.5.0/ --enable-static-libstdcxx 
+make 
+make install
