@@ -26,3 +26,26 @@ make check
  OK
 
 make install
+
+
+--------------------------
+adding extra packages
+/cvmfs/oasis.opensciencegrid.org/osg/modules/R/3.3.2/bin/R
+packages <- c("ggplot2", "plyr", "colorspace","grid","data.table","VIM","MASS","Matrix",
+              "lme4","arm","foreach","glmnet","class","nnet","mice","missForest",
+              "calibrate","nnls","SuperLearner","plotrix","TeachingDemos","plotmo",
+              "earth","parallel","splines","gam","mi",
+              "BayesTree","e1071","randomForest", "Hmisc","dplyr","Amelia","bartMachine","knockoff","caret")
+
+## ipak function below: install (if missing) and load (if installed) multiple R packages
+ipak <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg))
+    install.packages(new.pkg, dependencies = TRUE, repos='http://cran.rstudio.com/')
+  sapply(pkg, require, character.only = TRUE)
+}
+
+#install.packages('package_name', dependencies=TRUE, repos='http://cran.rstudio.com/')
+ipak(packages)
+
+
