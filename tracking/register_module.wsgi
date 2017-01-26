@@ -12,7 +12,7 @@ import sys
 import redis
 
 REDIS_SERVER = 'db.mwt2.org'
-REDIS_CHANNEL = 'module-usage'
+REDIS_CHANNEL = 'module-usage2'
 
 TIMEZONE = "US/Central"
 
@@ -64,6 +64,7 @@ def publish_record(record, channel, redis_client):
     Publishes a record to a Redis pub/sub channel
 
     :param record: dictionary representing record to publish
+    :param channel: channel to use for publishing
     :param redis_client: a redis client instance to use
     :return: None
     """
@@ -97,7 +98,12 @@ def application(environ, start_response):
     else:
         record['project'] = ''
     if 'module' in query_dict:
-        record['module'] = query_dict['module'][0]
+        if '/' in query_dict['module'][0]:
+            module_name, version = query_dict['module'].split('/')
+            record['module'] = module_name
+            record['version'] = version
+        else:
+            record['module'] = query_dict['module'][0]
     else:
         record['module'] = ''
     if 'site' in query_dict:
