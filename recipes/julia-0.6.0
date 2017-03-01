@@ -1,0 +1,21 @@
+cd /tmp
+wget  https://s3.amazonaws.com/julianightlies/bin/linux/x64/0.6/julia-0.6.0-d3de8cc9d9-linux64.tar.gz
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/julia/0.6.0
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/julia/0.6.0
+mv /tmp/julia-0.6.0-d3de8cc9d9-linux64.tar.gz .
+tar -xvzf julia-0.6.0-d3de8cc9d9-linux64.tar.gz
+rm julia-0.6.0-d3de8cc9d9-linux64.tar.gz
+ldd julia
+	linux-vdso.so.1 =>  (0x00007ffd5d791000)
+	libjulia.so.0.6 => /cvmfs/oasis.opensciencegrid.org/osg/modules/julia/0.6.0/julia-d3de8cc9d9/bin/./../lib/libjulia.so.0.6 (0x00007fdbbc6ae000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x0000003b22800000)
+	librt.so.1 => /lib64/librt.so.1 (0x0000003b23000000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x0000003b22400000)
+	libc.so.6 => /lib64/libc.so.6 (0x0000003b21c00000)
+	libLLVM-3.9.so => /cvmfs/oasis.opensciencegrid.org/osg/modules/julia/0.6.0/julia-d3de8cc9d9/bin/./../lib/julia/libLLVM-3.9.so (0x00007fdbba898000)
+	libstdc++.so.6 => /cvmfs/oasis.opensciencegrid.org/osg/modules/julia/0.6.0/julia-d3de8cc9d9/bin/./../lib/julia/libstdc++.so.6 (0x00007fdbba517000)
+	libm.so.6 => /lib64/libm.so.6 (0x0000003b22000000)
+	libgcc_s.so.1 => /cvmfs/oasis.opensciencegrid.org/osg/modules/julia/0.6.0/julia-d3de8cc9d9/bin/./../lib/julia/libgcc_s.so.1 (0x00007fdbba300000)
+	/lib64/ld-linux-x86-64.so.2 (0x0000003b21800000)
+	libz.so.1 => /lib64/libz.so.1 (0x0000003b22c00000)
+(Since some of the libraries are refered back from the path julia is installed, it is good to directly unpack on the actual path /cvmfs/...)
