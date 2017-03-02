@@ -1,0 +1,8 @@
+wget ftp://ftp.gnu.org/gnu/gsl/gsl-2.3.tar.gz
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/gsl/2.3/
+tar -xvzf gsl-2.3.tar.g
+cd gsl
+module load gcc
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/gsl/2.3/
+make 
+make install
