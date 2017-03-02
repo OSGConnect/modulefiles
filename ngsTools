@@ -1,0 +1,18 @@
+cd /tmp
+git clone --recursive https://github.com/mfumagalli/ngsTools.git
+cd ngsTools
+module list
+Currently Loaded Modules:
+  1) gcc/6.2.0   2) zlib/1.2.8   3) gsl/2.3   4) hdf5/1.8.12
+
+
+Add the following paths about gsl, gslblas, and zlib to CFLAGS and LIB
+CFLAGS =  -I/cvmfs/oasis.opensciencegrid.org/osg/modules/gsl/2.3/include/
+LIB =  -L/cvmfs/oasis.opensciencegrid.org/osg/modules/zlib/1.2.8/lib/  -L/cvmfs/oasis.opensciencegrid.org/osg/modules/gsl/2.3/lib -lz -lpthread -lgsl -lgslcblas
+The above variables are redefined int the following Makefiles
+1) ngsDist/Makefile
+2) ngsF/Makefile
+3) ngsF-HMM/Makefile
+
+make
+now rm the .o, .cpp, .hpp, and .md files and copy the directories to //cvmfs/oasis.opensciencegrid.org/osg/modules/ngsTools/2017.03.02/
