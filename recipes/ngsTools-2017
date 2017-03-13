@@ -1,0 +1,9 @@
+
+git clone --recursive https://github.com/mfumagalli/ngsTools.git
+cd ngsTools/
+module load gsl/2.3
+module load zlib
+module load hdf5/1.8.12
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/ngsTools/2017.03.02
+make 
+make install
