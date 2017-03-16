@@ -1,0 +1,11 @@
+
+
+module load gsl/2.3
+module load hdf5/1.8.12
+
+export LDFLAGS="-L/cvmfs/oasis.opensciencegrid.org/osg/modules/hdf5/1.8.12/lib -lhdf5"
+
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/entropy/2017.03.16
+make
+make install
+

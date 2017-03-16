@@ -1,0 +1,33 @@
+
+NOTE: ngsTools does not have an install step. Copy the git repo the right location and version the directory with a timestamp
+
+module load gsl/2.3
+module load zlib
+module load hdf5/1.8.12
+
+export PKG_CONFIG_PATH=/cvmfs/oasis.opensciencegrid.org/osg/modules/gsl/2.3/lib/pkgconfig:/cvmfs/oasis.opensciencegrid.org/osg/modules/zlib/1.2.8/lib/pkgconfig
+
+edit ngsDist/Makefile, change the line:
+
+  LIB = $(shell pkg-config --cflags --libs gsl) -lz -lpthread
+
+to
+
+  LIB = $(shell pkg-config --cflags --libs gsl) $(shell pkg-config --cflags --libs zlib) -lz -lpthread
+
+edit htslib/Makefile, change LDFLAGS to:
+
+  LDFLAGS  = $(shell pkg-config --libs zlib)
+
+edit ngsF/Makefile, change LIB to:
+
+  LIB = $(shell pkg-config --cflags --libs gsl) $(shell pkg-config --libs zlib) -lz -lpthread $(HTS_LIBDIR)
+
+edit ngsF-HMM/Makefile, change LIB to:
+
+  LIB = $(shell pkg-config --cflags --libs gsl) $(shell pkg-config --libs zlib) -lz -lpthread
+
+
+make
+
+
