@@ -1,0 +1,4 @@
+
+curl -kLO https://raw.githubusercontent.com/gridaphobe/CRL/ET_2016_11/GetComponents
+GetComponents --root=/cvmfs/oasis.opensciencegrid.org/osg/modules/einstein/Payne-Gaposchkin https://bitbucket.org/einsteintoolkit/manifest/raw/ET_2016_11/einsteintoolkit.th
+
