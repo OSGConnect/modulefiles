@@ -1,0 +1,142 @@
+## Physics and Engineering 
+ASTROPY :: Astronomy in Python package fosters interoperability between Python astronomy packages. :: tag 0 :: 
+CDO  ::    CDO is a collection of command line Operators to manipulate and analyse Climate and NWP model Data. :: tag0::
+CLHEP  ::    Set of HEP-specific foundation and utility classes such as random generators, physics vectors, geometry and linear algebra.  :: tag0::
+CP2K  ::    CP2K is the state-of-the-art method for accurate atomistic simulations. :: tag0::
+GEANT4  ::     toolkit for the simulation of the passage of particles through matter. :: tag0::
+GLPK  ::    glpk is the GNU's linear programming took kit. :: tag0::
+GNUPLOT  ::    Gnuplot is an application for generating plots. :: tag0::
+GRAPHVIZ  ::    Graphviz is an application for visualizing networks and graphs. :: tag0::
+GRASS  ::    GRASS (Geographic Resources Analysis Support System) :: tag0::
+LAMMPS  ::    LAMMPS is a particle simulator code. :: tag0::
+MADGRAPH  ::    MadGraph is a monte carlo generator for particle physics interactions :: tag0::
+OCTAVE  ::    Octave is a high-level interpreted language :: tag0::
+QHULL  ::    qhull libraries provide functions for computing convex hull. :: tag0::
+R  ::    R is a free software environment for statistical computing and graphics. :: tag0::
+ROOT  ::    ROOT is a high energy physics data analysis framework. :: tag0::
+SIESTA  ::    SIESTA performs efficient electronic structure calculations of molecules and solids. :: tag0::
+UDUNITS  ::    UDUNITS package supports units of physical quantities. :: tag0::
+MATLAB :: Runtime libraries. The MATLAB Runtime is a standalone set of shared libraries that enables the execution of compiled MATLAB applications or components on computers that do not have MATLAB installed. :: tag0::
+EEMT :: EEMT stack which includes a bunch of GIS tools :: tag0 ::
+PSIMS :: A set of packages for needed for the PSIMS (numpy, h5py, netcdf4) :: tag0 :: 
+
+## Chemistry and Biochemistry 
+ARC-LITE  ::    arc-lite (ARCIMBOLDO) is a package for the protein structure refinement. :: tag1::
+AUTODOCK  ::    Autodock is a suite of automated docking tools to predict how small molecules bind to a receptor. :: tag1::
+CASINO  ::    CASINO performs quantum Monte Carlo (QMC) electronic structure calculations. :: tag1::
+CCP4  ::    arc-lite (ARCIMBOLDO) is a package for the protein structure refinement. :: tag1::
+GAMESS  ::    GAMESS is a general ab initio quantum chemistry package. :: tag1::
+GROMACS  ::    Gromacs molecular dynamics simulator. Requires fftw/fftw-3.3.4-gromacs :: tag1::
+NAMD  ::    NAnoscale Molecular Dynamics (NAMD) program. :: tag1::
+OPENBABEL  ::    Open Babel is a chemical toolbox designed to speak the many languages of chemical data. :: tag1::
+PHENIX  ::    software suite for the determination of molecular structures from X-Ray and other methods. :: tag1::
+PSI4  ::    Psi4 is an open-source suite of ab initio quantum chemistry programs designed for efficient, high-accuracy simulations of a variety of molecular properties.  :: tag1::
+ROSETTA  ::    The Rosetta software suite includes algorithms for computational modeling and analysis of protein structures. :: tag1::
+SHELX  ::    SHELX is a set of programs for the determination of small and macromolecular crystal structures. :: tag1::
+SHELX  ::    SHELX is a set of programs for the determination of small and macromolecular crystal structures. :: tag1::
+SQLITE  ::    SQLite is a software library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine. :: tag1::
+VMD  ::    VMD is a molecular dynamics visualization application. :: tag1::
+OpenBUGS-3.2.3 :: OpenBUGS is a software package for performing Bayesian inference Using Gibbs Sampling. :: tag1 :: 
+ORCA :: ORCA is a general-purpose quantum chemistry program package. :: tag1 :: 
+
+ 
+## Image Analysis 
+ANTS  ::    ANTs is a popular toolkit for medical image registration and segmentation. :: tag2::
+BLENDER  ::    Blender 3D rendering software. :: tag2::
+ELASTIX  ::   consists of a collection of algorithms that are commonly used to solve (medical) image registration problems :: tag2::
+FIJI  ::    Fiji is an image processing package. It can be described as a "batteries-included" distribution of ImageJ (and ImageJ2) :: tag2::
+FREESURFER  ::    Freesurfer is an open source software suite for processing and analyzing (human) brain MRI images.  :: tag2::
+FSL  ::    FSL is a comprehensive library of analysis tools for FMRI, MRI and DTI brain imaging data :: tag2::
+IMAGEMAGICK :: Imagemagick is a set of image manipulation tools. :: tag2 ::
+
+
+ 
+## Bioinformatics 
+ETE2 ::  ETE is a toolkit based on Python framework for the analysis and visualization of trees.:: tag3 ::
+ABYSS :: ABySS is a de novo, parallel, paired-end sequence assembler that is designed for short reads. :: tag3 ::
+BEDTOOLS  ::    A set of tools for a wide-range of genomics analysis tasks. :: tag3::
+BLASR  ::    Blasr is a tool to search and align sequences with refinements. :: tag3::
+BLAST  ::    Blast is a tool to search and align gene and protein sequences. :: tag3::
+BOWTIE  ::    Bowtie is an ultrafast and memory-efficient tool for aligning sequencing reads to long reference sequences. :: tag3::
+BWA  ::    BWA is a package for mapping low-divergent sequences against a large reference genome. :: tag3::
+CUFFLINKS  ::    Cufflinks assembles transcripts :: tag3::
+HMMER  ::    HMMER searches and aligns homologs of protein sequences using hidden Markov models. :: tag3::
+MRBAYES  ::    MrBayes is a program for Bayesian inference of phylogenetic and evolutionary models. :: tag3::
+MUSCLE  ::    MUSCLE stands for MUltiple Sequence Comparison by Log-Expectation :: tag3::
+PBSUITE  ::    PBSuite is a software for long-read sequencing data from PacBio. :: tag3::
+SAMTOOLS  ::    Samtools is a set of utilities for working with data in sequence alignment map format. :: tag3::
+SHRIMP  ::    SHRiMP is a software package for aligning genomic reads against a target genome. :: tag3::
+SRA  ::    The NCBI SRA Toolkit enables reading ("dumping") of sequencing files from the SRA database and writing ("loading") files into the .sra format  :: tag3::
+TOPHAT  ::    TopHat is a fast splice junction mapper for RNA-Seq reads. :: tag3::
+UCLUST  ::    Uclust offers search and clustering algorithms that are often orders of magnitude faster than BLAST. :: tag3::
+MUMMER3.23 :: MUMmer is a system for rapidly aligning entire genomes, whether in complete or draft form :: tag3 ::
+MOTHUR :: mothur is a project that seeks to develop a single piece of open-source, expandable software to fill the bioinformatics nee ds of the microbial ecology community. :: tag3 ::
+SEQGEN :: Seq-Gen is a program that will simulate the evolution of nucleotide or amino acid sequences along a phylogeny :: tag3 ::
+TRANSABYSS :: de novo assembly of RNA-Seq data using ABySS :: tag3 :: 
+NGSTOOLS ::  ngsTools is a collection of programs for population genetics analyses from NGS data, taking into account its statistical un certainty. :: tag3 :: 
+
+ 
+## Numerical Libraries 
+PARI ::  PARI is a widely used computer algebra system designed for fast computations in number theory :: tag4 ::
+BOOST  ::    Boost provides free peer-reviewed portable C++ source libraries. :: tag4::
+FFTW  ::    FFTW is a library for fast fourier transforms. FFTW 3.3.4 library compiled for general use. :: tag4::
+GEOS  ::    GEOS (Geometry Engine - Open Source) is an API for processing spatial geometry. :: tag4::
+GMP  ::     Gnu Multi Precision Libraries :: tag4::
+GSL  ::    The GNU Scientific Library (GSL) is a numerical library for C and C++ programmers. :: tag4::
+MIXMODLIB  ::    Mixmod statistical libraries :: tag4::
+MPC  ::    Gnu Mpc is a C library for arithmatics with arbitrarily high precision of complex numbers. :: tag4::
+MPFR  ::    MPFR library is a C library for multiple-precision floating-point computations. :: tag4::
+NCO  ::    The NCO toolkit manipulates and analyzes data stored in netCDF-accessible formats. :: tag4::
+NETCDF  ::    NetCDF is a set of software libraries supporting array-oriented scientific data. :: tag4::
+SAGA  ::    SAGA is a GIS application :: tag4::
+SDPA  ::    SDPA (Semi Definite Programming Algorithm) is one of the efficient software package for solving SDPs. :: tag4::
+SPARSESUITE  ::    SuiteSparse is a suite of sparse matrix algorithms. :: tag4::
+SUNDIALS  ::    SUNDIALS (SUite of Nonlinear and DIfferential/ALgebraic equation Solvers) :: tag4::
+IPOPT :: Ipopt (Interior Point OPTimizert) is a software package for large-scale nonlinear optimization :: tag4 ::
+ 
+## Software Libraries, Languages, and Tools 
+ANT  ::    Ant is a Java library and command-line tool is to drive processes described in build files. :: tag5::
+APR  ::    The Apache Portable Runtime (APR) libraries provide a interface to platform-specific implementations. :: tag5::
+BINUTILS :: GNU Binutils are a collection of binary tools that do low level operations on binaries. :: tag5 ::
+CANOPY  ::    Canopy is the next generation of the Enthought Python Distribution (EPD) :: tag5::
+CCTOOLS  ::    Cooperative Computing Lab is software designed to easily harness large scale distributed systems such as clusters, clouds, and grids. :: tag5::
+CMAKE  ::    CMake is a cross platform make utility :: tag5::
+CURL  ::    Curl is a command line HTTP client :: tag5::
+ECTOOLS  ::    Ectools is a set of tools for correcting long read assembly data :: tag5::
+EXPAT  ::    Expat is an XML parser library written in C. :: tag5::
+FFMPEG  ::    ffmpeg is a complete :: tag5::
+FPC  ::    Free pascal Free Pascal is a 32 :: tag5::
+FREETYPE  ::    FreeType 2 provides a simple and easy-to-use API to access font content in a uniform way :: tag5::
+GCC  ::    GCC is a set of compilers for c :: tag5::
+GIT  ::    Git is a software change management tool. :: tag5::
+HDF5  ::    HDF5 is a library for storing and managing data in flexible :: tag5::
+JASPER  ::    reference implementation of the codec specified in the JPEG :: tag5::
+JAVA  ::    Java :: tag5::
+JPEG  ::    Libjpeg is a widely used C library for reading and writing jpeg image files. :: tag5::
+LIBGFORTRAN  ::   :: tag5::
+LIBTIFF  ::   :: tag5::
+MERCURIAL  ::    Mercurial is a source code management tool. :: tag5::
+MPLAYER  ::    Mplayer is an image viewer and editor. :: tag5::
+OPENCV  ::    OpenCV (Open Source Computer Vision Library) is an open source computer vision and machine learning software library. :: tag5::
+PAPI  ::    PAPI is a performance profiler. :: tag5::
+PCRE  ::    PCRE is perl compatible regular expression library. :: tag5::
+POPPLER  ::    Poppler is a PDF rendering library based on the xpdf-3.0 code base :: tag5::
+PROJ  ::    Cartographic projection library :: tag5::
+PROOT  ::    PRoot is a user-space implementation of chroot :: tag5::
+RUBY  ::    Ruby is a dynamic :: tag5::
+SCONS  ::    SCons is a software construction tool and is a superior alternative to the classic "Make" build tool. :: tag5::
+SERF  ::    Serf is a library that provides high performance http client functions. :: tag5::
+SETTARG  ::    The settarg module dynamically and automatically updates "$TARG" and a host of other environment variables. :: tag5::
+STASHCP  ::    Stashcp is a front-end to XRootD caching for OSG Connect Stash. :: tag5::
+SUBVERSION  ::    Subversion is a source control revision tool. :: tag5::
+SWIFT  ::    Swift is a parallel scripting language. :: tag5::
+TCL  ::    Tcl (Tool Command Language) is a very powerful but easy to learn dynamic programming language. :: tag5::
+VALGRIND  ::    Valgrind can detect memory management and threading bugs :: tag5::
+WGET  ::    Wget is a command line HTTP client :: tag5::
+S3CMD :: S3cmd is a free command line tool and client for uploading, retrieving and managing data in Amazon S3 and other cloud stora ge service providers that use the S3 protocol  :: tag5 :: 
+WXGTK:: wxWidgets is a C++ library that lets developers create applications for Windows, Mac OS X, and Linux. :: tag5 ::
+CBLOSC :: A blocking, shuffling and loss-less compression library :: tag4 ::
+HEALPIX :: Hierarchical Equal Area isoLatitude Pixelation of a sphere (HEALPIX) produces a subdivision of a spherical surface. :: tag 5 :: 
+GD :: GD is an open source code library for the dynamic creation of images by programmers. :: tag5 :: 
+CFITSIO :: CFITSIO is a library of C and Fortran subroutines for reading and writing data files in F ITS (Flexible Image Transport System) data format. :: tag5 ::
+PROTOBUF :: Protocol buffers are Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data – think XML, but smaller, faster, and simpler. :: tag5 ::
