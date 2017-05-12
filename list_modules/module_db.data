@@ -186,5 +186,6 @@ BZIP2 :: bzip2 is a freely available, patent free, high-quality data compressor.
 POVRAY :: The Persistence of Vision Raytracer is a high-quality, Free Software tool for creating stunning three-dimensional graphics. :: tag5 ::
 DMTCP :: DMTCP (Distributed MultiThreaded Checkpointing) transparently checkpoints a single-host or distributed computation in user-space :: tag5 ::
 APRUTIL ::  APR Util provides cross platform libraries for handling OS related operations. :: tag5 ::
-
+LIBTIFF :: support for the Tag Image File Format (TIFF), a widely used format for storing image data. :: tag5 ::
+LIBGFORTRAN :: Fortran shared library which is needed to run Fortran dynamically linked programs. :: tag5 ::
 
