@@ -56,7 +56,7 @@ def get_modulenames_from_db(modules_db_file):
         for line in f:
             new_line = line.rstrip()
             line_split = new_line.split("::")
-            if(len(line_split) > 1):
+            if(len(line_split) > 2):
                 module_name = line_split[0].replace(" ","")
                 module_description = line_split[1]
                 module_tag = line_split[2]
@@ -64,11 +64,22 @@ def get_modulenames_from_db(modules_db_file):
                 module_db_inventory[module_name] = value 
     return module_db_inventory
 
-def find_diff_between_db_and_oasis(x, y):
+def get_ignored_module_names(ignore_file):
+    module_names_ignored = []
+    with open(ignore_file) as f:
+        for line in f:
+            new_line = line.rstrip().replace(" ","")
+            module_names_ignored.append(new_line)
+    return module_names_ignored
+
+def find_diff_between_db_and_oasis(x, y, ignore_list):
     """ Get the difference between the supplied list of modules   """
     xu = [xe.upper() for xe in x]
     yu = [ye.upper() for ye in y]
+    igu = [ige.upper() for ige in ignore_list]
     diff = list(set(xu).symmetric_difference(set(yu))) 
+    for val in igu:
+        diff.remove(val)
     return diff
 
 def update_module_description_info(refdb, existmods):
@@ -149,11 +160,12 @@ if __name__ == '__main__':
     module_list_file = generate_listfile()
     modules_versions = generate_module_name_version(module_list_file)
     moduledb = get_modulenames_from_db("module_db.data")
-    diff_db_oasis =  find_diff_between_db_and_oasis(moduledb.keys(),modules_versions.keys())
+    ignored_modules  = get_ignored_module_names("modules_ignore_list.data")
+    diff_db_oasis =  find_diff_between_db_and_oasis(moduledb.keys(), modules_versions.keys(), ignored_modules)
     for line in diff_db_oasis:
        print "missing module in module_db.data= ", line
     print "="*60
-    print "total number of missing modulesa= ", len(diff_db_oasis) 
+    print "Number of Missing Modules= ", len(diff_db_oasis) 
     updated_module_info = update_module_description_info(moduledb,modules_versions)
     existing_tags = ('tag0', 'tag1', 'tag2', 'tag3', 'tag4', 'tag5')
     module_info_in_tagorder = order_modules_by_tag(existing_tags)
