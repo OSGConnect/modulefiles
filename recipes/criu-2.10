@@ -1,0 +1,19 @@
+wget http://download.openvz.org/criu/criu-2.10.tar.bz2
+bunzip2 criu-2.10.tar.bz2
+tar -xvf criu-2.10.tar
+
+git clone git://git.sv.gnu.org/autoconf
+wget ftp://ftp.gnu.org/gnu/autoconf/autoconf-2.10.tar.gz
+
+wget https://github.com/protobuf-c/protobuf-c/releases/download/v1.2.0/protobuf-c-1.2.0.tar.gz
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/protobuf-c/1.2.0
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/protobuf-c/1.2.0
+
+export PROTOC=/cvmfs/oasis.opensciencegrid.org/osg/modules/protobuf/3.2/bin/protoc 
+export  protobuf_LIBS=/cvmfs/oasis.opensciencegrid.org/osg/modules/protobuf/3.2/lib/libprotobuf.a
+export protobuf_CFLAGS=-I/cvmfs/oasis.opensciencegrid.org/osg/modules/protobuf/3.2/include/
+
+
+
+
+

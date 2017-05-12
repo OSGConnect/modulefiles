@@ -99,7 +99,7 @@ def update_module_description_info(refdb, existmods):
                module_list.append(module_string)
     return module_list
 
-def get_module_info_arranged_by_tags(tag,module_info):
+def get_module_info_arranged_by_tags(tag, module_info):
     """ Split the modules by the field of science based on tag """
     filtered_modules = []
     if tag == "tag0":
@@ -123,12 +123,15 @@ def get_module_info_arranged_by_tags(tag,module_info):
 def order_modules_by_tag(tags):
     """  Order the module names for each tag  """
     module_ordered = []
+    tag_count = dict()
     for tag in tags:
         module_info_by_tag = get_module_info_arranged_by_tags(tag,updated_module_info)
+        tag_count[tag] = -1
         for line in module_info_by_tag:
             module_ordered.append(line)
+            tag_count[tag] += 1
         module_ordered.append(" ")
-    return module_ordered
+    return module_ordered, tag_count
 
 
 def write_markdown_file(module_list, outputfile):
@@ -155,6 +158,20 @@ def write_markdown_file(module_list, outputfile):
                  f.write(mod_line)
                  f.write('\n')
 
+def print_modules_summary_stats(diff_mods, tag_count):
+    total_mods = 0
+    for key, val in tag_count.items():
+        print key, val
+        total_mods += val
+    print "="*60
+    print  "total modules= ", total_mods
+    print "="*60
+    for line in diff_mods:
+       print "missing module in module_db.data= ", line
+    print "="*60
+    print "Number of Missing Modules= ", len(diff_mods) 
+
+
 if __name__ == '__main__':
     """ Extract the name of the module and versions from the submit host using module command. Pull the module information from module_db.dat. Combine these two information and write as an md file   """
     module_list_file = generate_listfile()
@@ -162,15 +179,11 @@ if __name__ == '__main__':
     moduledb = get_modulenames_from_db("module_db.data")
     ignored_modules  = get_ignored_module_names("modules_ignore_list.data")
     diff_db_oasis =  find_diff_between_db_and_oasis(moduledb.keys(), modules_versions.keys(), ignored_modules)
-    for line in diff_db_oasis:
-       print "missing module in module_db.data= ", line
-    print "="*60
-    print "Number of Missing Modules= ", len(diff_db_oasis) 
     updated_module_info = update_module_description_info(moduledb,modules_versions)
     existing_tags = ('tag0', 'tag1', 'tag2', 'tag3', 'tag4', 'tag5')
-    module_info_in_tagorder = order_modules_by_tag(existing_tags)
+    module_info_in_tagorder, tag_count  = order_modules_by_tag(existing_tags)
     output_md_file = "alpha_list.md"
     write_markdown_file(module_info_in_tagorder, output_md_file)
-    
+    print_modules_summary_stats(diff_db_oasis, tag_count)
 
 
