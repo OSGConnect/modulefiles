@@ -1,0 +1,239 @@
+
+Updated notes from Wim, Utah
+
+
+Installation Notes:
+==================
+
+LINUX: (https://sourceforge.net/p/cfm-id/wiki/Home/#on-linux)
+=====
+a.Boost 
+  export BOOST_ROOT=/uufs/chpc.utah.edu/sys/installdir/boost/1.59.0g
+  
+b.RDKit (http://rdkit.org)
+  http://www.rdkit.org/ 
+  -> needs to be installed
+
+c.LPSolve: (https://sourceforge.net/projects/lpsolve)
+  https://sourceforge.net/projects/lpsolve/files/latest/download
+  -> needs to be installed
+
+d.liblbfgs:
+  https://github.com/downloads/chokkan/liblbfgs/liblbfgs-1.10.tar.gz
+
+
+ml purge
+ml cmake
+
+# A.Use the following version of BOOST:
+# ------------------------------------
+export BOOST_ROOT=/uufs/chpc.utah.edu/sys/installdir/boost/1.59.0g
+
+
+# B.RDKIT:
+# -------
+mkdir -p $HOME/CFM-ID/rdkit
+cd $HOME/CFM-ID/rdkit
+wget https://sourceforge.net/projects/rdkit/files/rdkit/Q3_2013/RDKit_2013_09_1.tgz
+tar -zxvf *.tgz
+cd RDKit_2013_09_1/External/INCHI-API
+# I edited download-inchi.sh and modified by Wim on 11/21/2-16
+wget http://www.inchi-trust.org/download/104/INCHI-1-API.zip
+#wget http://www.inchi-trust.org/sites/default/files/inchi-1.04/INCHI-1-API.ZIP # transfered to a new url from 1.03
+
+bash download-inchi.sh
+cd ../..
+mkdir build
+cd build
+cmake  -DRDK_BUILD_PYTHON_WRAPPERS=OFF -DRDK_BUILD_INCHI_SUPPORT=ON \
+       -DBOOST_ROOT=/uufs/chpc.utah.edu/sys/installdir/boost/1.59.0g \
+       -DCMAKE_CXX_COMPILER=g++ \
+       -DCMAKE_CXX_FLAGS=" -fPIC -I/uufs/chpc.utah.edu/sys/installdir/boost/1.59.0g/include " \
+       -DCMAKE_C_COMPILER=gcc \
+       -DCMAKE_C_FLAGS="  -fPIC -I/uufs/chpc.utah.edu/sys/installdir/boost/1.59.0g/include " \
+       -DCMAKE_EXE_LINKER_FLAGS=" -Wl,-rpath=/uufs/chpc.utah.edu/sys/installdir/boost/1.59.0g/lib 
+                                  -L/uufs/chpc.utah.edu/sys/installdir/boost/1.59.0g/lib -lboost_regex " \
+       -DCMAKE_INSTALL_PREFIX=$HOME/CFM-ID/rdkit/RDKit_2013_09_1 ..
+ccmake ..
+make -j 6
+make install
+
+# NOTE: The flag -DCMAKE_INSTALL_PREFIX does NOT work!
+
+export BOOST_ROOT=/uufs/chpc.utah.edu/sys/installdir/boost/1.59.0g
+export RDBASE=$HOME/CFM-ID/rdkit/RDKit_2013_09_1
+
+
+# C.LPSOLVE: (./configure does NOT work)
+# ---------
+mkdir -p $HOME/CFM-ID/lp_solve; cd $HOME/CFM-ID/lp_solve
+wget https://sourceforge.net/projects/lpsolve/files/lpsolve/5.5.2.0/lp_solve_5.5.2.0_source.tar.gz
+tar -zxvf lp_solve_5.5.2.0_source.tar.gz
+# The ./configure does NOT work
+#./configure CC=icc CFLAGS=" -fPIC -O2 " CPPFLAGS=" -fPIC -O2 " --with-pic \
+#            --prefix=/uufs/chpc.utah.edu/sys/installdir/lp_solve/5.5.2.0-i2016.3
+
+=> Therefore:
+cd lp_solve_5.5/lpsolve55
+Edit ./ccc and change c into gcc
+sh ./ccc
+
+# Library bin/ux64/liblpsolve55.{a,so} created
+#   $HOME/CFM-ID/lp_solve/lp_solve_5.5/lpsolve55/bin/ux64
+
+
+
+# D.LIBLBFGS:
+# ----------
+mkdir -p $HOME/CFM-ID/liblbfgs ; cd $HOME/CFM-ID/liblbfgs
+wget https://github.com/downloads/chokkan/liblbfgs/liblbfgs-1.10.tar.gz
+tar -zxvf *.tar.gz
+cd $HOME/CFM-ID/liblbfgs/liblbfgs-1.10
+./configure --with-pic --prefix=$HOME/CFM-ID/liblbfgs/1.10 \
+            CC=gcc CFLAGS=" -fPIC -O2 " CXX=g++ CXXFLAGS=" -fPIC -O2 " \
+            F77=gfortran FFLAGS=" -fPIC -O2 "
+make
+make install
+# Instalaltion directory: $HOME/CFM-ID/liblbfgs/1.10
+
+
+# E.MPICH:
+# -------
+mkdir -p $HOME/CFM-ID/mpich/src ; cd $HOME/CFM-ID/mpich/src
+wget http://www.mpich.org/static/downloads/3.2/mpich-3.2.tar.gz
+tar -zxvf *
+mv mpich-3.2 3.2
+cd 3.2
+./configure --prefix=/uufs/chpc.utah.edu/common/home/u0253283/CFM-ID/mpich/pkg/3.2 \
+            --enable-fortran --enable-cxx --with-pic CFLAGS=" -O2 -fPIC " \
+             CXXFLAGS=" -O2 -fPIC " FCFLAGS="-O2 -fPIC" \
+             CC=gcc CXX=g++ FC=gfortran
+
+make -j 6
+make install
+
+
+# F.CFM_ROOT:
+# ----------
+export PATH=$HOME/CFM-ID/mpich/pkg/3.2/bin:$PATH
+mkdir -p $HOME/CFM-ID/cfm; cd $HOME/CFM-ID/cfm
+# svn checkout svn://svn.code.sf.net/p/cfm-id/code/cfm 12162016
+cd 12162016
+mkdir build; cd build
+
+export LD_LIBRARY_PATH=/uufs/chpc.utah.edu/sys/installdir/boost/1.59.0g:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$HOME/CFM-ID/rdkit/RDKit_2013_09_1/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$HOME/CFM-ID/lp_solve/lp_solve_5.5/lpsolve55/bin/ux64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$HOME/CFM-ID/liblbfgs/1.10/lib:$LD_LIBRARY_PATH
+
+cmake -DINCLUDE_TESTS=ON -DINCLUDE_TRAIN=ON \
+      -DCMAKE_CXX_COMPILER=mpicxx \
+      -DCMAKE_CXX_FLAGS=" -O2 -fPIC " \
+      -DCMAKE_C_COMPILER=mpicc \
+      -DCMAKE_C_FLAGS=" -O2 -fPIC " \
+      -DBOOST_ROOT=/uufs/chpc.utah.edu/sys/installdir/boost/1.59.0g \
+      -DBoost_DIR=/uufs/chpc.utah.edu/sys/installdir/boost/1.59.0g/lib \
+      -DBoost_INCLUDE_DIR=/uufs/chpc.utah.edu/sys/installdir/boost/1.59.0g/include \
+      -DRDKIT_DIR=$HOME/CFM-ID/rdkit/RDKit_2013_09_1 \
+      -DLPSOLVE_INCLUDE_DIR=$HOME/CFM-ID/lp_solve/lp_solve_5.5 \
+      -DLPSOLVE_LIBRARY_DIR=$HOME/CFM-ID/lp_solve/lp_solve_5.5/lpsolve55/bin/ux64 \
+      -DLBFGS_INCLUDE_DIR=$HOME/CFM-ID/liblbfgs/1.10/include \
+      -DLBFGS_LIBRARY_DIR=$HOME/CFM-ID/liblbfgs/1.10/lib \
+      -DCMAKE_SKIP_INSTALL_RPATH=ON -DCMAKE_SKIP_RPATH=ON \ 
+      -DCMAKE_INSTALL_PREFIX=$HOME/CFM-ID/cfm/12162016 ..
+
+# CMAKE_INSTALL_PREFIX does not work
+# Remove it
+
+# Note that you need 
+# DCMAKE_SKIP_INSTALL_RPATH=ON -DCMAKE_SKIP_RPATH=ON  
+# (otherwise no rpath tag will be added)
+
+
+make -j 6
+make install
+
+# Conclusion:
+# ----------
+
+# Executable(s) to be found in:
+/uufs/chpc.utah.edu/common/home/u0253283/CFM-ID/cfm/12162016/bin
+
+# Tests to be found in:
+/uufs/chpc.utah.edu/common/home/u0253283/CFM-ID/cfm/12162016/bin/tests
+
+
+# Creating the BUNDLE:
+# ===================
+cd /uufs/chpc.utah.edu/common/home/u0253283/CFM-ID/cfm/12162016
+
+# I copied ALL the libraries on which the executables depend into 
+# a newly created subdirectory:
+# /uufs/chpc.utah.edu/common/home/u0253283/CFM-ID/cfm/12162016/lib
+[u0253283@ember5:lib]$ ls -la
+total 4
+drwxr-xr-x  6 u0253283 chpc   79 Dec 16 10:16 .
+drwxr-xr-x 15 u0253283 chpc 4096 Dec 16 10:08 ..
+drwxr-xr-x  3 u0253283 chpc   24 Dec 16 10:10 liblbfgs
+drwxr-xr-x  3 u0253283 chpc   24 Dec 16 10:13 lpsolve
+drwxr-xr-x  3 u0253283 chpc   24 Dec 16 10:17 mpich
+drwxr-xr-x  3 u0253283 chpc   24 Dec 16 10:14 rdkit
+
+# IMPORTANT NOTE:
+# --------------
+The 'chrpath' executable didn't work.
+Error: no rpath or runpath tag found    
+ 
+=> We need to create a rpath/runpath tag in the binaries
+We can do this using 'patchelf', i.e. a small utility to
+modify the dynamic linker and RPATH of ELF executables
+ RPATH:https://en.wikipedia.org/wiki/Rpath
+ ELF: Executable and Linkable format  (https://en.wikipedia.org/wiki/Executable_and_Linkable_Format)
+
+
+
+# Installation of patchelf:
+# ------------------------
+# patchelf/chrpath
+
+cd $HOME/CFM-ID/cfm/12162016/bin 
+# Check for 1 executable ::
+# ----------------------
+patchelf --set-rpath /uufs/chpc.utah.edu/common/home/u0253283/CFM-ID/cfm/12162016/lib/liblbfgs:/uufs/chpc.utah.edu/common/home/u0253283/CFM-ID/cfm/12162016/lib/lpsolve:/uufs/chpc.utah.edu/common/home/u0253283/CFM-ID/cfm/12162016/lib/mpich:/uufs/chpc.utah.edu/common/home/u0253283/CFM-ID/cfm/12162016/lib/rdkit ./cfm-annotate
+
+chrpath -r '$ORIGIN'/../lib/liblbfgs:'$ORIGIN'/../lib/lpsolve:'$ORIGIN'/../lib/mpich:'$ORIGIN'/../lib/rdkit ./cfm-annotate
+
+# For ALL the executables:
+# -----------------------
+for i in ./cfm-annotate ./cfm-id ./cfm-id-precomputed ./cfm-predict ./cfm-test ./cfm-train ./compute-stats ./fraggraph-gen; do 
+   patchelf --set-rpath $HOME/CFM-ID/cfm/12162016/lib/liblbfgs:$HOME/CFM-ID/cfm/12162016/lib/lpsolve:$HOME/CFM-ID/cfm/12162016/lib/mpich:$HOME/CFM-ID/cfm/12162016/lib/rdkit $i; chrpath -r '$ORIGIN'/../lib/liblbfgs/lib:'$ORIGIN'/../lib/lpsolve/lib:'$ORIGIN'/../lib/mpich/lib:'$ORIGIN'/../lib/rdkit/lib $i ; done
+
+
+# Clean-up -> remove build
+# ------------------------
+# Remove build sub directory
+# cd /uufs/chpc.utah.edu/common/home/u0253283/CFM-ID/cfm/12162016
+# rm -rf build
+
+# Make the BUNDLE:
+# ---------------
+cd /uufs/chpc.utah.edu/common/home/u0253283/CFM-ID/cfm
+tar -jcvf cfm-id.tar.bz 12162016
+
+
+# Testing the installation:
+# ------------------------
+# A.Create a test directory:
+# -------------------------
+# Set PATH variable:
+mkdir $HOME/Trial ; cd $HOME/Trial
+cp -pR /uufs/chpc.utah.edu/common/home/u0253283/CFM-ID/cfm/cfm-id.tar.bz .
+tar -jxvf *
+cd *2016/bin
+export PATH=`pwd`:$PATH
+
+
+cfm-predict input1.txt 0.001 param_output0.log param_config.txt 0 neg_lib2.mgf
+
+# Shorter calculation: (5 minutes)
+cfm-predict input_small.txt 0.001 param_output0.log param_config.txt 0 neg_lib2.mgf
