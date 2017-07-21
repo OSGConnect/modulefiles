@@ -1,0 +1,30 @@
+wget https://github.com/opensim-org/opensim-core/archive/v3.2.0.tar.gz
+git clone https://github.com/opensim-org/opensim-core.git
+tar -xvzf v3.2.0.tar.gz
+cd opensim-core-3.2.0
+mkdir opensim-build
+cd opensim-build/
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/OpenSim/3.2.0
+module load gcc/4.9.2
+module load lapack/3.5.0
+
+git clone https://github.com/opensim-org/opensim-core.git
+cd opensim-core
+git checkout v3.2.0
+/cvmfs/oasis.opensciencegrid.org/osg/modules/cmake/3.4.1/bin/cmake -DCMAKE_CXX_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/g++ -DCMAKE_C_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/gcc ../
+
+SET(Simbody_INCLUDE_DIR "/cvmfs/oasis.opensciencegrid.org/osg/modules/simbody/3.5.3/include/simbody/")
+SET(Simbody_LIB_DIR "/cvmfs/oasis.opensciencegrid.org/osg/modules/simbody/3.5.3/lib64/")
+
+
+wget https://github.com/simbody/simbody/archive/Simbody-3.5.3.tar.gz
+tar -xvzf Simbody-3.5.3.tar.gz 
+cd /tmp/bala/simbody-Simbody-3.5.3
+module load gcc/4.9.2
+module load cmake/3.4.1
+mkdir simbody-build
+cd simbody-build
+cmake -DCMAKE_CXX_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/g++ -DCMAKE_C_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/gcc -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/simbody/3.5.3 ../
+make -j 8
+make install
+

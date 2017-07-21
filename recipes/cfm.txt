@@ -1,0 +1,49 @@
+wget http://pilotfiber.dl.sourceforge.net/project/rdkit/rdkit/Q1_2016/RDKit_2016_03_1.tgz
+tar -xvzf RDKit_2016_03_1.tgz
+cd rdkit-Release_2016_03_1
+mkdir build
+cd build
+module list
+mkdir =p /cvmfs/oasis.opensciencegrid.org/osg/modules/rdkit/2016_03_1
+---
+Currently Loaded Modules:
+  1) boost/1.62.0   2) python/2.7   3) mpfr/3.1.3   4) gmp/6.0.0   5) mpc/1.0.3   6) gcc/4.9.2   7) cmake/3.4.1
+-----
+
+ cmake -DRDK_BUILD_INCHI_SUPPORT=ON -DRDK_BUILD_PYTHON_WRAPPERS=OFF -DBoost_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/lib/  -DBoost_INCLUDE_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/include    -DCMAKE_CXX_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/gcc  -DCMAKE_CXX_FLAGS=" -fPIC -I/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/include " -DCMAKE_C_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/gcc -DCMAKE_C_FLAGS=" -fPIC -I/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/include"  -DCMAKE_EXE_LINKER_FLAGS=" -Wl,-rpath=/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/lib/  -L/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/lib/ -lboost_regex " -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/rdkit/2016_03_1 -DBoost_LIBRARY_DIRS=/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/lib ..
+
+cmake  -DRDK_BUILD_PYTHON_WRAPPERS=OFF -DBoost_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/lib/  -DBoost_INCLUDE_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/include    -DCMAKE_CXX_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/gcc  -DCMAKE_CXX_FLAGS=" -fPIC -I/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/include " -DCMAKE_C_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/gcc -DCMAKE_C_FLAGS=" -fPIC -I/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/include"  -DCMAKE_EXE_LINKER_FLAGS=" -Wl,-rpath=/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/lib/  -L/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/lib/ -lboost_regex " -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/rdkit/2016_03_1 -DBoost_LIBRARY_DIRS=/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/lib -DRDK_BUILD_INCHI_SUPPORT=ON ..
+
+make 
+make install 
+
+cp -r ../lib /cvmfs/oasis.opensciencegrid.org/osg/modules/rdkit/2016_03_1/.
+
+------
+Lp Solve
+
+wget https://sourceforge.net/projects/lpsolve/files/lpsolve/5.5.2.0/lp_solve_5.5.2.0_source.tar.gz
+tar -zxvf lp_solve_5.5.2.0_source.tar.gz
+
+cd lp_solve_5.5/lpsolve55
+
+Edit ./ccc and change c into gcc
+sh ./ccc
+# Library bin/ux64/liblpsolve55.a created
+
+$ mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/lpsolve/5.5.2.0
+$ mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/lpsolve/5.5.2.0/lib
+$ cp bin/ux64/liblpsolve55.* /cvmfs/oasis.opensciencegrid.org/osg/modules/lpsolve/5.5.2.0/lib/.
+
+------
+
+wget https://github.com/downloads/chokkan/liblbfgs/liblbfgs-1.10.tar.gz
+tar -xvzf liblbfgs-1.10.tar.gz 
+cd liblbfgs-1.10
+./configure -prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/liblbfgs/1.10
+make 
+make install
+------
+svn checkout svn://svn.code.sf.net/p/cfm-id/code/cfm cfm
+cmake -DLPSOLVE_LIBRARY=/cvmfs/oasis.opensciencegrid.org/osg/modules/lpsolve/5.5.2.0/lib/ -DLBFGS_INCLUDE_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/liblbfgs/1.10/include -DLBFGS_LIBRARY_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/liblbfgs/1.10/lib -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/cfm/2016.12 -DBoost_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/lib/  -DBoost_INCLUDE_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/include -DBoost_LIBRARY_DIRS=/cvmfs/oasis.opensciencegrid.org/osg/modules/boost/1.62.0/lib -DRDKIT_LIBRARY_DIR=/cvmfs/oasis.opensciencegrid.org/osg/modules/rdkit/2016.03.1/lib ..
+

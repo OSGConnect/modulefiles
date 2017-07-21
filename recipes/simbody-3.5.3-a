@@ -1,0 +1,25 @@
+wget https://github.com/simbody/simbody/archive/Simbody-3.5.3.tar.gz
+tar -xvzf Simbody-3.5.3.tar.gz 
+cd /tmp/bala/simbody-Simbody-3.5.3
+module load gcc/4.9.2
+module load cmake/3.4.1
+mkdir simbody-build
+cd simbody-build
+cmake -DCMAKE_CXX_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/g++ -DCMAKE_C_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/gcc -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/simbody/3.5.3 ../
+make -j 8
+make install
+
+Oct 17 2016
+$ module list
+
+Currently Loaded Modules:
+  1) mpfr/3.1.3   3) mpc/1.0.3     5) gcc/6.2.0           7) lapack/3.6.1
+  2) gmp/6.0.0    4) cmake/3.4.1   6) libgfortran/4.4.7
+
+cmake -DBUILD_VISUALIZER=No -DSIMBODY_STANDARD_11=No  -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/simbody/3.5.3 ./
+
+----
+long condition
+cmake -DBUILD_STATIC_LIBRARIES=yes -DBUILD_VISUALIZER=No -DBUILD_USING_OTHER_LAPACK=/cvmfs/oasis.opensciencegrid.org/osg/modules/lapack/3.6.1/lib64/liblapack.so.3.6.1 -DSIMBODY_STANDARD_11=No -DCMAKE_BUILD_TYPE=Release  -DCMAKE_CXX_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/g++ -DCMAKE_C_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/gcc -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/simbody/3.5.3  
+
+cmake -DBUILD_STATIC_LIBRARIES=yes -DBUILD_VISUALIZER=No -DBUILD_USING_OTHER_LAPACK=/cvmfs/oasis.opensciencegrid.org/osg/modules/lapack/3.6.1/lib64/liblapack.so -DSIMBODY_STANDARD_11=No -DCMAKE_BUILD_TYPE=Release  -DCMAKE_CXX_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/g++ -DCMAKE_C_COMPILER=/cvmfs/oasis.opensciencegrid.org/osg/modules/gcc/4.9.2/bin/gcc -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/simbody/3.5.3

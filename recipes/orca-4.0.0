@@ -1,0 +1,4 @@
+Obtained the code from a user. All binaries are statically compiled for x86_64 arch.
+It is good to remove the binraries suitable to run as mpi jobs. (rm *_mpi)
+The binaries are copied to /cvmfs/oasis.opensciencegrid.org/osg/modules/orca/4.0.0/bin
+The libraries are copied to /cvmfs/oasis.opensciencegrid.org/osg/modules/orca/4.0.0/lib

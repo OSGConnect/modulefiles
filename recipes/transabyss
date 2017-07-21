@@ -1,0 +1,19 @@
+
+module load python/2.7
+
+virtualenv /cvmfs/oasis.opensciencegrid.org/osg/modules/transabyss/1.5.5
+
+. /cvmfs/oasis.opensciencegrid.org/osg/modules/transabyss/1.5.5/bin/activate
+
+pip install python-igraph
+
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/transabyss/1.5.5
+wget http://www.bcgsc.ca/platform/bioinfo/software/trans-abyss/releases/1.5.5/transabyss-1.5.5.zip
+unzip transabyss-1.5.5.zip
+
+cd transabyss-1.5.5
+
+wget http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/blat/blat
+chmod 755 blat
+
+
