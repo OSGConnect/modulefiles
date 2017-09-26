@@ -1,0 +1,6 @@
+wget http://bitbucket.org/eigen/eigen/get/3.2.10.tar.gz
+tar -xvzf 3.2.10.tar.gz
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/eigen/3.2.10
+cd eigen-eigen-b9cd8366d4e8
+cmake -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/eigen/3.2.10 /tmp/bala/eigen-eigen-b9cd8366d4e8
+make install
