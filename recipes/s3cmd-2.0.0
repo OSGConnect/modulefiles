@@ -1,0 +1,7 @@
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-3.4/
+module load python/3.4
+pyvenv s3cmd
+source s3cmd/bin/activate
+pip install s3cmd
+deactivate
+tar and copy on OASIS
