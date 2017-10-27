@@ -1,0 +1,5 @@
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7
+virtualenv-2.7 globus-cli
+source globus-cli/bin/activate
+pip install globus-cli
+deactivate
