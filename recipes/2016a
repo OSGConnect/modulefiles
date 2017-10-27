@@ -1,0 +1,4 @@
+wget http://ssd.mathworks.com/supportfiles/downloads/R2016a/deployment_files/R2016a/installers/glnxa64/MCR_R2016a_glnxa64_installer.zip
+unzip MCR_R2016a_glnxa64_installer.zip 
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/matlab/2016a
+./install -mode silent -agreeToLicense yes -destinationFolder /cvmfs/oasis.opensciencegrid.org/osg/modules/matlab/2016a
