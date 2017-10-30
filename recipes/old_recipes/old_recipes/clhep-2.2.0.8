@@ -1,0 +1,13 @@
+source /cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/current/init/zsh
+module load gcc/4.9.2
+module load cmake/3.0.1
+mkdir /tmp/clhep
+cd /tmp/clhep
+wget 'http://proj-clhep.web.cern.ch/proj-clhep/DISTRIBUTION/tarFiles/clhep-2.2.0.8.tgz'
+tar xvif clhep-2.2.0.8.tgz
+cd 2.2.0.8
+mkdir build
+cd build
+cmake ../CLHEP -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules/clhep/2.2.0.8
+make
+make install
