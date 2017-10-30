@@ -1,7 +1,0 @@
-get https://git-core.googlecode.com/files/git-1.9.0.tar.gz
-./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/git/1.9.0
-
-make needs perl-ExtUtils-MakeMaker 
-
-make 
-make install

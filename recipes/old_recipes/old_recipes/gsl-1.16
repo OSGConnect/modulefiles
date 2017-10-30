@@ -1,8 +1,0 @@
-mkdir /tmp/gsl
-cd /tmp/gsl
-wget 'http://gnu.opencube.ca/gsl/gsl-1.16.tar.gz'
-tar xvzf gsl-1.16.tar.gz
-cd gsl-1.16
-./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/gsl/1.16/
-make
-make install

@@ -1,6 +1,0 @@
-wget 'https://github.com/TACC/Lmod/archive/7.7.12.zip'
-unzip 7.7.12.zip
-cd Lmod-7.7.12
-./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules2/lmod/7.7.12 --with-module-root-path=/cvmfs/oasis.opensciencegrid.org/osg/modules2/modulefiles
-make 
-make install

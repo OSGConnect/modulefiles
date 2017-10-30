@@ -1,9 +1,0 @@
-mkdir /tmp/circos
-cd /tmp/circos
-wget 'http://circos.ca/distribution/circos-0.68.tgz'
-wget 'http://circos.ca/distribution/circos-tools-0.21.tgz'
-tar xvzf circos-0.68.tgz
-cd circos-0.68/
-mkdir /cvmfs/oasis.opensciencegrid.org/osg/modules/circos/0.68 -p
-mv * /cvmfs/oasis.opensciencegrid.org/osg/modules/circos/0.68
-

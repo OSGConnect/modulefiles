@@ -1,8 +1,0 @@
-mkdir /tmp/mpfr
-cd /tmp/mpfr
-wget 'http://www.mpfr.org/mpfr-current/mpfr-3.1.3.tar.gz'
-cd mpfr-3.1.3
-./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/mpfr/3.1.3 --with-gmp-include=/cvmfs/oasis.opensciencegrid.org/osg/modules/gmp/6.0.0/include --with-gmp-lib=/cvmfs/oasis.opensciencegrid.org/osg/modules/gmp/6.0.0/lib
-make
-make check
-make install
