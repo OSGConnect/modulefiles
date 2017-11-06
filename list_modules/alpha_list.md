@@ -15,6 +15,7 @@
 * **GRAPHVIZ**  version (2.38.0) &mdash;      Graphviz is an application for visualizing networks and graphs. 
 * **GRASS**  version (6.4.4) &mdash;      GRASS (Geographic Resources Analysis Support System) 
 * **JULIA**  version (0.6.0) &mdash;   Julia is a high-level, high-performance dynamic programming language for technical computing, with syntax that is familiar to users of other technical computing environments. 
+* **JULIA**  version (0.6.0) &mdash;   Julia is a high-level, high-performance dynamic programming language for technical computing, with syntax that is familiar to users of other technical computing environments. 
 * **LAMMPS**  version (2.0,15May15) &mdash;      LAMMPS is a particle simulator code. 
 * **LMOD**  version (5.6.2) &mdash;   Lmod is a Lua based module system that easily handles the MODULEPATH Hierarchical problem. 
 * **LMOD**  version (AnEnvironmentModuleSystem) &mdash;   Lmod is a Lua based module system that easily handles the MODULEPATH Hierarchical problem. 
@@ -26,7 +27,6 @@
 * **QHULL**  version (2012.1) &mdash;      qhull libraries provide functions for computing convex hull. 
 * **R**  version (3.1.1,3.2.0,3.2.1,3.2.2,3.3.1,3.3.2) &mdash;      R is a free software environment for statistical computing and graphics. 
 * **ROOT**  version (5.34-32-py34,5.34-32,6.06-02-py34) &mdash;      ROOT is a high energy physics data analysis framework. 
-* **SAC**  version (10.1.6a) &mdash;   The IRIS DMC distributes the Seismic Analysis Code (SAC) software for scientists conducting research using IRIS data. 
 * **SIESTA**  version (3.2) &mdash;      SIESTA performs efficient electronic structure calculations of molecules and solids. 
 * **UDUNITS**  version (2.2.17) &mdash;      UDUNITS package supports units of physical quantities. 
 
@@ -43,9 +43,9 @@
 * **NAMD**  version (2.9,2.10.cuda,2.10) &mdash;      NAnoscale Molecular Dynamics (NAMD) program. 
 * **OPENBABEL**  version (2.3.2) &mdash;      Open Babel is a chemical toolbox designed to speak the many languages of chemical data. 
 * **OPENBUGS**  version (3.2.3) &mdash;   OpenBUGS is a software package for performing Bayesian inference Using Gibbs Sampling. 
-* **ORCA**  version (3.0.3) &mdash;   ORCA is a general-purpose quantum chemistry program package. 
+* **ORCA**  version (3.0.3,4.0.0) &mdash;   ORCA is a general-purpose quantum chemistry program package. 
 * **PHENIX**  version (1.10) &mdash;      software suite for the determination of molecular structures from X-Ray and other methods. 
-* **PSI4**  version (0.3.74) &mdash;      Psi4 is an open-source suite of ab initio quantum chemistry programs designed for efficient, high-accuracy simulations of a variety of molecular properties.  
+* **PSI4**  version (0.3.74,1.1) &mdash;      Psi4 is an open-source suite of ab initio quantum chemistry programs designed for efficient, high-accuracy simulations of a variety of molecular properties.  
 * **ROSETTA**  version (2015,2016-02,2016-32) &mdash;      The Rosetta software suite includes algorithms for computational modeling and analysis of protein structures. 
 * **SHELX**  version (2015) &mdash;      SHELX is a set of programs for the determination of small and macromolecular crystal structures. 
 * **SHELX**  version (2015) &mdash;      SHELX is a set of programs for the determination of small and macromolecular crystal structures. 
@@ -87,7 +87,9 @@
 * **MUSCLE**  version (3.8.31) &mdash;      MUSCLE stands for MUltiple Sequence Comparison by Log-Expectation 
 * **NGSTOOLS**  version (2017.03.16) &mdash;    ngsTools is a collection of programs for population genetics analyses from NGS data, taking into account its statistical un certainty. 
 * **PBSUITE**  version (14.9.9) &mdash;      PBSuite is a software for long-read sequencing data from PacBio. 
+* **PRODIGAL**  version (2.6.3) &mdash;      Fast, reliable protein-coding gene prediction for prokaryotic genomes. 
 * **RAXML**  version (8.2.9) &mdash;   A tool for Phylogenetic Analysis and Post-Analysis of Large Phylogenies 
+* **RAXML-NG**  version (0.5.0beta) &mdash;   Phylogenetic tree inference tool which uses maximum-likelihood (ML) optimality criterion. 
 * **SAMTOOLS**  version (0.1.17,1.3.1) &mdash;      Samtools is a set of utilities for working with data in sequence alignment map format. 
 * **SEQGEN**  version (1.3.3) &mdash;   Seq-Gen is a program that will simulate the evolution of nucleotide or amino acid sequences along a phylogeny 
 * **SHRIMP**  version (2.2.3) &mdash;      SHRiMP is a software package for aligning genomic reads against a target genome. 
@@ -105,6 +107,7 @@
 * **ATLAS**  version (3.10.1,3.10.2) &mdash;   The ATLAS (Automatically Tuned Linear Algebra Software) provides optimzied libraries for Linear Algebra. 
 * **BOOST**  version (1.50.0,1.56,1.57.0,1.62.0-cxx11,...) &mdash;      Boost provides free peer-reviewed portable C++ source libraries. 
 * **CBLOSC**  version (1.7.1) &mdash;   A blocking, shuffling and loss-less compression library 
+* **EIGEN**  version (3.2.10) &mdash;   Eigen is a C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms. 
 * **FFTW**  version (3.3.4-gromacs,3.3.4) &mdash;      FFTW is a library for fast fourier transforms. FFTW 3.3.4 library compiled for general use. 
 * **GEOS**  version (3.4.2) &mdash;      GEOS (Geometry Engine - Open Source) is an API for processing spatial geometry. 
 * **GMP**  version (6.0.0) &mdash;       Gnu Multi Precision Libraries 
@@ -119,6 +122,7 @@
 * **PARI**  version (2.7.5) &mdash;    PARI is a widely used computer algebra system designed for fast computations in number theory 
 * **SAGA**  version (2.2.0) &mdash;      SAGA is a GIS application 
 * **SDPA**  version (7.3.8) &mdash;      SDPA (Semi Definite Programming Algorithm) is one of the efficient software package for solving SDPs. 
+* **SPARSE**  version (-) &mdash;   Sparse works with Python 2.7 and offers a set of packages to deal with sparse matrices 
 * **SPARSESUITE**  version (4.2.1) &mdash;      SuiteSparse is a suite of sparse matrix algorithms. 
 * **SUNDIALS**  version (2.5) &mdash;      SUNDIALS (SUite of Nonlinear and DIfferential/ALgebraic equation Solvers) 
 
@@ -152,6 +156,7 @@
 * **GD**  version (2.1.1) &mdash;   GD is an open source code library for the dynamic creation of images by programmers. 
 * **GFAL**  version (7.20) &mdash;   GFAL2 is a set of file access utilities. 
 * **GIT**  version (1.9.0) &mdash;      Git is a software change management tool. 
+* **GLOBUS-CLI**  version (-) &mdash;   globus-cli is a free command line tool that provides an interface to Globus services 
 * **GNOME_LIBS**  version (1.0) &mdash;   GNOME desktop libraries. 
 * **HDF5**  version (1.8.9,1.8.12-cxx11,1.8.12,1.8.13-cxx11,...) &mdash;      HDF5 is a library for storing and managing data in flexible 
 * **JASPER**  version (1.900.1) &mdash;      reference implementation of the codec specified in the JPEG 
@@ -184,7 +189,7 @@
 * **SERF**  version (1.37) &mdash;      Serf is a library that provides high performance http client functions. 
 * **SETTARG**  version (5.6.2) &mdash;      The settarg module dynamically and automatically updates "$TARG" and a host of other environment variables. 
 * **SNAPPY**  version (1.1.3) &mdash;   Snappy is a compression and decompression library. 
-* **STASHCP**  version (2.2,2.5,2.6,3.0,3.1,...) &mdash;      Stashcp is a front-end to XRootD caching for OSG Connect Stash. 
+* **STASHCP**  version (2.6,4.3.0,4.3.1) &mdash;      Stashcp is a front-end to XRootD caching for OSG Connect Stash. 
 * **SUBVERSION**  version (1.8.10) &mdash;      Subversion is a source control revision tool. 
 * **SWIFT**  version (0.94.1,0.96.2) &mdash;      Swift is a parallel scripting language. 
 * **TCL**  version (8.6.2) &mdash;      Tcl (Tool Command Language) is a very powerful but easy to learn dynamic programming language. 

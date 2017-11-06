@@ -1,5 +1,6 @@
 ## Physics and Engineering 
 ASTROPY :: Astronomy in Python package fosters interoperability between Python astronomy packages. :: tag 0 :: 
+EINSTEIN :: The Einstein Toolkit is a community-driven software platform of core computational tools to advance and support research in relativistic astrophysics and gravitational physics. :: tag 0 :: 
 CDO  ::    CDO is a collection of command line Operators to manipulate and analyse Climate and NWP model Data. :: tag0::
 CLHEP  ::    Set of HEP-specific foundation and utility classes such as random generators, physics vectors, geometry and linear algebra.  :: tag0::
 CP2K  ::    CP2K is the state-of-the-art method for accurate atomistic simulations. :: tag0::
@@ -65,7 +66,9 @@ IMAGE_MODULES :: Image_modules includes a set of Python packages for needed for 
 ETE2 ::  ETE is a toolkit based on Python framework for the analysis and visualization of trees.:: tag3 ::
 ABYSS :: ABySS is a de novo, parallel, paired-end sequence assembler that is designed for short reads. :: tag3 ::
 BEDTOOLS  ::    A set of tools for a wide-range of genomics analysis tasks. :: tag3::
+BEDTOOLS  ::    A set of tools for a wide-range of genomics analysis tasks. :: tag3::
 BLASR  ::    Blasr is a tool to search and align sequences with refinements. :: tag3::
+PRODIGAL  ::    Fast, reliable protein-coding gene prediction for prokaryotic genomes. :: tag3::
 BLAST  ::    Blast is a tool to search and align gene and protein sequences. :: tag3::
 BOWTIE  ::    Bowtie is an ultrafast and memory-efficient tool for aligning sequencing reads to long reference sequences. :: tag3::
 BWA  ::    BWA is a package for mapping low-divergent sequences against a large reference genome. :: tag3::
@@ -85,6 +88,7 @@ SEQGEN :: Seq-Gen is a program that will simulate the evolution of nucleotide or
 TRANSABYSS :: de novo assembly of RNA-Seq data using ABySS :: tag3 :: 
 NGSTOOLS ::  ngsTools is a collection of programs for population genetics analyses from NGS data, taking into account its statistical un certainty. :: tag3 :: 
 RAXML :: A tool for Phylogenetic Analysis and Post-Analysis of Large Phylogenies :: tag3 :: 
+RAXML-NG :: Phylogenetic tree inference tool which uses maximum-likelihood (ML) optimality criterion. :: tag3 :: 
 TASSEL :: TASSEL has functionality for association study, evaluating evolutionary relationships, analysis of linkage disequilibrium, principal component analysis, cluster analysis, missing data imputation and data visualization. :: tag3 :: 
 STRINGTIE :: StringTie is a fast and highly efficient assembler of RNA-Seq alignments into potential transcripts. :: tag3 :: 
 HISAT2 :: HISAT2 is a fast and sensitive alignment program for mapping next-generation sequencing reads (both DNA and RNA) against th e general human population (as well as against a single reference genome). :: tag3 :: 
@@ -95,6 +99,8 @@ VIENNARNA :: ViennaRNA Package consists of a C code library and several stand-al
 ## Numerical Libraries 
 LAPACK :: LAPACK (Linear Algebra Package) is a standard software library for numerical linear algebra. :: tag4 ::
 ATLAS :: The ATLAS (Automatically Tuned Linear Algebra Software) provides optimzied libraries for Linear Algebra. :: tag4 ::
+EIGEN :: Eigen is a C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms. :: tag4 ::
+SPARSE :: Sparse works with Python 2.7 and offers a set of packages to deal with sparse matrices :: tag4 :: 
 PARI ::  PARI is a widely used computer algebra system designed for fast computations in number theory :: tag4 ::
 BOOST  ::    Boost provides free peer-reviewed portable C++ source libraries. :: tag4::
 FFTW  ::    FFTW is a library for fast fourier transforms. FFTW 3.3.4 library compiled for general use. :: tag4::
@@ -107,6 +113,7 @@ MPFR  ::    MPFR library is a C library for multiple-precision floating-point co
 NCO  ::    The NCO toolkit manipulates and analyzes data stored in netCDF-accessible formats. :: tag4::
 NETCDF  ::    NetCDF is a set of software libraries supporting array-oriented scientific data. :: tag4::
 SAGA  ::    SAGA is a GIS application :: tag4::
+SAC    :: Seismic Analysis Code (SAC) software for scientists conducting research using IRIS data. :: tag4 ::
 SDPA  ::    SDPA (Semi Definite Programming Algorithm) is one of the efficient software package for solving SDPs. :: tag4::
 SPARSESUITE  ::    SuiteSparse is a suite of sparse matrix algorithms. :: tag4::
 SUNDIALS  ::    SUNDIALS (SUite of Nonlinear and DIfferential/ALgebraic equation Solvers) :: tag4::
@@ -152,6 +159,7 @@ TCL  ::    Tcl (Tool Command Language) is a very powerful but easy to learn dyna
 VALGRIND  ::    Valgrind can detect memory management and threading bugs :: tag5::
 WGET  ::    Wget is a command line HTTP client :: tag5::
 S3CMD :: S3cmd is a free command line tool and client for uploading, retrieving and managing data in Amazon S3 and other cloud stora ge service providers that use the S3 protocol  :: tag5 :: 
+GLOBUS-CLI :: globus-cli is a free command line tool that provides an interface to Globus services :: tag5 :: 
 WXGTK:: wxWidgets is a C++ library that lets developers create applications for Windows, Mac OS X, and Linux. :: tag5 ::
 CBLOSC :: A blocking, shuffling and loss-less compression library :: tag4 ::
 HEALPIX :: Hierarchical Equal Area isoLatitude Pixelation of a sphere (HEALPIX) produces a subdivision of a spherical surface. :: tag 5 :: 
@@ -186,6 +194,5 @@ BZIP2 :: bzip2 is a freely available, patent free, high-quality data compressor.
 POVRAY :: The Persistence of Vision Raytracer is a high-quality, Free Software tool for creating stunning three-dimensional graphics. :: tag5 ::
 DMTCP :: DMTCP (Distributed MultiThreaded Checkpointing) transparently checkpoints a single-host or distributed computation in user-space :: tag5 ::
 APRUTIL ::  APR Util provides cross platform libraries for handling OS related operations. :: tag5 ::
-LIBTIFF ::libtiff  supports  the Tag Image File Format (TIFF), a widely used format for storing image data. :: tag5 ::
-LIBGFORTRAN :: Fortran shared library which is needed to run Fortran dynamically linked programs. :: tag5 ::
+
 
