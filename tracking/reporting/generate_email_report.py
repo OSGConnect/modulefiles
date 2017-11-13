@@ -216,15 +216,16 @@ def get_multicore_users(start_date):
                             "script": "doc['RemoteCPUTime'].value < (doc['RemoteWalltime'].value * 1.2)"
                         }}},
                 "size": 10000}}
+
+    module_list = []
     results = db.search(body=query, size=0, index=indices)
     doc_count = results['hits']['total']
-    user_list = []
     if doc_count == 0:
-        return user_list
+        return module_list
 
-    for record in results['hits']['docs']:
-        user_list.append((record['key'], record['script']))
-    return user_list
+    for record in results['aggregations']['modules']['buckets']:
+        module_list.append((record['key'], record['doc_count']))
+    return module_list
 
 def get_moduleloads(start_date, top=None):
     """
