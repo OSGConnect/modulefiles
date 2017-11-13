@@ -1,0 +1,12 @@
+# module load cmake
+# need to have cmake available 
+
+mkdir /tmp/cmake
+cd /tmp/cmake
+wget 'https://cmake.org/files/v3.9/cmake-3.9.6.tar.gz'
+tar xvzf cmake-3.9.6.tar.gz
+mkdir build
+cd  build
+cmake -DCMAKE_INSTALL_PREFIX=/cvmfs/oasis.opensciencegrid.org/osg/modules2/el7/cmake/3.9.6 ../cmake-3.9.6
+make -j 8 
+make install
