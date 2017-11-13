@@ -11,7 +11,8 @@ import git
 
 MODULEFILE_REPO_URL = "https://github.com/OSGConnect/modulefiles.git"
 
-def checkout_repo(location = None):
+
+def checkout_repo(location=None):
     """
     Checkout files from modulefiles repo and place in directory 
     specified by location argument
@@ -22,12 +23,15 @@ def checkout_repo(location = None):
         sys.stderr.write("{0} is not present or not a directory\n".format(location) )
         return None
     try:
-        git.Repo.clone_from(MODULEFILE_REPO_URL, location)
+        repo = git.Repo.clone_from(MODULEFILE_REPO_URL, location)
+        repo.remotes.origin.fetch()
+        repo.git.checkout('origin/el7', b='el7')
         return location
-    except:
+    except git.exc.GitError:
         return None
 
-def tar_files(location = None, tarfile_name = None):
+
+def tar_files(location=None, tarfile_name=None):
     """
     Create a tarball called tarfile_name with the contents of the directory
     specified by location
@@ -40,13 +44,13 @@ def tar_files(location = None, tarfile_name = None):
             sys.stderr.write("Exiting...")
             sys.exit(0)
     tar = tarfile.open(tarfile_name, "w:gz")
-    pwd = os.getcwd()
     os.chdir(location)
     for name in os.listdir(location):
         tar.add(name)
     return tarfile_name
-        
-def package_files(location = None):
+
+
+def package_files(location=None):
     """
     Take a checked out install of modulefiles and process it to make it ready 
     for deployment on OASIS
@@ -72,6 +76,7 @@ def package_files(location = None):
     os.rmdir(os.path.join(location, "modulefiles"))
 
     return location 
+
 
 def main():
     """

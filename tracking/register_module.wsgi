@@ -11,7 +11,7 @@ import sys
 
 import redis
 
-REDIS_SERVER = 'db.mwt2.org'
+REDIS_SERVER = 'osg-redis.mwt2.org'
 REDIS_CHANNEL = 'module-usage'
 
 TIMEZONE = "US/Central"
@@ -49,6 +49,7 @@ SITE_IPS = {"AGLT2": "141.211.43.122",
             "UTA_SWT2": "129.107.255.5",
             "VT_OSG": "198.82.152.147"}
 
+DEBUG = False
 
 def get_redis_client():
     """
@@ -64,6 +65,7 @@ def publish_record(record, channel, redis_client):
     Publishes a record to a Redis pub/sub channel
 
     :param record: dictionary representing record to publish
+    :param channel: channel to use for publishing
     :param redis_client: a redis client instance to use
     :return: None
     """
@@ -97,7 +99,12 @@ def application(environ, start_response):
     else:
         record['project'] = ''
     if 'module' in query_dict:
-        record['module'] = query_dict['module'][0]
+        if '/' in query_dict['module'][0]:
+            module_name, version = query_dict['module'][0].split('/')
+            record['module'] = module_name
+            record['version'] = version
+        else:
+            record['module'] = query_dict['module'][0]
     else:
         record['module'] = ''
     if 'site' in query_dict:
@@ -143,7 +150,9 @@ def application(environ, start_response):
     response_headers = [('Content-Type', 'text/html'),
                         ('Content-Length', str(len(response_body)))]
     start_response(status, response_headers)
-    print response_body
+    if DEBUG:
+        open('/tmp/records.log', 'a').write(str(record) + "\n")
+        print response_body
     return [response_body]
 
 
@@ -159,8 +168,6 @@ def lookup_site_ip(site_name):
         return "0.0.0.0"
     else:
         return SITE_IPS[site_name]
-
-
 
 
 if __name__ == '__main__':
