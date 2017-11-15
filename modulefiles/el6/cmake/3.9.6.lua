@@ -11,5 +11,5 @@ local version = "3.9.6"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules2/el6/cmake/"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
-
+report_load("cmake/"..version)
 family('cmake')
