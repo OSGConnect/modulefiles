@@ -1,0 +1,11 @@
+mkdir /tmp/git
+cd /tmp/git
+wget https://www.kernel.org/pub/software/scm/git/git-2.15.0.tar.xz
+tar xvJf git-2.15.0.tar.xz
+cd git-2.15.0
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules2/el6/git/2.15.0
+
+make needs perl-ExtUtils-MakeMaker 
+
+make  -j 8
+make install
