@@ -1,0 +1,8 @@
+mkdir /tmp/curl
+cd /tmp/curl
+wget https://curl.haxx.se/download/curl-7.56.1.tar.gz
+tar xvzf curl-7.56.1.tar.gz
+cd curl-7.56.1
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules2/el6/curl/7.56.1 --with-ssl
+make  -j 8
+make install
