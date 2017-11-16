@@ -11,5 +11,7 @@ local version = "7.56.1"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules2/el7/curl/"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
+prepend_path("CPATH",  pathJoin(base, "include"))
+prepend_path("LIBRARY_PATH",  pathJoin(base, "lib"))
 report_load("curl/"..version)
 family('curl')

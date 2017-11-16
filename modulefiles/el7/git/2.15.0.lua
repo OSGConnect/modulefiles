@@ -11,7 +11,6 @@ local version = "2.15.0"
 local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules2/el7/git/"..version
 
 prepend_path("PATH", pathJoin(base, "bin"))
-prepend_path("CPATH",  pathJoin(base, "include"))
-prepend_path("LIBRARY_PATH",  pathJoin(base, "lib"))
+prepend_path("LIBRARY_PATH",  pathJoin(base, "lib64"))
 report_load('git/'..version)
 family('git')
