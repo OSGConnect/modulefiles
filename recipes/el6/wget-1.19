@@ -1,0 +1,8 @@
+mkdir /tmp/wget
+cd /tmp/wget
+wget https://ftp.gnu.org/gnu/wget/wget-1.19.tar.xz
+tar xvJf wget-1.19.tar.xz
+cd wget-1.19
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules2/el6/wget/1.19
+make  -j 8
+make install
