@@ -1,0 +1,11 @@
+module load python/3.5.2
+module load gcc/6.2.0 
+
+pyvenv /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-3.5/Pandana
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-3.5/Pandana
+source bin/activate
+pip install pandana
+pip install scipy
+deactivate
+
+tar and copy on OASIS
