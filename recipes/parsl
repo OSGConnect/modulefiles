@@ -1,0 +1,6 @@
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-3.5
+module load python/3.5.2
+pyvenv parsl
+source parsl/bin/activate
+pip install ipyparallel
+pip install parsl
