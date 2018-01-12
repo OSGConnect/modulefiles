@@ -8,9 +8,10 @@ $ cd /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-3.4/
 $ pyvenv root_numpy
 
 $ source root_numpy/bin/activate
-$ pip install root_numpy
-$ pip install rootpy
+$ pip install numpy==1.13.3
 $ pip install scipy
 $ pip install pandas
+$ pip install root_numpy
+$ pip install rootpy
 $ decativate 
 tar and copy on OASIS
