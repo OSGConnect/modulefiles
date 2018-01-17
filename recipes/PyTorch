@@ -1,0 +1,13 @@
+$ module list
+
+Currently Loaded Modules:
+  1) python/3.5.2   2) gcc/6.2.0
+
+
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-3.5/
+pyvenv PyTorch
+source activate PyTorch/bin/activate
+pip3 install http://download.pytorch.org/whl/cu80/torch-0.3.0.post4-cp35-cp35m-linux_x86_64.whl 
+pip3 install torchvision
+decativate 
+tar and copy on OASIS
