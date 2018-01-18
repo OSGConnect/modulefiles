@@ -11,4 +11,5 @@ local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/R/"..version
 prepend_path("PATH", pathJoin(base, "bin"))
 prepend_path("LD_LIBRARY_PATH", pathJoin(base, "lib64"))
 
+load('libicu/4.2.1')
 family('R')
