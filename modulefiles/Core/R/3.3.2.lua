@@ -1,4 +1,3 @@
-3.3.2.lua 
 help(
 [[
 This module loads R 3.3.2 into the environment
