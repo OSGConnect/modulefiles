@@ -17,4 +17,4 @@ prepend_path("CPATH", pathJoin(base, "include"))
 family('llvm')
 load('gcc/6.2.0')
 load('cmake/3.8.0')
-load('python/2.7')
+
