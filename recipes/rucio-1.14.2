@@ -1,0 +1,17 @@
+source /cvmfs/oasis.opensciencegrid.org/osg/modules/lmod/current/init/zsh
+module load python/2.7
+
+virtualenv-2.7 /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/rucio-1.14.2
+cd /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/rucio-1.14.2
+
+
+create  requirements file with:
+
+rucio == 1.14.2
+
+
+source /cvmfs/oasis.opensciencegrid.org/osg/modules/virtualenv-2.7/rucio-1.14.2/bin/activate
+
+pip install --upgrade pip
+pip install --upgrade setuptools
+pip install -r requirements
