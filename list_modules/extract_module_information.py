@@ -161,7 +161,19 @@ def write_markdown_file(module_list, outputfile):
 def print_modules_summary_stats(diff_mods, tag_count):
     total_mods = 0
     for key, val in tag_count.items():
-        print key, val
+        if key == "tag0":
+            keyname = key + '## Physics and Engineering '
+        if key == "tag1":
+            keyname = key + '## Chemistry and Biochemistry '
+        if key == "tag2":
+            keyname = key + '## Image Analysis '
+        if key == "tag3":
+            keyname = key + '## Bioinformatics '
+        if key == "tag4":
+            keyname = key + '## Numerical Libraries '
+        if key == "tag5":
+            keyname = key + '## Software Libraries, Languages, and Tools '
+        print keyname, val
         total_mods += val
     print "="*60
     print  "total modules= ", total_mods
