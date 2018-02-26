@@ -23,10 +23,13 @@
 * **MATLAB**  version (2013b,2014a,2014b,2015a,...) &mdash;   Runtime libraries. The MATLAB Runtime is a standalone set of shared libraries that enables the execution of compiled MATLAB applications or components on computers that do not have MATLAB installed. 
 * **OCTAVE**  version (3.8.1) &mdash;      Octave is a high-level interpreted language 
 * **OPENSEES**  version (6482) &mdash;   OpenSees is a software framework for developing applications to simulate the performance of structural and geotechnical sys tems subjected to earthquakes. 
+* **PANDANA**  version (-) &mdash;   PANDANA performs hundreds of thousands of network queries in under a second (for walking-scale distances)  
 * **PSIMS**  version (-) &mdash;   A set of packages for needed for the PSIMS (numpy, h5py, netcdf4) 
+* **PYTORCH**  version (-) &mdash;   PYTORCH Tensors and Dynamic neural networks in Python with strong GPU acceleration. 
 * **QHULL**  version (2012.1) &mdash;      qhull libraries provide functions for computing convex hull. 
 * **R**  version (3.1.1,3.2.0,3.2.1,3.2.2,3.3.1,3.3.2) &mdash;      R is a free software environment for statistical computing and graphics. 
 * **ROOT**  version (5.34-32-py34,5.34-32,6.06-02-py34) &mdash;      ROOT is a high energy physics data analysis framework. 
+* **ROOT_NUMPY**  version (-) &mdash;   ROOT_NUMPY is a Python extension module that provides an efficient interface between ROOT and NumPy 
 * **SIESTA**  version (3.2) &mdash;      SIESTA performs efficient electronic structure calculations of molecules and solids. 
 * **UDUNITS**  version (2.2.17) &mdash;      UDUNITS package supports units of physical quantities. 
 
@@ -133,6 +136,7 @@
 * **ANT**  version (1.9.4) &mdash;      Ant is a Java library and command-line tool is to drive processes described in build files. 
 * **APR**  version (1.5.1) &mdash;      The Apache Portable Runtime (APR) libraries provide a interface to platform-specific implementations. 
 * **APRUTIL**  version (1.5.3) &mdash;    APR Util provides cross platform libraries for handling OS related operations. 
+* **BBFTP**  version (3.2.1) &mdash;   BBFTP is a file transfer software. 
 * **BINUTILS**  version (2.26) &mdash;   GNU Binutils are a collection of binary tools that do low level operations on binaries. 
 * **BOTO**  version (-) &mdash;   Boto is a Python package that provides interfaces to Amazon Web Services. 
 * **BZIP2**  version (1.0.6) &mdash;   bzip2 is a freely available, patent free, high-quality data compressor. 
@@ -158,14 +162,16 @@
 * **GIT**  version (1.9.0) &mdash;      Git is a software change management tool. 
 * **GLOBUS-CLI**  version (-) &mdash;   globus-cli is a free command line tool that provides an interface to Globus services 
 * **GNOME_LIBS**  version (1.0) &mdash;   GNOME desktop libraries. 
-* **HDF5**  version (1.8.9,1.8.12-cxx11,1.8.12,1.8.13-cxx11,...) &mdash;      HDF5 is a library for storing and managing data in flexible 
+* **HDF5**  version (1.8.5-cxx11,1.8.9,1.8.12-cxx11,1.8.12,...) &mdash;      HDF5 is a library for storing and managing data in flexible 
+* **IRODS**  version (4.2.2) &mdash;    The Integrated Rule-Oriented Data System (iRODS) is open source data management software. 
 * **JASPER**  version (1.900.1) &mdash;      reference implementation of the codec specified in the JPEG 
 * **JAVA**  version (7u71,8u25,8u131) &mdash;      Java 
 * **JPEG**  version (6b,9a) &mdash;      Libjpeg is a widely used C library for reading and writing jpeg image files. 
 * **LIBGFORTRAN**  version (4.4.7) &mdash;     
+* **LIBICU**  version (4.2.1) &mdash;   International Components for Unicode (ICU) libraries. 
 * **LIBTIFF**  version (4.0.4) &mdash;     
 * **LIBXPM**  version (3.5.10) &mdash;    LibXPM is a package with  X.Org, X11, and libXpm runtime libraries 
-* **LLVM**  version (3.6,3.7,3.8.0) &mdash;   LLVM is a toolkit for the construction of highly optimized compilers, optimizers, and runtime environments. 
+* **LLVM**  version (3.6,3.7,3.8.0,5.0.0) &mdash;   LLVM is a toolkit for the construction of highly optimized compilers, optimizers, and runtime environments. 
 * **MERCURIAL**  version (1.9.1) &mdash;      Mercurial is a source code management tool. 
 * **MONO**  version (4.2.1) &mdash;   Mono is a software platform designed to allow developers to easily create cross platform applications. 
 * **MPLAYER**  version (1.1) &mdash;      Mplayer is an image viewer and editor. 
@@ -173,6 +179,7 @@
 * **OPENCV**  version (2.4.10) &mdash;      OpenCV (Open Source Computer Vision Library) is an open source computer vision and machine learning software library. 
 * **OPENSIM**  version (3.3) &mdash;   OpenSim is an open source software system for biomechanical modeling, simulation and analysis. 
 * **PAPI**  version (5.3.2) &mdash;      PAPI is a performance profiler. 
+* **PARSL**  version (-) &mdash;   Parsl is a parallel scripting library that enables easy parallelism and workflow design. 
 * **PBSUITE_PKGS**  version (-) &mdash;   PBSuite loads python and adds numpy, h5py, and pysam packages. 
 * **PCRE**  version (8.35) &mdash;      PCRE is perl compatible regular expression library. 
 * **PEGASUS**  version (4.4.2-image_tools,4.5.3,4.6.0dev,...) &mdash;   Pegasus is a workflow management system to automate, recover, and debug scientific computations. 
