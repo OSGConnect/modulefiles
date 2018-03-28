@@ -2,5 +2,4 @@ wget 'https://www.lua.org/ftp/lua-5.3.4.tar.gz'
 tar xvzf lua-5.3.4.tar.gz
 cd lua-5.3.4
 make CFLAGS="-O2 -Wall -Wextra -DLUA_COMPAT_5_2 -DLUA_COMPAT_MODULE -DLUA_USE_LINUX" linux
-make install INSTALL_TOP=/cvmfs/oasis.opensciencegrid.org/osg/modules2/lua/
-
+make install INSTALL_TOP=cvmfs/connect.opensciencegrid.org/modules/lua
