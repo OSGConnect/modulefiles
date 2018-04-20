@@ -1,0 +1,14 @@
+# load python/3.5.2 module
+# load gcc/6.2.0
+# load ipopt/3.12.6
+export IPOPT_CFLAGS="-I/cvmfs/oasis.opensciencegrid.org/osg/modules/ipopt/3.12.6/include/coin"
+export IPOPT_LIBS="-lipopt"
+mkdir /tmp/biogeme
+cd /tmp/biogeme
+wget 'http://biogeme.epfl.ch/distrib/biogeme-2.6a.tar.gz'
+tar xvzf biogeme-2.6a.tar.gz
+cd biogeme-2.6a
+./configure --disable-gui --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/biogeme-2.6a
+make -j 8
+make install
+
