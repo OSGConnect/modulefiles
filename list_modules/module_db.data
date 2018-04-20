@@ -25,6 +25,9 @@ LMOD :: Lmod is a Lua based module system that easily handles the MODULEPATH Hie
 SAC :: The IRIS DMC distributes the Seismic Analysis Code (SAC) software for scientists conducting research using IRIS data. :: tag0 ::
 JULIA :: Julia is a high-level, high-performance dynamic programming language for technical computing, with syntax that is familiar to users of other technical computing environments. :: tag0 ::
 GDAL :: GDAL is a translator library for raster and vector geospatial data formats that is released by the Open Source Geospatial Foundation. :: tag0 ::
+PYTORCH :: PYTORCH Tensors and Dynamic neural networks in Python with strong GPU acceleration. :: tag0 ::
+PANDANA :: PANDANA performs hundreds of thousands of network queries in under a second (for walking-scale distances)  :: tag0 ::
+ROOT_NUMPY :: ROOT_NUMPY is a Python extension module that provides an efficient interface between ROOT and NumPy :: tag0 ::
 
 ## Chemistry and Biochemistry 
 ARC-LITE  ::    arc-lite (ARCIMBOLDO) is a package for the protein structure refinement. :: tag1::
@@ -118,6 +121,7 @@ SDPA  ::    SDPA (Semi Definite Programming Algorithm) is one of the efficient s
 SPARSESUITE  ::    SuiteSparse is a suite of sparse matrix algorithms. :: tag4::
 SUNDIALS  ::    SUNDIALS (SUite of Nonlinear and DIfferential/ALgebraic equation Solvers) :: tag4::
 IPOPT :: Ipopt (Interior Point OPTimizert) is a software package for large-scale nonlinear optimization :: tag4 ::
+
  
 ## Software Libraries, Languages, and Tools 
 ANT  ::    Ant is a Java library and command-line tool is to drive processes described in build files. :: tag5::
@@ -194,5 +198,8 @@ BZIP2 :: bzip2 is a freely available, patent free, high-quality data compressor.
 POVRAY :: The Persistence of Vision Raytracer is a high-quality, Free Software tool for creating stunning three-dimensional graphics. :: tag5 ::
 DMTCP :: DMTCP (Distributed MultiThreaded Checkpointing) transparently checkpoints a single-host or distributed computation in user-space :: tag5 ::
 APRUTIL ::  APR Util provides cross platform libraries for handling OS related operations. :: tag5 ::
-
+PARSL :: Parsl is a parallel scripting library that enables easy parallelism and workflow design. :: tag5 ::
+BBFTP :: BBFTP is a file transfer software. :: tag5 :: 
+IRODS ::  The Integrated Rule-Oriented Data System (iRODS) is open source data management software. :: tag5 :: 
+LIBICU :: International Components for Unicode (ICU) libraries. :: tag5 ::
 

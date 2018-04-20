@@ -1,0 +1,9 @@
+mkdir /tmp/hdf5
+cd /tmp/hdf5
+module load gcc/6.2.0
+wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.20/src/hdf5-1.8.20.tar.gz
+tar xvzf hdf5-1.8.20.tar.gz
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/hdf5/1.8.20-cxx11 --enable-cxx
+mkdir /cvmfs/oasis.opensciencegrid.org/osg/modules/hdf5/1.8.20-cxx11
+make -j 8
+make install
