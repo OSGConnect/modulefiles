@@ -1,0 +1,9 @@
+mkdir /tmp/hist
+cd /tmp/hisat
+wget 'ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/downloads/hisat2-2.1.0-source.zip'
+unzip hisat2-2.1.0-source.zip
+cd hisat2-2.1.0
+make
+rm *.h *.cpp
+mkdir /cvmfs/oasis.opensciencegrid.org/osg/modules/hisat/2.1.0/
+cp -a * /cvmfs/oasis.opensciencegrid.org/osg/modules/hisat/2.1.0/
