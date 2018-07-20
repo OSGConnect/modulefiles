@@ -8,8 +8,8 @@ for mapping next-generation sequencing reads.
 whatis("Loads the hisat tool ")
 
 local version = "2.1.0"
-local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/hisat/"..version
+local base = "/cvmfs/oasis.opensciencegrid.org/osg/modules/hisat2/"..version
 
 prepend_path("PATH", base)
 prepend_path("PYTHONPATH", base)
-family('hisat')
+family('hisat2')
