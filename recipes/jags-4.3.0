@@ -1,0 +1,8 @@
+mkdir /tmp/jags
+cd /tmp/jags
+wget 'https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-4.3.0.tar.gz/download' --no-check-certificate
+tar xvzf download
+cd JAGS-4.3.0
+./configure --prefix=/cvmfs/oasis.opensciencegrid.org/osg/modules/jags/4.3.0
+make -j 8
+make install
