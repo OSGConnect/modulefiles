@@ -1,0 +1,9 @@
+mkdir /tmp/bitstring
+cd /tmp/bitstring
+wget 'https://github.com/scott-griffiths/bitstring/archive/bitstring-3.1.5.tar.gz'
+tar xvzf bitstring-3.1.5
+cd bitstring-bitstring-3.1.5
+mkdir -p /cvmfs/oasis.opensciencegrid.org/osg/modules/bitstring/3.1.5
+cp bitstring.py /cvmfs/oasis.opensciencegrid.org/osg/modules/bitstring/3.1.5
+chmod 755 /cvmfs/oasis.opensciencegrid.org/osg/modules/bitstring/3.1.5
+chmod 644 /cvmfs/oasis.opensciencegrid.org/osg/modules/bitstring/3.1.5/bitstring.py
